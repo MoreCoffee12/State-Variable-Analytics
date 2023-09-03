@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{be9e5de9-fc6a-4cec-a852-fc7cc25431ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{a15d1151-981c-4c13-928a-fd2ef68e1150}</UniqueIdentifier>
+      <Extensions>.h</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CCrankSliderHarness\CrankSlider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\ElasticConstants.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\jacobi.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MechAnalysisFunctions.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\Solid.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\SolidStrain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\SolidStress.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\StrainTensor.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\StressTensor.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSolidMechanicsharness\Tensor.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrankSliderHarness\units.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MechAnalysisFunctions.def">
+      <Filter>Source</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CCrankSliderHarness\CrankSlider.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\ElasticConstants.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\nr.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\nrtypes.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\nrtypes_nr.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\nrutil.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\nrutil_nr.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\Solid.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\SolidStrain.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\SolidStress.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\StrainTensor.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\StressTensor.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSolidMechanicsharness\Tensor.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CCrankSliderHarness\units.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

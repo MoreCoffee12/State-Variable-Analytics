@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{941e5c38-ea7a-400a-bfcf-d4b094e32fb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{56e3955b-ed44-432f-83fe-65c6fce52508}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PerfAnalysisHarness\CompExp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\fpoly.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\MathDll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\polynomial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\PressureCurveAnalytics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\pythag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\svbksb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\svdcmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfAnalysisHarness\svdfit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CUnits\CUnitsHarness\units.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Mech Analysis\CCrankSliderHarness\CrankSlider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PerfAnalysisFunctions.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PerfAnalysisHarness\CompExp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Project-MechAnalysis\MechAnalysis\CCrankSliderHarness\CrankSlider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\math_algorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\MathDll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\nr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\nrtypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\nrtypes_nr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\nrutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\nrutil_nr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\polynomial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfAnalysisHarness\PressureCurveAnalytics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CUnits\CUnitsHarness\units.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

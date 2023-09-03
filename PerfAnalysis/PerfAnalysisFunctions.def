@@ -1,0 +1,29 @@
+
+
+;This DEF file exports the performance functions from the perfanalysis dll
+
+;Give the library a name
+LIBRARY    PerfAnalysis
+
+;Export the function
+EXPORTS
+	PerfShowBuild
+	PerfShowVersion
+
+	IMMSCFD2LBHR
+	CIMMSCFD
+	CCOMPEXP
+    bGetAdiabaticPressureCurveGage_USCS
+    bXGetClearanceVolumePercent
+    bXGetClearanceVolumePercentAsArrays
+    bXGetVolumetricEfficiencies
+    bXGetVolumetricEfficienciesAsArray
+    
+	SweptVolume_SI
+	SweptVolume_USCS
+	bGetDisplacedVolumeArray_USCS
+	bGetDisplacedVolumeArray_Percent
+	
+	bSuctionValveClosureAngle_USCS
+	bSuctionValveClosureAngle_Test_USCS
+    

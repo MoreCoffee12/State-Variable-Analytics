@@ -1,0 +1,53 @@
+    angle          *= input_angle;
+     temp           = 1;
+     temp           -= ( ( angle ) / 2.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           += ( ( angle ) / 24.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           -= ( ( angle ) / 720.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           += ( ( angle ) / 40320.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           -= ( ( angle ) / 3628800.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           += ( ( angle ) / 479001600.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           -= ( ( angle ) / 87178291200.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           += ( ( angle ) / 20922789888000.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           -= ( ( angle ) / 6402373705728000.0 );
+     angle          *= ( input_angle * input_angle );
+     temp           += ( ( angle ) / 2432902008176640000.0 );
+
+ -16.606886863672, -16.606886863672
+35.060190641351, 35.060190641351
+-25.586235239149, -25.586235239149
+12.549291873852, 12.549291873852
+-2.3717728231501,-2.3717728231501
+1.6087347223899, 1.6087347223899
+0.83857707388092, 0.83857707388092
+0.95157772875166, 0.95157772875166
+0.93857387420375, 0.93857387420375
+0.93977891312911, 0.93977891312911
+
+Sin
+
+-0.34202004089846, -0.34202004089846
+
+cos
+
+0.93977891312911, 0.93977891312911
+
+Term01
+
+0.29252946220657, 26.073080540343
+
+Term02
+
+0.97465452973263, 0.97465452973263
+
+SliderAccel
+
+12611.697249101, 
+

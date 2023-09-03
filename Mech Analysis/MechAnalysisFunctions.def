@@ -1,0 +1,47 @@
+
+
+;This DEF file exports the mechanical functions from the MechAnalysis dll
+
+;Give the library a name
+LIBRARY    MechAnalysis
+
+;Export the function
+EXPORTS
+    
+    ;Solid mechanics below this marker
+    CGetNormalStrain_xxFromStressTensor
+    CGetNormalStrain_yyFromStressTensor
+    CGetNormalStrain_zzFromStressTensor
+    CGetShearStrain_xyFromStressTensor
+    CGetShearStrain_xzFromStressTensor
+    CGetShearStrain_yzFromStressTensor
+    CGetStrainPrincipal_1
+    CGetStrainPrincipal_2
+    CGetStrainPrincipal_3
+    CGetNormalStress_xxFromStrainTensor
+    CGetNormalStress_yyFromStrainTensor
+    CGetNormalStress_zzFromStrainTensor
+    CGetShearStress_xyFromStrainTensor
+    CGetShearStress_xzFromStrainTensor
+    CGetShearStress_yzFromStrainTensor
+    CGetStressPrincipal_1
+    CGetStressPrincipal_2
+    CGetStressPrincipal_3
+        
+	;Applied mechanics below this marker
+	CDisplacement_USCS
+	CConnRodAngle_Degrees
+	CVelocity_USCS
+	CAcceleration_USCS
+	CAccelerationWithAngAcc_USCS
+	CGasLoad_USCS
+	CInertiaLoad_USCS
+	CInertiaLoadWithAngAcc_USCS
+	CCombinedLoad_USCS
+	CCombinedLoadWithAngAcc_USCS
+	CVerticalForce_USCS
+	MechShowVersion
+	MechShowBuild
+	CMainBearingRadialForce_USCS
+	CMainBearingTangentialForce_USCS
+	CMainBearingTorque_USCS

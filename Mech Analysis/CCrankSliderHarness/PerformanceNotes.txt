@@ -1,0 +1,263 @@
+13 Jun 2003 - 19:16
+
+Initial runs with as found code in the gas load section.  
+
+  Ending time: 19:14:35:691
+Starting time: 19:14:29:743
+-----------------------------
+     duration: 00:00:05:948
+
+  Ending time: 19:20:27:627
+Starting time: 19:20:21:649
+-----------------------------
+     duration: 00:00:05:978
+
+Average: 5.963
+
+13 Jun 2003 - 19:26
+
+Now calculating with += instead of this = this + something in the gas load section
+
+  Ending time: 19:25:34:529
+Starting time: 19:25:30:623
+-----------------------------
+     duration: 00:00:03:906
+
+  Ending time: 19:27:48:832
+Starting time: 19:27:44:886
+-----------------------------
+     duration: 00:00:03:946
+
+Average: 3.926
+
+13 Jun 2003 - 17:36
+
+Initial run in the inertial section with as found code
+
+  Ending time: 19:35:59:958
+Starting time: 19:35:15:634
+-----------------------------
+     duration: 00:00:44:324
+
+  Ending time: 19:39:38:432
+Starting time: 19:38:54:499
+-----------------------------
+     duration: 00:00:43:933
+
+Average: 44.129
+
+13 Jun 2003 - 19:47
+
+the intertial section and dropping the Omega term
+
+  Ending time: 19:47:02:861
+Starting time: 19:46:19:198
+-----------------------------
+     duration: 00:00:43.633
+
+  Ending time: 19:49:43:312
+Starting time: 19:48:59:509
+-----------------------------
+     duration: 00:00:43:803
+
+Average: 43.868
+
+13 Jun 2003 - 19:53
+
+the inertial section, dropping and intermediate Term02 and a pow statement
+
+  Ending time: 19:52:56:800
+Starting time: 19:52:17:564
+-----------------------------
+     duration: 00:00:39:326
+
+  Ending time: 19:56:23:287
+Starting time: 19:55:44:101
+-----------------------------
+     duration: 00:00:39:186
+
+Average: 39.258
+
+13 Jun 2003 - 19:58
+
+the inertial section, dropping another pow statement
+
+  Ending time: 20:01:09:038
+Starting time: 20:00:34:518
+-----------------------------
+     duration: 00:00:34:520
+
+  Ending time: 20:02:58:636
+Starting time: 20:02:23:976
+-----------------------------
+     duration: 00:00:34:660
+
+Average: 34:590
+
+13 Jun 2003 - 22:02
+
+the inertial section dropping another pow statement
+
+  Ending time: 22:04:26:238
+Starting time: 22:03:56:085
+-----------------------------
+     duration: 00:00:30.153
+
+  Ending time: 22:11:23:568
+Starting time: 22:10:53:415
+-----------------------------
+     duration: 00:00:30.152
+
+Average: 30.153
+
+13 Jun 2003 - 20:15
+
+the inertial section dropping a set of paranthesis
+
+  Ending time: 22:16:32:813
+Starting time: 22:16:02:629
+-----------------------------
+     duration: 00:00:30.184
+
+  Ending time: 22:24:04:082
+Starting time: 22:23:33:988
+-----------------------------
+     duration: 00:00:30.094
+
+Average: 30.139
+
+13 Jun 2003 - 22:28
+
+the inertial section and getting rid of the omega term
+
+  Ending time: 22:29:32:364
+Starting time: 22:29:02:330
+-----------------------------
+     duration: 00:00:30.034
+
+  Ending time: 22:31:20:469
+Starting time: 22:30:50:276
+-----------------------------
+     duration: 00:00:30.193
+
+Average: 30.114
+
+13 Jun 2003 - 22:47
+
+the inertial section, getting rid of another pow
+
+  Ending time: 22:48:12:094
+Starting time: 22:47:42:731
+-----------------------------
+     duration: 00:00:29:363
+
+  Ending time: 22:52:06:721
+Starting time: 22:51:37:479
+-----------------------------
+     duration: 00:00:29:424
+
+Average: 29.303
+
+13 Jun 2003 - 22:55
+
+the inertial section, removed Term01 check
+
+  Ending time: 23:16:59:437
+Starting time: 23:16:30:476
+-----------------------------
+     duration: 00:00:28:961
+
+  Ending time: 23:20:14:708
+Starting time: 23:19:45:646
+-----------------------------
+     duration: 00:00:29:062
+
+Average: 29.011
+
+13 Jun 2003 - 23:33
+
+the inertial section, removed r/l calculation (note: clockspeed change b/c AC connected)
+
+  Ending time: 23:39:02:891
+Starting time: 23:38:45:686
+-----------------------------
+     duration: 00:00:17:205
+
+  Ending time: 23:37:47:001
+Starting time: 23:37:29:697
+-----------------------------
+     duration: 00:00:17.304
+
+
+
+Average: --.---
+
+15 Jun 2003 - 17:46
+
+the inertial section, converting all sins to cosines
+
+  Ending time: 17:48:42:395
+Starting time: 17:48:14:805
+----------------------------
+     duration: 00:00:27:590
+
+  Ending time: 17:50:58:611
+Starting time: 17:50:31:221
+-----------------------------
+     duration: 00:00:27.390
+
+Average: 27.490
+
+15 Jun 2003 - 17:55
+
+the inertial section, using taylor series expansion
+
+  Ending time: 18:04:29:537
+Starting time: 18:04:03:810
+----------------------------
+     duration: 00:00:25:727
+
+  Ending time: 18:08:05:067
+Starting time: 18:07:39:189
+-----------------------------
+     duration: 00:00:25.878
+
+Average: 25.803
+
+15 Jun 2003 - 18:50
+
+the inertial force section, compressing some of the angle terms
+
+  Ending time: 18:57:41:884
+Starting time: 18:57:16:087
+----------------------------
+     duration: 00:00:25:797
+
+  Ending time: 18:59:18:683
+Starting time: 18:58:52:886
+-----------------------------
+     duration: 00:00:25.797
+
+Average: 25.797
+
+15 Jun 2003 - 19:00
+
+the inertial force section, only calculation sin/cos once
+
+  Ending time: 19:14:14:641
+Starting time: 19:13:55:584
+----------------------------
+     duration: 00:00:19:057	
+
+  Ending time: 19:16:42:904
+Starting time: 19:16:23:797
+-----------------------------
+     duration: 00:00:19:107
+
+Average: 19.082
+
+
+
+
+
+
