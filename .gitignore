@@ -79,6 +79,7 @@ bld/
 
 # Ignore Visual Studio temporary files
 *.pdp
+*.pdb
 *.idb
 *.plg
 
