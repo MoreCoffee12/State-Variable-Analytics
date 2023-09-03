@@ -1,0 +1,103 @@
+
+
+;This DEF file exports the GasAnalysis functions
+
+;Give the library a name
+LIBRARY    GasAnalysis
+
+;Export the function
+EXPORTS
+	ShowBuild
+	ShowVersion
+
+	ShowFluidCount
+	ShowName
+	ShowName_Alt01
+	ShowFormula
+	ShowMolWeight
+	ShowMolWeight_mx
+	ShowCritTemp_USCS
+	ShowCritTemp_SI
+	ShowCritPres_USCS
+	ShowCritPres_SI
+	ShowCritVol_USCS
+	ShowCritVol_SI
+	ShowEcc
+	ShowR_USCS
+	ShowHfo_USCS
+	ShowHfo_SI
+	ShowSfo_USCS
+	ShowSfo_SI
+	ShowHfo_mx_USCS
+	ShowHfo_mx_SI
+	ShowSfo_mx_USCS
+	ShowSfo_mx_SI
+	ShowH_H298_USCS
+	ShowH_H298_SI
+	ShowHIdeal_USCS
+	ShowHIdeal_SI
+	ShowSo_USCS
+	ShowSo_SI
+	ShowLHV_USCS
+	ShowLHV_SI
+	ShowLHV_mx_USCS
+	ShowLHV_mx_SI
+	ShowHHV_USCS
+	ShowHHV_SI
+	ShowHHV_mx_USCS
+	ShowHHV_mx_SI
+	ShowDipole_USCS
+	ShowDipole_SI
+
+	ShowP_MT_USCS
+	ShowP_VS_USCS
+	ShowP_VS_SI
+	ShowP_VT_USCS
+	ShowP_VT_SI
+	ShowT_SP_USCS
+	ShowT_SP_SI
+	ShowT_HP_USCS
+	ShowT_HP_SI
+	ShowV_TP_USCS
+	ShowV_TP_SI
+	ShowS_TP_USCS
+	ShowS_TP_SI
+	ShowH_TP_USCS
+	ShowH_TP_SI
+	ShowH_TS_SI
+	ShowH_TS_USCS
+	ShowH_PS_SI
+	ShowH_PS_USCS
+	ShowF_TP_USCS
+	ShowViscosityGas_TP_USCS
+	ShowViscosityGas_TP_SI
+
+
+	ShowVapPres_T_USCS
+	ShowVapPres_T_SI
+	ShowSatVapV_T_USCS
+	ShowSatVapV_T_SI
+	ShowSatLiqV_T_USCS
+	ShowSatLiqV_T_SI
+	ShowSatVapH_T_USCS
+	ShowSatVapH_T_SI
+	ShowSatLiqH_T_USCS	
+	ShowSatLiqH_T_SI	
+	ShowSatVapS_T_USCS
+	ShowSatLiqS_T_USCS
+
+	ShowVapTemp_P_USCS
+	ShowVapTemp_P_SI
+	ShowSatVapV_P_USCS
+	ShowSatVapV_P_SI
+	ShowSatLiqV_P_USCS
+	ShowSatLiqV_P_SI
+	ShowSatVapH_P_USCS
+	ShowSatVapH_P_SI
+	ShowSatLiqH_P_USCS
+	ShowSatLiqH_P_SI
+	ShowSatVapS_P_USCS
+	ShowSatVapS_P_SI
+	ShowSatLiqS_P_USCS
+	ShowSatLiqS_P_SI
+

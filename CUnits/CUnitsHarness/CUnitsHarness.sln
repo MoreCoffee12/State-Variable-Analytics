@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUnitsHarness", "CUnitsHarness.vcproj", "{ACBBAF43-E4EE-4715-BCE7-C47B266616AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACBBAF43-E4EE-4715-BCE7-C47B266616AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ACBBAF43-E4EE-4715-BCE7-C47B266616AE}.Debug|Win32.Build.0 = Debug|Win32
+		{ACBBAF43-E4EE-4715-BCE7-C47B266616AE}.Release|Win32.ActiveCfg = Release|Win32
+		{ACBBAF43-E4EE-4715-BCE7-C47B266616AE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
