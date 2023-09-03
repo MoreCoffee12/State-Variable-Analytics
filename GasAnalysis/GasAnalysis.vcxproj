@@ -230,6 +230,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>StdCall</CallingConvention>
+      <AdditionalIncludeDirectories>CEOSModelHarness;..\CUnits\CUnitsHarness;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -248,6 +249,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\CUnits\CUnitsHarness\units.cpp" />
     <ClCompile Include="CEOSModelHarness\CBWRSHarness\bwrs.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
@@ -321,9 +323,6 @@
     <ClInclude Include="logfile.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="units.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="H:\Applications_SW\cpp\Toolbox\CUnits\x64\Debug\CUnits.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,6 +30,9 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CUnits\CUnitsHarness\units.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GasAnalysisFunctions.def">
@@ -38,9 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bwrs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CEOSModelHarness\eosmodel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FluidProp.h">
@@ -61,10 +61,8 @@
     <ClInclude Include="units.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="H:\Applications_SW\cpp\Toolbox\CUnits\x64\Debug\CUnits.lib">
-      <Filter>Source Files</Filter>
-    </Library>
+    <ClInclude Include="CEOSModelHarness\eosmodel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
