@@ -1,0 +1,110 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Ignore logs
+*.log
+*.tlog
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.ipch
+
+# Test file results
+*.tst
+*.csv
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Visual Studio 6 workspace options file
+*.opt
+
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+*.vbw
+
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+*.vbp
+
+# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+*.dsw
+*.dsp
+
+# Visual Studio build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 
+*.vsidx
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio temporary files
+*.pdp
+*.idb
+*.plg
+
+# Visual Studio CPP cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+	
+
+
+# Debug files
+*.dSYM/
+
+# MATALB backup files
+*.asv
+CUnits/CUnits___Win32_Debug/CUnits.tlog/Lib-link.write.1.tlog
+CUnits/CUnits___Win32_Debug/CUnits.vcxproj.FileListAbsolute.txt
+GasAnalysis/SendDLL.bat
+GasAnalysis/UpgradeLog.htm
+FilterCDF/Test.txt
+FilterCDF/UpgradeLog.XML
+CUnits/CUnitsHarness/UpgradeLog.XML
+CUnits/UpgradeLog.htm
