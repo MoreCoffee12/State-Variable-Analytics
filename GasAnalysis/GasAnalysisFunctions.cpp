@@ -3,45 +3,50 @@
 #include "oleauto.h"
 #include <memory>
 
-/***********************************
- * Function Definition : ShowBuild *
- *---------------------------------******************
- * This function returns an integer with the build  *
- * number                                           *
- ****************************************************/
+/// <summary>
+/// Retrieves the the C++ dll version number.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <returns>An integer representing the build number.</returns>
 int ShowBuild()
 {
 	return 998;
 }
 
-/*************************************
- * Function Definition : ShowVersion *
- *-----------------------------------****************
- * This function returns an integer with the build  *
- * number                                           *
- ****************************************************/
+/// <summary>
+/// Retrieves the the C++ dll version number.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <returns>An integer representing the version number.</returns>
 int	ShowVersion()
 {
 	return 0;
 }
 
-/**************************************
- * Function Definition : CheckMixture *
- *------------------------------------***************
- * This function is included for legacy support only*
- ****************************************************/
-bool CheckMixture(double* MixtureArray, int FluidCount)
-{
-	//success
-	return true;
-}
+// Revision, 4 Sep 2023, deprecated this function
+///**************************************
+// * Function Definition : CheckMixture *
+// *------------------------------------***************
+// * This function is included for legacy support only*
+// ****************************************************/
+//bool CheckMixture(double* MixtureArray, int FluidCount)
+//{
+//	//success
+//	return true;
+//}
 
-/****************************************
- * Function Definition : ShowFluidCount *
- *--------------------------------------*************
- * This function returns the total number of fluids *
- * in the EOS engine								*
- ****************************************************/
+/// <summary>
+/// Retrieves the total number of fluids in the C++ dll.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: Used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety.</revision>
+/// <returns>An integer representing the build number.</returns>
 int ShowFluidCount()
 {
 	// Local variables
@@ -50,33 +55,25 @@ int ShowFluidCount()
 	// Was CBWRS bwrs;
 	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 
-	return (short)bwrs->GetFluidCount();
+	return (int)bwrs->GetFluidCount();
 }
 
-/**
- * @file      GasAnalysisFunctions.cpp
- * @function  ShowName
- * @brief     This function retrieves the primary name and error information
- *			   for a given fluid index using the CBWRS class.
- *
- * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
- * @param[out]     textline     Pointer to a char array to hold the name of the fluid.
- * @param[out]     priority01   Pointer to a double representing the error priority.
- * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
- *
- * @return    Integer representing the number of errors (0 for no errors).
- *
- * @note      This function uses std::unique_ptr for better memory management and
- *            to avoid stack overflow issues.
- *
- * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
- *            with sufficient space before calling this function.
- *
- * @author    Brian Howard
- * @date      2001
- * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
- *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
- */
+/// <summary>
+/// Retrieves the primary name and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 3 Sep 2023: Used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index. [in, out]</param>
+/// <param name="textline">Pointer to a char array to hold the name of the fluid. [out]</param>
+/// <param name="priority01">Pointer to a double representing the error priority. [out]</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line. [out]</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <note>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</note>
+/// <warning>Make sure that the char arrays (textline, mainerrline01) are allocated with sufficient space before calling this function.</warning>
+/// </remarks>
 int ShowName(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -91,7 +88,7 @@ int ShowName(int* fluidindex, char* textline,
 	int	errs;
 	int	i;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	peosline = bwrs->GetName(*fluidindex);
 	pmerrline = NULL;
@@ -115,30 +112,22 @@ int ShowName(int* fluidindex, char* textline,
 	return errs;
 }
 
-/**
- * @file      GasAnalysisFunctions.cpp
- * @function  ShowName_Alt01
- * @brief     This function retrieves alternate or secondary name and error information
- *			   for a given fluid index using the CBWRS class.
- *
- * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
- * @param[out]     textline     Pointer to a char array to hold the name of the fluid.
- * @param[out]     priority01   Pointer to a double representing the error priority.
- * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
- *
- * @return    Integer representing the number of errors (0 for no errors).
- *
- * @note      This function uses std::unique_ptr for better memory management and
- *            to avoid stack overflow issues.
- *
- * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
- *            with sufficient space before calling this function.
- *
- * @author    Brian Howard
- * @date      2001
- * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
- *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
- */
+/// <summary>
+/// Retrieves alternate or secondary name and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 3 Sep 2023: Used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index. [in, out]</param>
+/// <param name="textline">Pointer to a char array to hold the name of the fluid. [out]</param>
+/// <param name="priority01">Pointer to a double representing the error priority. [out]</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line. [out]</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <note>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</note>
+/// <warning>Make sure that the char arrays (textline, mainerrline01) are allocated with sufficient space before calling this function.</warning>
+/// </remarks>
 int ShowName_Alt01(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -153,13 +142,13 @@ int ShowName_Alt01(int* fluidindex, char* textline,
 	int	errs;
 	int	i;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	peosline = bwrs->GetName_Alt01(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
-	//initialize local variables
+	// Initialize local variables
 	// Revision, 3 Sep 2023, changed strcpy to strcpy_s
 	strcpy_s(textline, strlen(textline), peosline);
 
@@ -176,36 +165,22 @@ int ShowName_Alt01(int* fluidindex, char* textline,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowFormula *
- *-----------------------------------****************
- * This function returns the chemical formula for a *
- * fluid at fluidindex								*
- ****************************************************/
- /**
-  * @file      GasAnalysisFunctions.cpp
-  * @function  ShowFormula
-  * @brief     This function retrieves chamical formula information
-  *			   for a given fluid index using the CBWRS class.
-  *
-  * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
-  * @param[out]     textline     Pointer to a char array to hold the fluid chemical formula.
-  * @param[out]     priority01   Pointer to a double representing the error priority.
-  * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
-  *
-  * @return    Integer representing the number of errors (0 for no errors).
-  *
-  * @note      This function uses std::unique_ptr for better memory management and
-  *            to avoid stack overflow issues.
-  *
-  * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
-  *            with sufficient space before calling this function.
-  *
-  * @author    Brian Howard
-  * @date      2001
-  * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
-  *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
-  */
+/// <summary>
+/// Retrieves chemical formula information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 3 Sep 2023: Used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index. [in, out]</param>
+/// <param name="textline">Pointer to a char array to hold the fluid chemical formula. [out]</param>
+/// <param name="priority01">Pointer to a double representing the error priority. [out]</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line. [out]</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <note>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</note>
+/// <warning>Make sure that the char arrays (textline, mainerrline01) are allocated with sufficient space before calling this function.</warning>
+/// </remarks>
 int ShowFormula(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -226,7 +201,7 @@ int ShowFormula(int* fluidindex, char* textline,
 	i = 0;
 	pmerrline = NULL;
 
-	//initialize local variables
+	// Initialize local variables
 	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
@@ -241,14 +216,24 @@ int ShowFormula(int* fluidindex, char* textline,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowH_H298_SI *
- *-------------------------------------**************
- * This function returns the enthalpy (based on the *
- * JANAF tables) SI									*
- ****************************************************/
-int ShowH_H298_SI(double eosset,
-	double temp,
+ /// <summary>
+ /// Calculates and returns the enthalpy (H) of an ideal gas mixture in SI units based on the JANAF tables, relative to 298 Kelvin.
+ /// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: Used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <param name="eosset">Pointer to a set of equation of state constants. Not currently used but reserved for future use.</param>
+/// <param name="temp">Pointer to the temperature, in Kelvin, of the gas mixture.</param>
+/// <param name="MixtureArray">Pointer to the array representing the gas mixture composition.</param>
+/// <param name="Precision">The precision to be used in calculations.</param>
+/// <param name="MaxIterations">Maximum number of iterations for the solver.</param>
+/// <param name="h">Pointer to store the calculated enthalpy.</param>
+/// <param name="priority01">Pointer to store the priority of any generated message.</param>
+/// <param name="mainerrline01">Pointer to store any generated error message.</param>
+/// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
+int ShowH_H298_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -256,59 +241,78 @@ int ShowH_H298_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 4 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int	errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
+	//The eosset variable is not used in this function, but is included
+	//for future compatibility with the C++ version of the BWRS class
+	//bwrs->set_eosset(*eosset);
+
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
-	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	//Now load the solver configuration. Begin by setting the solver precision.
+	bwrs->SetPrecision(Precision);
 
-	//and get the pressure
-	*h = bwrs.Geth_h298_SI(temp);
+	//...And the maximum number of iterations
+	bwrs->SetMaxIterations((int)MaxIterations);
+
+	//and get the enthalpy by passing the temperature into the BWRS object
+	*h = bwrs->Geth_h298_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowH_H298_USCS *
- *---------------------------------------************
- * This function returns the enthalpy (based on the *
- * JANAF tables) USCS								*
- ****************************************************/
-int ShowH_H298_USCS(double eosset,
-	double temp,
+/// <summary>
+/// Calculates and returns the enthalpy (H) of an ideal gas mixture in USCS units based on the JANAF tables, relative to 298 Kelvin.
+/// </summary>
+/// <file>GasAnalysisFunctions.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: Used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <param name="eosset">Pointer to a set of equation of state constants. Not currently used but reserved for future use.</param>
+/// <param name="temp">Pointer to the temperature, in Rankine, of the gas mixture.</param>
+/// <param name="MixtureArray">Pointer to the array representing the gas mixture composition.</param>
+/// <param name="Precision">The precision to be used in calculations.</param>
+/// <param name="MaxIterations">Maximum number of iterations for the solver.</param>
+/// <param name="h">Pointer to store the calculated enthalpy.</param>
+/// <param name="priority01">Pointer to store the priority of any generated message.</param>
+/// <param name="mainerrline01">Pointer to store any generated error message.</param>
+/// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
+int ShowH_H298_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -316,59 +320,78 @@ int ShowH_H298_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int	errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	//The eosset variable is not used in this function, but is included
+	//for future compatibility with the C++ version of the BWRS class
+	//bwrs->set_eosset(*eosset);
+
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.Geth_h298_USCS(temp);
+	*h = bwrs->Geth_h298_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowHIdeal_SI *
- *-------------------------------------**************
- * This function returns the ideal gas entropy based*
- * on the passut-danner correlation.				*
- ****************************************************/
-int ShowHIdeal_SI(double eosset,
-	double temp,
+/// <summary>
+/// Returns the ideal gas entropy in SI units based on the Passut-Danner correlation.
+/// </summary>
+/// <param name="eosset">Pointer to a double representing the EOS set. Currently not used but included for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the mixture.</param>
+/// <param name="Precision">Double representing the solver's precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of iterations for the solver.</param>
+/// <param name="h">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+int ShowHIdeal_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -377,58 +400,77 @@ int ShowHIdeal_SI(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int	errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	//The eosset variable is not used in this function, but is included
+	//for future compatibility with the C++ version of the BWRS class
+	//bwrs->set_eosset(*eosset);
+
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
-	//and get the pressure
-	*h = bwrs.GetHIdeal_SI(temp);
+	//and get the ideal entropy
+	*h = bwrs->GetHIdeal_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowHIdeal_USCS *
- *-------------------------------------**************
- * This function returns the ideal gas entropy based*
- * on the passut-danner correlation in USCS units.	*
- ****************************************************/
-int ShowHIdeal_USCS(double eosset,
-	double temp,
+/// <summary>
+/// Returns the ideal gas entropy in USCS units based on the Passut-Danner correlation.
+/// </summary>
+/// <param name="eosset">Pointer to a double representing the EOS set. Currently not used but included for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the mixture.</param>
+/// <param name="Precision">Double representing the solver's precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of iterations for the solver.</param>
+/// <param name="h">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+int ShowHIdeal_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -436,46 +478,49 @@ int ShowHIdeal_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int	errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetHIdeal_USCS(temp);
+	*h = bwrs->GetHIdeal_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -487,8 +532,8 @@ int ShowHIdeal_USCS(double eosset,
  * This function returns the entropy (based on the  *
  * JANAF tables) SI									*
  ****************************************************/
-int ShowSo_SI(double eosset,
-	double temp,
+int ShowSo_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -496,46 +541,49 @@ int ShowSo_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.Getso_SI(temp);
+	*s = bwrs->Getso_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -547,8 +595,8 @@ int ShowSo_SI(double eosset,
  * This function returns the entropy (based on the  *
  * JANAF tables) USCS								*
  ****************************************************/
-int ShowSo_USCS(double eosset,
-	double temp,
+int ShowSo_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -556,167 +604,234 @@ int ShowSo_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.Getso_USCS(temp);
+	*s = bwrs->Getso_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowMolWeight *
- *-------------------------------------**************
- * This function returns the chemical formula for a *
- * fluid at fluidindex								*
- ****************************************************/
-int ShowMolWeight(double fluidindex, double* molweight,
+/**
+ * @file      GasAnalysisFunctions.cpp
+ * @function  ShowMolWeight
+ * @brief     This function retrieves the mole weight and error information
+ *			   for a given fluid index using the CBWRS class.
+ *
+ * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
+ * @param[out]     molweight    Pointer to a double to hold the fluid molweight.
+ * @param[out]     priority01   Pointer to a double representing the error priority.
+ * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
+ *
+ * @return    Integer representing the number of errors (0 for no errors).
+ *
+ * @note      This function uses std::unique_ptr for better memory management and
+ *            to avoid stack overflow issues.
+ *
+ * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
+ *            with sufficient space before calling this function.
+ *
+ * @author    Brian Howard
+ * @date      2001
+ * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
+ *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
+ */
+int ShowMolWeight(int* fluidindex, double* molweight,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*molweight = bwrs.GetMolWeight((int)fluidindex);
+	*molweight = bwrs->GetMolWeight(*fluidindex);
+	i = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowMolWeight *
- *-------------------------------------**************
- * This function returns the chemical formula for a *
- * mixture.											*
- ****************************************************/
+ /**
+  * @file      GasAnalysisFunctions.cpp
+  * @function  ShowMolWeight_mx
+  * @brief     This function retrieves the mixture mole weight and error information
+  *			   for a given fluid index using the CBWRS class.
+  *
+  * @param[in, out] molweight   Pointer to an integer representing the fluid index.
+  * @param[out]     priority01   Pointer to a double representing the error priority.
+  * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
+  * @param[in]		MixtureArray Point to double array with the mixture percent mole weights	
+  *
+  * @return    Integer representing the number of errors (0 for no errors).
+  *
+  * @note      This function uses std::unique_ptr for better memory management and
+  *            to avoid stack overflow issues.
+  *
+  * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
+  *            with sufficient space before calling this function.
+  *
+  * @author    Brian Howard
+  * @date      2001
+  * @revision  Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard
+  *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
+  */
 int ShowMolWeight_mx(double* molweight,
 	double* priority01,
 	char* mainerrline01,
 	double* MixtureArray)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int	errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	*molweight = NULL;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Retreive the mixture molecular weight
-	*molweight = bwrs.GetMolWeight_mx();
+	*molweight = bwrs->GetMolWeight_mx();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
 }
 
-/*******************************************
- * Function Definition : ShowCritTemp_USCS *
- *-----------------------------------------**********
- * This function returns the critical temperature in*
- * USCS												*
- ****************************************************/
-int ShowCritTemp_USCS(double fluidindex, double* crittemp,
+/**
+ * @file      GasAnalysisFunctions.cpp
+ * @function  ShowCritTemp_USCS
+ * @brief     This function retrieves the critical temperature in USCS units and error information
+ *			   for a given fluid index using the CBWRS class.
+ *
+ * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
+ * @param[out]     crittemp    Pointer to a double to hold the fluid critical temperature.
+ * @param[out]     priority01   Pointer to a double representing the error priority.
+ * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
+ *
+ * @return    Integer representing the number of errors (0 for no errors).
+ *
+ * @note      This function uses std::unique_ptr for better memory management and
+ *            to avoid stack overflow issues.
+ *
+ * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
+ *            with sufficient space before calling this function.
+ *
+ * @author    Brian Howard
+ * @date      2001
+ * @revision  Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard
+ *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
+ */
+int ShowCritTemp_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs.GetTempCrit_USCS((int)fluidindex);
+	*crittemp = bwrs->GetTempCrit_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -732,25 +847,28 @@ int ShowCritTemp_SI(double fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs.GetTempCrit_SI((int)fluidindex);
+	*crittemp = bwrs->GetTempCrit_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -766,25 +884,28 @@ int ShowCritPres_USCS(double fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs.GetPresCrit_USCS((int)fluidindex);
+	*crittemp = bwrs->GetPresCrit_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -800,25 +921,28 @@ int ShowCritPres_SI(double fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs.GetPresCrit_SI((int)fluidindex);
+	*crittemp = bwrs->GetPresCrit_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -834,25 +958,28 @@ int ShowCritVol_USCS(double fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs.GetVolCrit_USCS((int)fluidindex);
+	*crittemp = bwrs->GetVolCrit_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -868,25 +995,28 @@ int ShowCritVol_SI(double fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs.GetVolCrit_SI((int)fluidindex);
+	*crittemp = bwrs->GetVolCrit_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -901,25 +1031,28 @@ int ShowEcc(double fluidindex, double* ecc,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*ecc = bwrs.GetEcc((int)fluidindex);
+	*ecc = bwrs->GetEcc((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -934,25 +1067,28 @@ int ShowR_USCS(double fluidindex, double* r,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*r = bwrs.GetR_USCS((int)fluidindex);
+	*r = bwrs->GetR_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -968,25 +1104,28 @@ int ShowHfo_SI(double fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*h = bwrs.Gethfo_SI((int)fluidindex);
+	*h = bwrs->Gethfo_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1002,25 +1141,28 @@ int ShowHfo_USCS(double fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*h = bwrs.Gethfo_USCS((int)fluidindex);
+	*h = bwrs->Gethfo_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1032,7 +1174,7 @@ int ShowHfo_USCS(double fluidindex, double* h,
  * This function returns the ideal gas enthalpy		*
  * formation for the mixture in SI units			*
  ****************************************************/
-int ShowHfo_mx_SI(double eosset,
+int ShowHfo_mx_SI(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1040,46 +1182,49 @@ int ShowHfo_mx_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*h = bwrs.Gethfo_SI();
+	*h = bwrs->Gethfo_SI();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1091,7 +1236,7 @@ int ShowHfo_mx_SI(double eosset,
  * This function returns the ideal gas enthalpy		*
  * formation for the mixture in USCS units			*
  ****************************************************/
-int ShowHfo_mx_USCS(double eosset,
+int ShowHfo_mx_USCS(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1099,46 +1244,49 @@ int ShowHfo_mx_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.Gethfo_USCS();
+	*h = bwrs->Gethfo_USCS();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1155,24 +1303,27 @@ int ShowSfo_SI(double fluidindex, double* s,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*s = bwrs.Getsfo_SI((int)fluidindex);
+	*s = bwrs->Getsfo_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1188,25 +1339,28 @@ int ShowSfo_USCS(double fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*s = bwrs.Getsfo_USCS((int)fluidindex);
+	*s = bwrs->Getsfo_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1218,7 +1372,7 @@ int ShowSfo_USCS(double fluidindex, double* s,
  * This function returns the ideal gas entropy of   *
  * formation for the mixture						*
  ****************************************************/
-int ShowSfo_mx_SI(double eosset,
+int ShowSfo_mx_SI(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1226,46 +1380,49 @@ int ShowSfo_mx_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.Getsfo_SI();
+	*s = bwrs->Getsfo_SI();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1277,7 +1434,7 @@ int ShowSfo_mx_SI(double eosset,
  * This function returns the ideal gas entropy of   *
  * formation for the mixture in USCS units			*
  ****************************************************/
-int ShowSfo_mx_USCS(double eosset,
+int ShowSfo_mx_USCS(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1285,46 +1442,50 @@ int ShowSfo_mx_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
-	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	// Now load the solver configuration, starting with required precision
+	bwrs->SetPrecision(Precision);
+	// ...and maximum iterations
+	bwrs->SetMaxIterations((int)MaxIterations);
 
-	//and get the pressure
-	*s = bwrs.Getsfo_USCS();
+	// ...and get the ideal gas entropy
+	*s = bwrs->Getsfo_USCS();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1340,25 +1501,28 @@ int ShowLHV_USCS(double fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*lhv = bwrs.GetLHV_USCS((int)fluidindex);
+	*lhv = bwrs->GetLHV_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1374,25 +1538,28 @@ int ShowLHV_SI(double fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*lhv = bwrs.GetLHV_SI((int)fluidindex);
+	*lhv = bwrs->GetLHV_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1408,25 +1575,28 @@ int ShowDipole_USCS(short fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS               bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int                 errs;
 	int                 i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*dipole = bwrs.GetDipole_USCS((int)fluidindex);
+	*dipole = bwrs->GetDipole_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1442,25 +1612,28 @@ int ShowDipole_SI(short fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS               bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int                 errs;
 	int                 i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*dipole = bwrs.GetDipole_SI((int)fluidindex);
+	*dipole = bwrs->GetDipole_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1472,7 +1645,7 @@ int ShowDipole_SI(short fluidindex, double* dipole,
 // This function returns the lower heating value
 // for the mixture in USCS units.
 ////////////////////////////////////////////////////////////
-int ShowLHV_mx_USCS(double eosset,
+int ShowLHV_mx_USCS(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1480,46 +1653,50 @@ int ShowLHV_mx_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
-	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	// Now load the solver configuration, starting with precision
+	bwrs->SetPrecision(Precision);
+	//	...and the maximum number of iterations
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*lhv = bwrs.GetLHV_mx_USCS();
+	*lhv = bwrs->GetLHV_mx_USCS();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1531,7 +1708,7 @@ int ShowLHV_mx_USCS(double eosset,
 // This function returns the lower heating value
 // for the mixture in SI units.
 ////////////////////////////////////////////////////////////
-int ShowLHV_mx_SI(double eosset,
+int ShowLHV_mx_SI(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1539,46 +1716,49 @@ int ShowLHV_mx_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*lhv = bwrs.GetLHV_mx_SI();
+	*lhv = bwrs->GetLHV_mx_SI();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1590,9 +1770,9 @@ int ShowLHV_mx_SI(double eosset,
  * This function returns the pressure given a molar *
  * density and temperature							*
  ****************************************************/
-int ShowP_MT_USCS(double eosset,
+int ShowP_MT_USCS(double* eosset,
 	double md,
-	double temp,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1600,44 +1780,47 @@ int ShowP_MT_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 		return errs;
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs.GetP_MT_USCS(md, temp);
+	*pres = bwrs->GetP_MT_USCS(md, *temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1649,7 +1832,7 @@ int ShowP_MT_USCS(double eosset,
 // This function returns the pressure given a
 // specific volume and temperature
 /////////////////////////////////////////////////////
-short ShowP_VS_SI(double eosset,
+short ShowP_VS_SI(double* eosset,
 	double v,
 	double s,
 	double* MixtureArray,
@@ -1659,46 +1842,49 @@ short ShowP_VS_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs.GetP_VS_SI(v, s);
+	*pres = bwrs->GetP_VS_SI(v, s);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1710,7 +1896,7 @@ short ShowP_VS_SI(double eosset,
 // This function returns the pressure given a
 // specific volume and temperature
 /////////////////////////////////////////////////////
-short ShowP_VS_USCS(double eosset,
+short ShowP_VS_USCS(double* eosset,
 	double v,
 	double s,
 	double* MixtureArray,
@@ -1720,46 +1906,49 @@ short ShowP_VS_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs.GetP_VS_USCS(v, s);
+	*pres = bwrs->GetP_VS_USCS(v, s);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1771,9 +1960,9 @@ short ShowP_VS_USCS(double eosset,
  * This function returns the pressure given a       *
  * specific volume and temperature					*
  ****************************************************/
-int ShowP_VT_SI(double eosset,
+int ShowP_VT_SI(double* eosset,
 	double sv,
-	double temp,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1782,45 +1971,48 @@ int ShowP_VT_SI(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs.GetP_VT_SI(sv, temp);
+	*pres = bwrs->GetP_VT_SI(sv, *temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1832,9 +2024,9 @@ int ShowP_VT_SI(double eosset,
  * This function returns the pressure given a       *
  * specific volume and temperature					*
  ****************************************************/
-int ShowP_VT_USCS(double eosset,
+int ShowP_VT_USCS(double* eosset,
 	double sv,
-	double temp,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1843,45 +2035,48 @@ int ShowP_VT_USCS(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs.GetP_VT_USCS(sv, temp);
+	*pres = bwrs->GetP_VT_USCS(sv, *temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1893,8 +2088,8 @@ int ShowP_VT_USCS(double eosset,
  * This function returns the pressure in SI given a *
  * specific volume and temperature					*
  ****************************************************/
-int ShowV_TP_SI(double eosset,
-	double temp,
+int ShowV_TP_SI(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -1904,45 +2099,48 @@ int ShowV_TP_SI(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetV_TP_SI(temp, pres);
+	*v = bwrs->GetV_TP_SI(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -1955,7 +2153,7 @@ int ShowV_TP_SI(double eosset,
 // specific volume and temperature
 ////////////////////////////////////////////////////////////
 short ShowV_TP_USCS(short eosset,
-	double temp,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -1964,13 +2162,16 @@ short ShowV_TP_USCS(short eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int	errs;
 	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
@@ -1980,35 +2181,35 @@ short ShowV_TP_USCS(short eosset,
 	{
 	case 1:
 		//...And load the mixture data into the BWRS object
-		if (!bwrs.SetMixtureData(MixtureArray))
+		if (!bwrs->SetMixtureData(MixtureArray))
 		{
 			//Check to see if the action generated any errors
-			errs = bwrs.GetMessageCount();
+			errs = bwrs->GetMessageCount();
 			if (errs > 0)
 			{
-				pmerrline = bwrs.GetMessageMain(1);
+				pmerrline = bwrs->GetMessageMain(1);
 				strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-				*priority01 = bwrs.GetMessagePriority(1);
+				*priority01 = bwrs->GetMessagePriority(1);
 				return errs;
 			}
 
 		}
 
 		//Now load the solver configuration
-		bwrs.SetPrecision(Precision);
-		bwrs.SetMaxIterations((int)MaxIterations);
+		bwrs->SetPrecision(Precision);
+		bwrs->SetMaxIterations((int)MaxIterations);
 
 		//and get the pressure
-		*v = bwrs.GetV_TP_USCS(temp, pres);
+		*v = bwrs->GetV_TP_USCS(*temp, pres);
 
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 		}
 
 		break;
@@ -2029,8 +2230,8 @@ short ShowV_TP_USCS(short eosset,
  * This function returns the entropy given a        *
  * specific temperature	and pressure in SI			*
  ****************************************************/
-int ShowS_TP_SI(double eosset,
-	double temp,
+int ShowS_TP_SI(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2039,46 +2240,49 @@ int ShowS_TP_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.GetS_TP_SI(temp, pres);
+	*s = bwrs->GetS_TP_SI(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2090,8 +2294,8 @@ int ShowS_TP_SI(double eosset,
  * This function returns the entropy given a        *
  * specific temperature	and pressure               *
  ****************************************************/
-int ShowS_TP_USCS(double eosset,
-	double temp,
+int ShowS_TP_USCS(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2101,45 +2305,48 @@ int ShowS_TP_USCS(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.GetS_TP_USCS(temp, pres);
+	*s = bwrs->GetS_TP_USCS(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2151,8 +2358,8 @@ int ShowS_TP_USCS(double eosset,
  * This function returns the enthalpy given a       *
  * specific temperature	and pressure in SI         *
  ****************************************************/
-int ShowH_TP_SI(double eosset,
-	double temp,
+int ShowH_TP_SI(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2162,45 +2369,48 @@ int ShowH_TP_SI(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetH_TP_SI(temp, pres);
+	*h = bwrs->GetH_TP_SI(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2212,8 +2422,8 @@ int ShowH_TP_SI(double eosset,
  * This function returns the enthalpy given a       *
  * specific temperature	and pressure               *
  ****************************************************/
-int ShowH_TP_USCS(double eosset,
-	double temp,
+int ShowH_TP_USCS(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2223,45 +2433,48 @@ int ShowH_TP_USCS(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetH_TP_USCS(temp, pres);
+	*h = bwrs->GetH_TP_USCS(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2273,8 +2486,8 @@ int ShowH_TP_USCS(double eosset,
  * This function returns the enthalpy given a       *
  * specific temperature and entropy                 *
  ****************************************************/
-int ShowH_TS_SI(double eosset,
-	double temp,
+int ShowH_TS_SI(double* eosset,
+	double* temp,
 	double entr,
 	double* MixtureArray,
 	double Precision,
@@ -2283,46 +2496,49 @@ int ShowH_TS_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS               bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int                 errs;
 	int                 i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetH_TS_SI(temp, entr);
+	*h = bwrs->GetH_TS_SI(*temp, entr);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2334,8 +2550,8 @@ int ShowH_TS_SI(double eosset,
  * This function returns the enthalpy given a       *
  * specific temperature and entropy                 *
  ****************************************************/
-int ShowH_TS_USCS(double eosset,
-	double temp,
+int ShowH_TS_USCS(double* eosset,
+	double* temp,
 	double entr,
 	double* MixtureArray,
 	double Precision,
@@ -2344,46 +2560,49 @@ int ShowH_TS_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS               bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int                 errs;
 	int                 i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetH_TS_USCS(temp, entr);
+	*h = bwrs->GetH_TS_USCS(*temp, entr);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2395,7 +2614,7 @@ int ShowH_TS_USCS(double eosset,
  * This function returns the enthalpy given a       *
  * specific pressure and entropy                    *
  ****************************************************/
-int ShowH_PS_SI(double eosset,
+int ShowH_PS_SI(double* eosset,
 	double pres,
 	double entr,
 	double* MixtureArray,
@@ -2405,46 +2624,49 @@ int ShowH_PS_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS               bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int                 errs;
 	int                 i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetH_PS_SI(pres, entr);
+	*h = bwrs->GetH_PS_SI(pres, entr);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2456,7 +2678,7 @@ int ShowH_PS_SI(double eosset,
  * This function returns the enthalpy given a       *
  * specific pressure and entropy                    *
  ****************************************************/
-int ShowH_PS_USCS(double eosset,
+int ShowH_PS_USCS(double* eosset,
 	double pres,
 	double entr,
 	double* MixtureArray,
@@ -2466,46 +2688,49 @@ int ShowH_PS_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS               bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int                 errs;
 	int                 i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetH_PS_USCS(pres, entr);
+	*h = bwrs->GetH_PS_USCS(pres, entr);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2517,8 +2742,8 @@ int ShowH_PS_USCS(double eosset,
  * This function returns the fugacity given a       *
  * specific temperature	and pressure				*
  ****************************************************/
-int ShowF_TP_USCS(double eosset,
-	double temp,
+int ShowF_TP_USCS(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2528,45 +2753,48 @@ int ShowF_TP_USCS(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the fugacity
-	*f = bwrs.GetFugacity_TP_USCS(temp, pres);
+	*f = bwrs->GetFugacity_TP_USCS(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2578,8 +2806,8 @@ int ShowF_TP_USCS(double eosset,
  * This function returns the vapor pressure for a   *
  * fluid.											*
  ****************************************************/
-int ShowVapPres_T_USCS(double eosset,
-	double temp,
+int ShowVapPres_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2588,45 +2816,48 @@ int ShowVapPres_T_USCS(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*ps = bwrs.GetVaporPressure_T_USCS(temp);
+	*ps = bwrs->GetVaporPressure_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2637,8 +2868,8 @@ int ShowVapPres_T_USCS(double eosset,
 //////////////////////////////////////////////////////////////
 // This function returns the vapor pressure for a fluid.											*
 //////////////////////////////////////////////////////////////
-int ShowVapPres_T_SI(double eosset,
-	double temp,
+int ShowVapPres_T_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2647,45 +2878,48 @@ int ShowVapPres_T_SI(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*ps = bwrs.GetVaporPressure_T_SI(temp);
+	*ps = bwrs->GetVaporPressure_T_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2697,8 +2931,8 @@ int ShowVapPres_T_SI(double eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatVapV_T_USCS(double eosset,
-	double temp,
+int ShowSatVapV_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2707,45 +2941,48 @@ int ShowSatVapV_T_USCS(double eosset,
 	char* mainerrline01)
 {
 	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the specific volume
-	*v = bwrs.GetSatVapV_T_USCS(temp);
+	*v = bwrs->GetSatVapV_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2757,8 +2994,8 @@ int ShowSatVapV_T_USCS(double eosset,
 // This function returns the specific volume for a
 // fluid.
 /////////////////////////////////////////////////////
-int ShowSatVapV_T_SI(double eosset,
-	double temp,
+int ShowSatVapV_T_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2766,46 +3003,49 @@ int ShowSatVapV_T_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the specific volume
-	*v = bwrs.GetSatVapV_T_SI(temp);
+	*v = bwrs->GetSatVapV_T_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2817,8 +3057,8 @@ int ShowSatVapV_T_SI(double eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatLiqV_T_USCS(double eosset,
-	double temp,
+int ShowSatLiqV_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2826,46 +3066,49 @@ int ShowSatLiqV_T_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetSatLiqV_T_USCS(temp);
+	*v = bwrs->GetSatLiqV_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2877,8 +3120,8 @@ int ShowSatLiqV_T_USCS(double eosset,
 //This function returns the specific volume for a
 //fluid.
 //////////////////////////////////////////////////////
-int ShowSatLiqV_T_SI(double eosset,
-	double temp,
+int ShowSatLiqV_T_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2886,46 +3129,49 @@ int ShowSatLiqV_T_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetSatLiqV_T_SI(temp);
+	*v = bwrs->GetSatLiqV_T_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2937,8 +3183,8 @@ int ShowSatLiqV_T_SI(double eosset,
  * This function returns the ethalpy for a fluid at *
  * saturated vapor conditions in SI units.			*											*
  ****************************************************/
-int ShowSatVapH_T_SI(double eosset,
-	double temp,
+int ShowSatVapH_T_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2946,46 +3192,49 @@ int ShowSatVapH_T_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetSatVapH_T_SI(temp);
+	*h = bwrs->GetSatVapH_T_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -2996,8 +3245,8 @@ int ShowSatVapH_T_SI(double eosset,
  *------------------------------------------*********
  * This function returns the ethalpy for a fluid.	*											*
  ****************************************************/
-int ShowSatVapH_T_USCS(double eosset,
-	double temp,
+int ShowSatVapH_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3005,46 +3254,49 @@ int ShowSatVapH_T_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetSatVapH_T_USCS(temp);
+	*h = bwrs->GetSatVapH_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3056,8 +3308,8 @@ int ShowSatVapH_T_USCS(double eosset,
  * This function returns the ehtalpy for a fluid at *
  * saturated liquid conditions in SI units.			*
  ****************************************************/
-int ShowSatLiqH_T_SI(double eosset,
-	double temp,
+int ShowSatLiqH_T_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3065,46 +3317,49 @@ int ShowSatLiqH_T_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetSatLiqH_T_SI(temp);
+	*h = bwrs->GetSatLiqH_T_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3116,8 +3371,8 @@ int ShowSatLiqH_T_SI(double eosset,
  * This function returns the ehtalpy for a fluid at *
  * saturated liquid conditions.						*
  ****************************************************/
-int ShowSatLiqH_T_USCS(double eosset,
-	double temp,
+int ShowSatLiqH_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3125,46 +3380,49 @@ int ShowSatLiqH_T_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs.GetSatLiqH_T_USCS(temp);
+	*h = bwrs->GetSatLiqH_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3175,8 +3433,8 @@ int ShowSatLiqH_T_USCS(double eosset,
  *------------------------------------------*********
  * This function returns the ethalpy for a fluid.	*											*
  ****************************************************/
-int ShowSatVapS_T_USCS(double eosset,
-	double temp,
+int ShowSatVapS_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3184,46 +3442,49 @@ int ShowSatVapS_T_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.GetSatVapS_T_USCS(temp);
+	*s = bwrs->GetSatVapS_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3235,8 +3496,8 @@ int ShowSatVapS_T_USCS(double eosset,
  * This function returns the ehtalpy for a fluid at *
  * saturated liquid conditions.						*
  ****************************************************/
-int ShowSatLiqS_T_USCS(double eosset,
-	double temp,
+int ShowSatLiqS_T_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3244,46 +3505,49 @@ int ShowSatLiqS_T_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs.GetSatLiqS_T_USCS(temp);
+	*s = bwrs->GetSatLiqS_T_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3295,8 +3559,8 @@ int ShowSatLiqS_T_USCS(double eosset,
  * This function returns the vapor temperature for a*
  * fluid.											*
  ****************************************************/
-int ShowVapTemp_P_USCS(double eosset,
-	double temp,
+int ShowVapTemp_P_USCS(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3304,46 +3568,49 @@ int ShowVapTemp_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*ts = bwrs.GetVaporTemperature_P_USCS(temp);
+	*ts = bwrs->GetVaporTemperature_P_USCS(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3356,8 +3623,8 @@ int ShowVapTemp_P_USCS(double eosset,
  * This function returns the vapor temperature for a*
  * fluid in SI units.								*
  ****************************************************/
-int ShowVapTemp_P_SI(double eosset,
-	double temp,
+int ShowVapTemp_P_SI(double* eosset,
+	double* temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3365,46 +3632,49 @@ int ShowVapTemp_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*ts = bwrs.GetVaporTemperature_P_SI(temp);
+	*ts = bwrs->GetVaporTemperature_P_SI(*temp);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3416,7 +3686,7 @@ int ShowVapTemp_P_SI(double eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatLiqV_P_USCS(double eosset,
+int ShowSatLiqV_P_USCS(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3425,46 +3695,49 @@ int ShowSatLiqV_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetSatLiqV_P_USCS(pres);
+	*v = bwrs->GetSatLiqV_P_USCS(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3476,7 +3749,7 @@ int ShowSatLiqV_P_USCS(double eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatLiqV_P_SI(double eosset,
+int ShowSatLiqV_P_SI(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3485,46 +3758,49 @@ int ShowSatLiqV_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetSatLiqV_P_SI(pres);
+	*v = bwrs->GetSatLiqV_P_SI(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3536,7 +3812,7 @@ int ShowSatLiqV_P_SI(double eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure.			*
  ****************************************************/
-int ShowSatVapV_P_USCS(double eosset,
+int ShowSatVapV_P_USCS(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3545,46 +3821,49 @@ int ShowSatVapV_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetSatVapV_P_USCS(pres);
+	*v = bwrs->GetSatVapV_P_USCS(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3596,7 +3875,7 @@ int ShowSatVapV_P_USCS(double eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure in SI		*
  ****************************************************/
-int ShowSatVapV_P_SI(double eosset,
+int ShowSatVapV_P_SI(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3605,46 +3884,49 @@ int ShowSatVapV_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs.GetSatVapV_P_SI(pres);
+	*v = bwrs->GetSatVapV_P_SI(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3656,7 +3938,7 @@ int ShowSatVapV_P_SI(double eosset,
  * This function returns the temperature given the  *
  * enthalpy and pressure of a fluid in SI units.	*
  ****************************************************/
-int ShowT_HP_SI(double eosset,
+int ShowT_HP_SI(double* eosset,
 	double h,
 	double p,
 	double* MixtureArray,
@@ -3666,46 +3948,49 @@ int ShowT_HP_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the temperature
-	*t = bwrs.GetT_HP_SI(h, p);
+	*t = bwrs->GetT_HP_SI(h, p);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3717,7 +4002,7 @@ int ShowT_HP_SI(double eosset,
  * This function returns the temperature given the  *
  * enthalpy and pressure of a fluid.				*
  ****************************************************/
-int ShowT_HP_USCS(double eosset,
+int ShowT_HP_USCS(double* eosset,
 	double h,
 	double p,
 	double* MixtureArray,
@@ -3727,46 +4012,49 @@ int ShowT_HP_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the temperature
-	*t = bwrs.GetT_HP_USCS(h, p);
+	*t = bwrs->GetT_HP_USCS(h, p);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3778,7 +4066,7 @@ int ShowT_HP_USCS(double eosset,
  * This function returns the temperature given the  *
  * entropy and pressure of a fluid in SI units		*
  ****************************************************/
-int ShowT_SP_SI(double eosset,
+int ShowT_SP_SI(double* eosset,
 	double s,
 	double p,
 	double* MixtureArray,
@@ -3788,46 +4076,49 @@ int ShowT_SP_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the temperature
-	*t = bwrs.GetT_SP_SI(s, p);
+	*t = bwrs->GetT_SP_SI(s, p);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3839,7 +4130,7 @@ int ShowT_SP_SI(double eosset,
  * This function returns the temperature given the  *
  * entropy and pressure of a fluid.					*
  ****************************************************/
-int ShowT_SP_USCS(double eosset,
+int ShowT_SP_USCS(double* eosset,
 	double s,
 	double p,
 	double* MixtureArray,
@@ -3849,46 +4140,49 @@ int ShowT_SP_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the temperature
-	*t = bwrs.GetT_SP_USCS(s, p);
+	*t = bwrs->GetT_SP_USCS(s, p);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3900,7 +4194,7 @@ int ShowT_SP_USCS(double eosset,
  * This function returns the specific volume for a  *
  * saturated fluid given pressure.					*
  ****************************************************/
-int ShowSatLiqH_P_USCS(double eosset,
+int ShowSatLiqH_P_USCS(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3909,46 +4203,49 @@ int ShowSatLiqH_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*h = bwrs.GetSatLiqH_P_USCS(pres);
+	*h = bwrs->GetSatLiqH_P_USCS(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -3960,7 +4257,7 @@ int ShowSatLiqH_P_USCS(double eosset,
  * This function returns the specific volume for a  *
  * saturated fluid given pressure in SI.			*
  ****************************************************/
-int ShowSatLiqH_P_SI(double eosset,
+int ShowSatLiqH_P_SI(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3969,46 +4266,49 @@ int ShowSatLiqH_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*h = bwrs.GetSatLiqH_P_SI(pres);
+	*h = bwrs->GetSatLiqH_P_SI(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4020,7 +4320,7 @@ int ShowSatLiqH_P_SI(double eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure.			*
  ****************************************************/
-int ShowSatVapH_P_USCS(double eosset,
+int ShowSatVapH_P_USCS(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4029,46 +4329,49 @@ int ShowSatVapH_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*h = bwrs.GetSatVapH_P_USCS(pres);
+	*h = bwrs->GetSatVapH_P_USCS(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4080,7 +4383,7 @@ int ShowSatVapH_P_USCS(double eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure in SI.	*
  ****************************************************/
-int ShowSatVapH_P_SI(double eosset,
+int ShowSatVapH_P_SI(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4089,46 +4392,49 @@ int ShowSatVapH_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
-	*h = bwrs.GetSatVapH_P_SI(pres);
+	*h = bwrs->GetSatVapH_P_SI(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4140,7 +4446,7 @@ int ShowSatVapH_P_SI(double eosset,
  * This function returns the entropy for a			*
  * saturated fluid given pressure.					*
  ****************************************************/
-int ShowSatLiqS_P_USCS(double eosset,
+int ShowSatLiqS_P_USCS(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4149,46 +4455,49 @@ int ShowSatLiqS_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*s = bwrs.GetSatLiqS_P_USCS(pres);
+	*s = bwrs->GetSatLiqS_P_USCS(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4200,7 +4509,7 @@ int ShowSatLiqS_P_USCS(double eosset,
  * This function returns the entropy for a			*
  * saturated fluid given pressure.					*
  ****************************************************/
-int ShowSatLiqS_P_SI(double eosset,
+int ShowSatLiqS_P_SI(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4209,46 +4518,49 @@ int ShowSatLiqS_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*s = bwrs.GetSatLiqS_P_SI(pres);
+	*s = bwrs->GetSatLiqS_P_SI(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4260,7 +4572,7 @@ int ShowSatLiqS_P_SI(double eosset,
  * This function returns the entropy for a			*
  * fluid at saturation given the pressure.			*
  ****************************************************/
-int ShowSatVapS_P_USCS(double eosset,
+int ShowSatVapS_P_USCS(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4269,46 +4581,49 @@ int ShowSatVapS_P_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*s = bwrs.GetSatVapS_P_USCS(pres);
+	*s = bwrs->GetSatVapS_P_USCS(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4320,7 +4635,7 @@ int ShowSatVapS_P_USCS(double eosset,
  * This function returns the entropy for a			*
  * fluid at saturation given the pressure in SI.	*
  ****************************************************/
-int ShowSatVapS_P_SI(double eosset,
+int ShowSatVapS_P_SI(double* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4329,46 +4644,49 @@ int ShowSatVapS_P_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*s = bwrs.GetSatVapS_P_SI(pres);
+	*s = bwrs->GetSatVapS_P_SI(pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4380,8 +4698,8 @@ int ShowSatVapS_P_SI(double eosset,
  * This function returns the viscosity for a fluid  *
  * at a given the pressure and temperature          *
  ****************************************************/
-int ShowViscosityGas_TP_USCS(double eosset,
-	double temp,
+int ShowViscosityGas_TP_USCS(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4390,46 +4708,49 @@ int ShowViscosityGas_TP_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*v = bwrs.GetViscosityGas_TP_USCS(temp, pres);
+	*v = bwrs->GetViscosityGas_TP_USCS(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4441,8 +4762,8 @@ int ShowViscosityGas_TP_USCS(double eosset,
 // This function returns the viscosity for a fluid
 // at a given the pressure and temperature
 /////////////////////////////////////////////////////
-int ShowViscosityGas_TP_SI(double eosset,
-	double temp,
+int ShowViscosityGas_TP_SI(double* eosset,
+	double* temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4451,46 +4772,49 @@ int ShowViscosityGas_TP_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
-	int				errs;
-	int				i;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*v = bwrs.GetViscosityGas_TP_SI(temp, pres);
+	*v = bwrs->GetViscosityGas_TP_SI(*temp, pres);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4506,25 +4830,28 @@ int ShowHHV_SI(double fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*hhv = bwrs.GetHHV_SI((int)fluidindex);
+	*hhv = bwrs->GetHHV_SI((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4540,25 +4867,28 @@ int ShowHHV_USCS(double fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize local variables
+	// Initialize local variables
 	errs = 0;
-	*hhv = bwrs.GetHHV_USCS((int)fluidindex);
+	*hhv = bwrs->GetHHV_USCS((int)fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4570,7 +4900,7 @@ int ShowHHV_USCS(double fluidindex, double* hhv,
 // This function returns the higher heating value
 // for the mixture in SI units.
 ////////////////////////////////////////////////////////////
-int ShowHHV_mx_SI(double eosset,
+int ShowHHV_mx_SI(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -4578,46 +4908,49 @@ int ShowHHV_mx_SI(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the higher heating value
-	*hhv = bwrs.GetHHV_mx_SI();
+	*hhv = bwrs->GetHHV_mx_SI();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -4629,7 +4962,7 @@ int ShowHHV_mx_SI(double eosset,
 // This function returns the higher heating value
 // for the mixture in USCS units.
 ////////////////////////////////////////////////////////////
-int ShowHHV_mx_USCS(double eosset,
+int ShowHHV_mx_USCS(double* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -4637,46 +4970,49 @@ int ShowHHV_mx_USCS(double eosset,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	int errs;
 	int i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
 
 	//...And load the mixture data into the BWRS object
-	if (!bwrs.SetMixtureData(MixtureArray))
+	if (!bwrs->SetMixtureData(MixtureArray))
 	{
 		//Check to see if the action generated any errors
-		errs = bwrs.GetMessageCount();
+		errs = bwrs->GetMessageCount();
 		if (errs > 0)
 		{
-			pmerrline = bwrs.GetMessageMain(1);
+			pmerrline = bwrs->GetMessageMain(1);
 			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-			*priority01 = bwrs.GetMessagePriority(1);
+			*priority01 = bwrs->GetMessagePriority(1);
 			return errs;
 		}
 
 	}
 
 	//Now load the solver configuration
-	bwrs.SetPrecision(Precision);
-	bwrs.SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(Precision);
+	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the higher heating value
-	*hhv = bwrs.GetLHV_mx_USCS();
+	*hhv = bwrs->GetLHV_mx_USCS();
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
