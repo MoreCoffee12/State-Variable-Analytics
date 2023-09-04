@@ -652,30 +652,23 @@ int ShowSo_USCS(double* eosset,
 	return errs;
 }
 
-/**
- * @file      GasAnalysisFunctions.cpp
- * @function  ShowMolWeight
- * @brief     This function retrieves the mole weight and error information
- *			   for a given fluid index using the CBWRS class.
- *
- * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
- * @param[out]     molweight    Pointer to a double to hold the fluid molweight.
- * @param[out]     priority01   Pointer to a double representing the error priority.
- * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
- *
- * @return    Integer representing the number of errors (0 for no errors).
- *
- * @note      This function uses std::unique_ptr for better memory management and
- *            to avoid stack overflow issues.
- *
- * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
- *            with sufficient space before calling this function.
- *
- * @author    Brian Howard
- * @date      2001
- * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
- *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
- */
+/// <summary>
+/// Retrieves the mole weight and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="molweight">Pointer to a double to hold the fluid's mole weight.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowMolWeight(int* fluidindex, double* molweight,
 	double* priority01,
 	char* mainerrline01)
@@ -708,30 +701,23 @@ int ShowMolWeight(int* fluidindex, double* molweight,
 	return errs;
 }
 
- /**
-  * @file      GasAnalysisFunctions.cpp
-  * @function  ShowMolWeight_mx
-  * @brief     This function retrieves the mixture mole weight and error information
-  *			   for a given fluid index using the CBWRS class.
-  *
-  * @param[in, out] molweight   Pointer to an integer representing the fluid index.
-  * @param[out]     priority01   Pointer to a double representing the error priority.
-  * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
-  * @param[in]		MixtureArray Point to double array with the mixture percent mole weights	
-  *
-  * @return    Integer representing the number of errors (0 for no errors).
-  *
-  * @note      This function uses std::unique_ptr for better memory management and
-  *            to avoid stack overflow issues.
-  *
-  * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
-  *            with sufficient space before calling this function.
-  *
-  * @author    Brian Howard
-  * @date      2001
-  * @revision  Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard
-  *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
-  */
+/// <summary>
+/// Retrieves the mixture mole weight and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="molweight">Pointer to a double to hold the mixture's mole weight.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mixture percent mole weights.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowMolWeight_mx(double* molweight,
 	double* priority01,
 	char* mainerrline01,
@@ -782,30 +768,23 @@ int ShowMolWeight_mx(double* molweight,
 	return errs;
 }
 
-/**
- * @file      GasAnalysisFunctions.cpp
- * @function  ShowCritTemp_USCS
- * @brief     This function retrieves the critical temperature in USCS units and error information
- *			   for a given fluid index using the CBWRS class.
- *
- * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
- * @param[out]     crittemp    Pointer to a double to hold the fluid critical temperature.
- * @param[out]     priority01   Pointer to a double representing the error priority.
- * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
- *
- * @return    Integer representing the number of errors (0 for no errors).
- *
- * @note      This function uses std::unique_ptr for better memory management and
- *            to avoid stack overflow issues.
- *
- * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
- *            with sufficient space before calling this function.
- *
- * @author    Brian Howard
- * @date      2001
- * @revision  Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard
- *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
- */
+/// <summary>
+/// Retrieves the critical temperature in USCS units and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="crittemp">Pointer to a double to hold the fluid critical temperature in USCS units, Rankine.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowCritTemp_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -837,12 +816,23 @@ int ShowCritTemp_USCS(int* fluidindex, double* crittemp,
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowCritTemp_SI *
- *---------------------------------------************
- * This function returns the critical temperature in*
- * USCS												*
- ****************************************************/
+/// <summary>
+/// Retrieves the critical temperature in SI units, kelvin, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="crittemp">Pointer to a double to hold the fluid critical temperature in SI units, kelvin.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowCritTemp_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -874,12 +864,23 @@ int ShowCritTemp_SI(int* fluidindex, double* crittemp,
 	return errs;
 }
 
-/*******************************************
- * Function Definition : ShowCritPres_USCS *
- *-----------------------------------------**********
- * This function returns the critical pressure in   *
- * USCS												*
- ****************************************************/
+/// <summary>
+/// Retrieves the critical temperature in USCS units, Rankine, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="crittemp">Pointer to a double to hold the fluid critical temperature in USCS units, Rankine.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowCritPres_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -911,13 +912,24 @@ int ShowCritPres_USCS(int* fluidindex, double* crittemp,
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowCritPres_SI *
- *---------------------------------------************
- * This function returns the critical pressure in   *
- * SI												*
- ****************************************************/
-int ShowCritPres_SI(int* fluidindex, double* crittemp,
+/// <summary>
+/// Retrieves the critical pressure in SI units, bar(a), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="critpres">Pointer to a double to hold the fluid critical pressure in SI units, bar(a).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+int ShowCritPres_SI(int* fluidindex, double* critpres,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -932,7 +944,7 @@ int ShowCritPres_SI(int* fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetPresCrit_SI(*fluidindex);
+	*critpres = bwrs->GetPresCrit_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -948,13 +960,24 @@ int ShowCritPres_SI(int* fluidindex, double* crittemp,
 	return errs;
 }
 
-/*******************************************
- * Function Definition : ShowCritVol_USCS *
- *-----------------------------------------**********
- * This function returns the critical Volume in     *
- * USCS												*
- ****************************************************/
-int ShowCritVol_USCS(int* fluidindex, double* crittemp,
+/// <summary>
+/// Retrieves the critical volume in USCS units, ft3/lbmol, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="critvol">Pointer to a double to hold the fluid critical pressure in USCS units, ft3/lbmol.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+int ShowCritVol_USCS(int* fluidindex, double* critvol,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -969,7 +992,7 @@ int ShowCritVol_USCS(int* fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetVolCrit_USCS(*fluidindex);
+	*critvol = bwrs->GetVolCrit_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -985,12 +1008,23 @@ int ShowCritVol_USCS(int* fluidindex, double* crittemp,
 	return errs;
 }
 
-/****************************************
- * Function Definition : ShowCritVol_SI *
- *--------------------------------------*************
- * This function returns the critical Volume in     *
- * SI												*
- ****************************************************/
+/// <summary>
+/// Retrieves the critical volume in SI units, cm3/gmol, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="critvol">Pointer to a double to hold the fluid critical pressure in SI units, cm3/gmol.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowCritVol_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
