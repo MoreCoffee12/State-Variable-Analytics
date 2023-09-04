@@ -843,7 +843,7 @@ int ShowCritTemp_USCS(int* fluidindex, double* crittemp,
  * This function returns the critical temperature in*
  * USCS												*
  ****************************************************/
-int ShowCritTemp_SI(double fluidindex, double* crittemp,
+int ShowCritTemp_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -858,7 +858,7 @@ int ShowCritTemp_SI(double fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetTempCrit_SI((int)fluidindex);
+	*crittemp = bwrs->GetTempCrit_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -880,7 +880,7 @@ int ShowCritTemp_SI(double fluidindex, double* crittemp,
  * This function returns the critical pressure in   *
  * USCS												*
  ****************************************************/
-int ShowCritPres_USCS(double fluidindex, double* crittemp,
+int ShowCritPres_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -895,7 +895,7 @@ int ShowCritPres_USCS(double fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetPresCrit_USCS((int)fluidindex);
+	*crittemp = bwrs->GetPresCrit_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -917,7 +917,7 @@ int ShowCritPres_USCS(double fluidindex, double* crittemp,
  * This function returns the critical pressure in   *
  * SI												*
  ****************************************************/
-int ShowCritPres_SI(double fluidindex, double* crittemp,
+int ShowCritPres_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -932,7 +932,7 @@ int ShowCritPres_SI(double fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetPresCrit_SI((int)fluidindex);
+	*crittemp = bwrs->GetPresCrit_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -954,7 +954,7 @@ int ShowCritPres_SI(double fluidindex, double* crittemp,
  * This function returns the critical Volume in     *
  * USCS												*
  ****************************************************/
-int ShowCritVol_USCS(double fluidindex, double* crittemp,
+int ShowCritVol_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -969,7 +969,7 @@ int ShowCritVol_USCS(double fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetVolCrit_USCS((int)fluidindex);
+	*crittemp = bwrs->GetVolCrit_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -991,7 +991,7 @@ int ShowCritVol_USCS(double fluidindex, double* crittemp,
  * This function returns the critical Volume in     *
  * SI												*
  ****************************************************/
-int ShowCritVol_SI(double fluidindex, double* crittemp,
+int ShowCritVol_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1006,7 +1006,7 @@ int ShowCritVol_SI(double fluidindex, double* crittemp,
 
 	// Initialize local variables
 	errs = 0;
-	*crittemp = bwrs->GetVolCrit_SI((int)fluidindex);
+	*crittemp = bwrs->GetVolCrit_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1027,7 +1027,7 @@ int ShowCritVol_SI(double fluidindex, double* crittemp,
  *-------------------------------********************
  * This function returns the eccentricity factor    *
  ****************************************************/
-int ShowEcc(double fluidindex, double* ecc,
+int ShowEcc(int* fluidindex, double* ecc,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1042,7 +1042,7 @@ int ShowEcc(double fluidindex, double* ecc,
 
 	// Initialize local variables
 	errs = 0;
-	*ecc = bwrs->GetEcc((int)fluidindex);
+	*ecc = bwrs->GetEcc(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1063,7 +1063,7 @@ int ShowEcc(double fluidindex, double* ecc,
  *----------------------------------*****************
  * This function returns the gas constant			*
  ****************************************************/
-int ShowR_USCS(double fluidindex, double* r,
+int ShowR_USCS(int* fluidindex, double* r,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1078,7 +1078,7 @@ int ShowR_USCS(double fluidindex, double* r,
 
 	// Initialize local variables
 	errs = 0;
-	*r = bwrs->GetR_USCS((int)fluidindex);
+	*r = bwrs->GetR_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1100,7 +1100,7 @@ int ShowR_USCS(double fluidindex, double* r,
  * This function returns the enthalpy of formation  *
  * for the fluid at fluidindex						*
  ****************************************************/
-int ShowHfo_SI(double fluidindex, double* h,
+int ShowHfo_SI(int* fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1115,7 +1115,7 @@ int ShowHfo_SI(double fluidindex, double* h,
 
 	// Initialize local variables
 	errs = 0;
-	*h = bwrs->Gethfo_SI((int)fluidindex);
+	*h = bwrs->Gethfo_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1137,7 +1137,7 @@ int ShowHfo_SI(double fluidindex, double* h,
  * This function returns the enthalpy of formation  *
  * for the fluid at fluidindex						*
  ****************************************************/
-int ShowHfo_USCS(double fluidindex, double* h,
+int ShowHfo_USCS(int* fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1152,7 +1152,7 @@ int ShowHfo_USCS(double fluidindex, double* h,
 
 	// Initialize local variables
 	errs = 0;
-	*h = bwrs->Gethfo_USCS((int)fluidindex);
+	*h = bwrs->Gethfo_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1298,7 +1298,7 @@ int ShowHfo_mx_USCS(double* eosset,
  * This function returns the entropy of formation   *
  * for the fluid at fluidindex						*
  ****************************************************/
-int ShowSfo_SI(double fluidindex, double* s,
+int ShowSfo_SI(int* fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1313,7 +1313,7 @@ int ShowSfo_SI(double fluidindex, double* s,
 
 	// Initialize local variables
 	errs = 0;
-	*s = bwrs->Getsfo_SI((int)fluidindex);
+	*s = bwrs->Getsfo_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1335,7 +1335,7 @@ int ShowSfo_SI(double fluidindex, double* s,
  * This function returns the entropy of formation   *
  * for the fluid at fluidindex						*
  ****************************************************/
-int ShowSfo_USCS(double fluidindex, double* s,
+int ShowSfo_USCS(int* fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1350,7 +1350,7 @@ int ShowSfo_USCS(double fluidindex, double* s,
 
 	// Initialize local variables
 	errs = 0;
-	*s = bwrs->Getsfo_USCS((int)fluidindex);
+	*s = bwrs->Getsfo_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1497,7 +1497,7 @@ int ShowSfo_mx_USCS(double* eosset,
 // This function returns the lower heating value
 // for the fluid at fluidindex in USCS units
 ////////////////////////////////////////////////////////////
-int ShowLHV_USCS(double fluidindex, double* lhv,
+int ShowLHV_USCS(int* fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1512,7 +1512,7 @@ int ShowLHV_USCS(double fluidindex, double* lhv,
 
 	// Initialize local variables
 	errs = 0;
-	*lhv = bwrs->GetLHV_USCS((int)fluidindex);
+	*lhv = bwrs->GetLHV_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1534,7 +1534,7 @@ int ShowLHV_USCS(double fluidindex, double* lhv,
 // This function returns the lower heating value
 // for the fluid at fluidindex.
 ////////////////////////////////////////////////////////////
-int ShowLHV_SI(double fluidindex, double* lhv,
+int ShowLHV_SI(int* fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1549,7 +1549,7 @@ int ShowLHV_SI(double fluidindex, double* lhv,
 
 	// Initialize local variables
 	errs = 0;
-	*lhv = bwrs->GetLHV_SI((int)fluidindex);
+	*lhv = bwrs->GetLHV_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1571,7 +1571,7 @@ int ShowLHV_SI(double fluidindex, double* lhv,
  * This function returns the dipole moment        *
  * for the fluid at fluidindex in USCS units		*
  **************************************************/
-int ShowDipole_USCS(short fluidindex, double* dipole,
+int ShowDipole_USCS(int *fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1586,7 +1586,7 @@ int ShowDipole_USCS(short fluidindex, double* dipole,
 
 	// Initialize local variables
 	errs = 0;
-	*dipole = bwrs->GetDipole_USCS((int)fluidindex);
+	*dipole = bwrs->GetDipole_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -1608,7 +1608,7 @@ int ShowDipole_USCS(short fluidindex, double* dipole,
  * This function returns the dipole moment        *
  * for the fluid at fluidindex in USCS units		*
  **************************************************/
-int ShowDipole_SI(short fluidindex, double* dipole,
+int ShowDipole_SI(int* fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1623,7 +1623,7 @@ int ShowDipole_SI(short fluidindex, double* dipole,
 
 	// Initialize local variables
 	errs = 0;
-	*dipole = bwrs->GetDipole_SI((int)fluidindex);
+	*dipole = bwrs->GetDipole_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -4826,7 +4826,7 @@ int ShowViscosityGas_TP_SI(double* eosset,
 // This function returns the lower heating value
 // for the fluid at fluidindex.
 ////////////////////////////////////////////////////////////
-int ShowHHV_SI(double fluidindex, double* hhv,
+int ShowHHV_SI(int* fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -4841,7 +4841,7 @@ int ShowHHV_SI(double fluidindex, double* hhv,
 
 	// Initialize local variables
 	errs = 0;
-	*hhv = bwrs->GetHHV_SI((int)fluidindex);
+	*hhv = bwrs->GetHHV_SI(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
@@ -4863,7 +4863,7 @@ int ShowHHV_SI(double fluidindex, double* hhv,
 // This function returns the higher heating value
 // for the fluid at fluidindex in USCS units
 ////////////////////////////////////////////////////////////
-int ShowHHV_USCS(double fluidindex, double* hhv,
+int ShowHHV_USCS(int* fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -4878,7 +4878,7 @@ int ShowHHV_USCS(double fluidindex, double* hhv,
 
 	// Initialize local variables
 	errs = 0;
-	*hhv = bwrs->GetHHV_USCS((int)fluidindex);
+	*hhv = bwrs->GetHHV_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
