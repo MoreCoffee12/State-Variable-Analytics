@@ -44,10 +44,13 @@ bool CheckMixture(double* MixtureArray, int FluidCount)
  ****************************************************/
 int ShowFluidCount()
 {
-	//local variables
-	CBWRS			bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 
-	return (short)bwrs.GetFluidCount();
+	return (short)bwrs->GetFluidCount();
 }
 
 /**********************************
@@ -60,7 +63,10 @@ int ShowName(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was CBWRS bwrs;
 	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	char* peosline;
 	char* pmerrline;
@@ -77,10 +83,10 @@ int ShowName(int* fluidindex, char* textline,
 	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
-	errs			= bwrs->GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if( errs > 0 )
 	{
-		pmerrline	= bwrs->GetMessageMain( 1 );
+		pmerrline = bwrs->GetMessageMain( 1 );
 		strcpy_s( mainerrline01, strlen(mainerrline01), pmerrline );
 		*priority01	= bwrs->GetMessagePriority( 1 );
 	}
@@ -89,39 +95,42 @@ int ShowName(int* fluidindex, char* textline,
 	return errs;
 }
 
-/**********************************
- * Function Definition : ShowName *
- *--------------------------------*******************
+/*****************************************
+ * Function Definition : ShowName_Aalt01 *
+ *---------------------------------------************
  * This function returns the alternate or secondary *
  * name of the requested fluid.						*
  ****************************************************/
-int ShowName_Alt01(double fluidindex, char* textline,
+int ShowName_Alt01(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	char* peosline;
-	int				errs;
-	int				i;
 	char* pmerrline;
+	int	errs;
+	int	i;
 
 	//initialize localvariables
 	errs = 0;
-	peosline = bwrs.GetName_Alt01((int)fluidindex);
+	peosline = bwrs->GetName_Alt01(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//initialize local variables
-	strcpy_s(textline, sizeof textline, peosline);
+	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		pmerrline = bwrs->GetMessageMain(1);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
@@ -158,7 +167,7 @@ int ShowFormula(double fluidindex, char* textline,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -199,7 +208,7 @@ int ShowH_H298_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -218,7 +227,7 @@ int ShowH_H298_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -259,7 +268,7 @@ int ShowH_H298_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -278,7 +287,7 @@ int ShowH_H298_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -319,7 +328,7 @@ int ShowHIdeal_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -338,7 +347,7 @@ int ShowHIdeal_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -379,7 +388,7 @@ int ShowHIdeal_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -398,7 +407,7 @@ int ShowHIdeal_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -439,7 +448,7 @@ int ShowSo_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -458,7 +467,7 @@ int ShowSo_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -499,7 +508,7 @@ int ShowSo_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -518,7 +527,7 @@ int ShowSo_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -552,7 +561,7 @@ int ShowMolWeight(double fluidindex, double* molweight,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -590,7 +599,7 @@ int ShowMolWeight_mx(double* molweight,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -605,7 +614,7 @@ int ShowMolWeight_mx(double* molweight,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -639,7 +648,7 @@ int ShowCritTemp_USCS(double fluidindex, double* crittemp,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -673,7 +682,7 @@ int ShowCritTemp_SI(double fluidindex, double* crittemp,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -707,7 +716,7 @@ int ShowCritPres_USCS(double fluidindex, double* crittemp,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -741,7 +750,7 @@ int ShowCritPres_SI(double fluidindex, double* crittemp,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -775,7 +784,7 @@ int ShowCritVol_USCS(double fluidindex, double* crittemp,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -809,7 +818,7 @@ int ShowCritVol_SI(double fluidindex, double* crittemp,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -842,7 +851,7 @@ int ShowEcc(double fluidindex, double* ecc,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -875,7 +884,7 @@ int ShowR_USCS(double fluidindex, double* r,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -909,7 +918,7 @@ int ShowHfo_SI(double fluidindex, double* h,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -943,7 +952,7 @@ int ShowHfo_USCS(double fluidindex, double* h,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -983,7 +992,7 @@ int ShowHfo_mx_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1002,7 +1011,7 @@ int ShowHfo_mx_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1042,7 +1051,7 @@ int ShowHfo_mx_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1061,7 +1070,7 @@ int ShowHfo_mx_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1095,7 +1104,7 @@ int ShowSfo_SI(double fluidindex, double* s,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1129,7 +1138,7 @@ int ShowSfo_USCS(double fluidindex, double* s,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1169,7 +1178,7 @@ int ShowSfo_mx_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1188,7 +1197,7 @@ int ShowSfo_mx_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1228,7 +1237,7 @@ int ShowSfo_mx_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1247,7 +1256,7 @@ int ShowSfo_mx_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1281,7 +1290,7 @@ int ShowLHV_USCS(double fluidindex, double* lhv,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1315,7 +1324,7 @@ int ShowLHV_SI(double fluidindex, double* lhv,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1349,7 +1358,7 @@ int ShowDipole_USCS(short fluidindex, double* dipole,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1383,7 +1392,7 @@ int ShowDipole_SI(short fluidindex, double* dipole,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1423,7 +1432,7 @@ int ShowLHV_mx_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1442,7 +1451,7 @@ int ShowLHV_mx_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1482,7 +1491,7 @@ int ShowLHV_mx_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1501,7 +1510,7 @@ int ShowLHV_mx_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1543,7 +1552,7 @@ int ShowP_MT_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 		return errs;
 	}
@@ -1560,7 +1569,7 @@ int ShowP_MT_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1602,7 +1611,7 @@ short ShowP_VS_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1621,7 +1630,7 @@ short ShowP_VS_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1663,7 +1672,7 @@ short ShowP_VS_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1682,7 +1691,7 @@ short ShowP_VS_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1724,7 +1733,7 @@ int ShowP_VT_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1743,7 +1752,7 @@ int ShowP_VT_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1785,7 +1794,7 @@ int ShowP_VT_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1804,7 +1813,7 @@ int ShowP_VT_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1846,7 +1855,7 @@ int ShowV_TP_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -1865,7 +1874,7 @@ int ShowV_TP_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -1911,7 +1920,7 @@ short ShowV_TP_USCS(short eosset,
 			if (errs > 0)
 			{
 				pmerrline = bwrs.GetMessageMain(1);
-				strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+				strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 				*priority01 = bwrs.GetMessagePriority(1);
 				return errs;
 			}
@@ -1931,7 +1940,7 @@ short ShowV_TP_USCS(short eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 		}
 
@@ -1982,7 +1991,7 @@ int ShowS_TP_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2001,7 +2010,7 @@ int ShowS_TP_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2043,7 +2052,7 @@ int ShowS_TP_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2062,7 +2071,7 @@ int ShowS_TP_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2104,7 +2113,7 @@ int ShowH_TP_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2123,7 +2132,7 @@ int ShowH_TP_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2165,7 +2174,7 @@ int ShowH_TP_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2184,7 +2193,7 @@ int ShowH_TP_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2226,7 +2235,7 @@ int ShowH_TS_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2245,7 +2254,7 @@ int ShowH_TS_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2287,7 +2296,7 @@ int ShowH_TS_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2306,7 +2315,7 @@ int ShowH_TS_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2348,7 +2357,7 @@ int ShowH_PS_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2367,7 +2376,7 @@ int ShowH_PS_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2409,7 +2418,7 @@ int ShowH_PS_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2428,7 +2437,7 @@ int ShowH_PS_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2470,7 +2479,7 @@ int ShowF_TP_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2489,7 +2498,7 @@ int ShowF_TP_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2530,7 +2539,7 @@ int ShowVapPres_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2549,7 +2558,7 @@ int ShowVapPres_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2589,7 +2598,7 @@ int ShowVapPres_T_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2608,7 +2617,7 @@ int ShowVapPres_T_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2649,7 +2658,7 @@ int ShowSatVapV_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2668,7 +2677,7 @@ int ShowSatVapV_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2709,7 +2718,7 @@ int ShowSatVapV_T_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2728,7 +2737,7 @@ int ShowSatVapV_T_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2769,7 +2778,7 @@ int ShowSatLiqV_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2788,7 +2797,7 @@ int ShowSatLiqV_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2829,7 +2838,7 @@ int ShowSatLiqV_T_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2848,7 +2857,7 @@ int ShowSatLiqV_T_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2889,7 +2898,7 @@ int ShowSatVapH_T_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2908,7 +2917,7 @@ int ShowSatVapH_T_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -2948,7 +2957,7 @@ int ShowSatVapH_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -2967,7 +2976,7 @@ int ShowSatVapH_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3008,7 +3017,7 @@ int ShowSatLiqH_T_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3027,7 +3036,7 @@ int ShowSatLiqH_T_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3068,7 +3077,7 @@ int ShowSatLiqH_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3087,7 +3096,7 @@ int ShowSatLiqH_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3127,7 +3136,7 @@ int ShowSatVapS_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3146,7 +3155,7 @@ int ShowSatVapS_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3187,7 +3196,7 @@ int ShowSatLiqS_T_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3206,7 +3215,7 @@ int ShowSatLiqS_T_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3247,7 +3256,7 @@ int ShowVapTemp_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3266,7 +3275,7 @@ int ShowVapTemp_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3308,7 +3317,7 @@ int ShowVapTemp_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3327,7 +3336,7 @@ int ShowVapTemp_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3368,7 +3377,7 @@ int ShowSatLiqV_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3387,7 +3396,7 @@ int ShowSatLiqV_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3428,7 +3437,7 @@ int ShowSatLiqV_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3447,7 +3456,7 @@ int ShowSatLiqV_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3488,7 +3497,7 @@ int ShowSatVapV_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3507,7 +3516,7 @@ int ShowSatVapV_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3548,7 +3557,7 @@ int ShowSatVapV_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3567,7 +3576,7 @@ int ShowSatVapV_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3609,7 +3618,7 @@ int ShowT_HP_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3628,7 +3637,7 @@ int ShowT_HP_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3670,7 +3679,7 @@ int ShowT_HP_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3689,7 +3698,7 @@ int ShowT_HP_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3731,7 +3740,7 @@ int ShowT_SP_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3750,7 +3759,7 @@ int ShowT_SP_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3792,7 +3801,7 @@ int ShowT_SP_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3811,7 +3820,7 @@ int ShowT_SP_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3852,7 +3861,7 @@ int ShowSatLiqH_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3871,7 +3880,7 @@ int ShowSatLiqH_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3912,7 +3921,7 @@ int ShowSatLiqH_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3931,7 +3940,7 @@ int ShowSatLiqH_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -3972,7 +3981,7 @@ int ShowSatVapH_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -3991,7 +4000,7 @@ int ShowSatVapH_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4032,7 +4041,7 @@ int ShowSatVapH_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4051,7 +4060,7 @@ int ShowSatVapH_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4092,7 +4101,7 @@ int ShowSatLiqS_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4111,7 +4120,7 @@ int ShowSatLiqS_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4152,7 +4161,7 @@ int ShowSatLiqS_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4171,7 +4180,7 @@ int ShowSatLiqS_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4212,7 +4221,7 @@ int ShowSatVapS_P_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4231,7 +4240,7 @@ int ShowSatVapS_P_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4272,7 +4281,7 @@ int ShowSatVapS_P_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4291,7 +4300,7 @@ int ShowSatVapS_P_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4333,7 +4342,7 @@ int ShowViscosityGas_TP_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4352,7 +4361,7 @@ int ShowViscosityGas_TP_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4394,7 +4403,7 @@ int ShowViscosityGas_TP_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4413,7 +4422,7 @@ int ShowViscosityGas_TP_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4447,7 +4456,7 @@ int ShowHHV_SI(double fluidindex, double* hhv,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4481,7 +4490,7 @@ int ShowHHV_USCS(double fluidindex, double* hhv,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4521,7 +4530,7 @@ int ShowHHV_mx_SI(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4540,7 +4549,7 @@ int ShowHHV_mx_SI(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
@@ -4580,7 +4589,7 @@ int ShowHHV_mx_USCS(double eosset,
 		if (errs > 0)
 		{
 			pmerrline = bwrs.GetMessageMain(1);
-			strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+			strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 			*priority01 = bwrs.GetMessagePriority(1);
 			return errs;
 		}
@@ -4599,7 +4608,7 @@ int ShowHHV_mx_USCS(double eosset,
 	if (errs > 0)
 	{
 		pmerrline = bwrs.GetMessageMain(1);
-		strcpy_s(mainerrline01, sizeof mainerrline01, pmerrline);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs.GetMessagePriority(1);
 	}
 
