@@ -26,7 +26,7 @@ int	ShowVersion()
 }
 
 /**************************************
- * Function Definition : ShowVersioin *
+ * Function Definition : CheckMixture *
  *------------------------------------***************
  * This function is included for legacy support only*
  ****************************************************/
@@ -53,12 +53,30 @@ int ShowFluidCount()
 	return (short)bwrs->GetFluidCount();
 }
 
-/**********************************
- * Function Definition : ShowName *
- *--------------------------------*******************
- * This function returns the name of the requested	*
- * fluid.											*
- ****************************************************/
+/**
+ * @file      GasAnalysisFunctions.cpp
+ * @function  ShowName
+ * @brief     This function retrieves the primary name and error information
+ *			   for a given fluid index using the CBWRS class.
+ *
+ * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
+ * @param[out]     textline     Pointer to a char array to hold the name of the fluid.
+ * @param[out]     priority01   Pointer to a double representing the error priority.
+ * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
+ *
+ * @return    Integer representing the number of errors (0 for no errors).
+ *
+ * @note      This function uses std::unique_ptr for better memory management and
+ *            to avoid stack overflow issues.
+ *
+ * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
+ *            with sufficient space before calling this function.
+ *
+ * @author    Brian Howard
+ * @date      2001
+ * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
+ *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
+ */
 int ShowName(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -80,27 +98,47 @@ int ShowName(int* fluidindex, char* textline,
 	i = 0;
 
 	// transfer internal value the to the function argument
+	// Revision, 3 Sep 2023, changed strcpy to strcpy_s
 	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
-	if( errs > 0 )
+	if (errs > 0)
 	{
-		pmerrline = bwrs->GetMessageMain( 1 );
-		strcpy_s( mainerrline01, strlen(mainerrline01), pmerrline );
-		*priority01	= bwrs->GetMessagePriority( 1 );
+		pmerrline = bwrs->GetMessageMain(1);
+		// Revision, 3 Sep 2023, changed strcpy to strcpy_s
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	//return errs;
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowName_Aalt01 *
- *---------------------------------------************
- * This function returns the alternate or secondary *
- * name of the requested fluid.						*
- ****************************************************/
+/**
+ * @file      GasAnalysisFunctions.cpp
+ * @function  ShowName_Alt01
+ * @brief     This function retrieves alternate or secondary name and error information
+ *			   for a given fluid index using the CBWRS class.
+ *
+ * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
+ * @param[out]     textline     Pointer to a char array to hold the name of the fluid.
+ * @param[out]     priority01   Pointer to a double representing the error priority.
+ * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
+ *
+ * @return    Integer representing the number of errors (0 for no errors).
+ *
+ * @note      This function uses std::unique_ptr for better memory management and
+ *            to avoid stack overflow issues.
+ *
+ * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
+ *            with sufficient space before calling this function.
+ *
+ * @author    Brian Howard
+ * @date      2001
+ * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
+ *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
+ */
 int ShowName_Alt01(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -122,6 +160,7 @@ int ShowName_Alt01(int* fluidindex, char* textline,
 	pmerrline = NULL;
 
 	//initialize local variables
+	// Revision, 3 Sep 2023, changed strcpy to strcpy_s
 	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
@@ -129,6 +168,7 @@ int ShowName_Alt01(int* fluidindex, char* textline,
 	if (errs > 0)
 	{
 		pmerrline = bwrs->GetMessageMain(1);
+		// Revision, 3 Sep 2023, changed strcpy to strcpy_s
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs->GetMessagePriority(1);
 	}
@@ -142,33 +182,60 @@ int ShowName_Alt01(int* fluidindex, char* textline,
  * This function returns the chemical formula for a *
  * fluid at fluidindex								*
  ****************************************************/
-int ShowFormula(double fluidindex, char* textline,
+ /**
+  * @file      GasAnalysisFunctions.cpp
+  * @function  ShowFormula
+  * @brief     This function retrieves chamical formula information
+  *			   for a given fluid index using the CBWRS class.
+  *
+  * @param[in, out] fluidindex   Pointer to an integer representing the fluid index.
+  * @param[out]     textline     Pointer to a char array to hold the fluid chemical formula.
+  * @param[out]     priority01   Pointer to a double representing the error priority.
+  * @param[out]     mainerrline01 Pointer to a char array to hold the main error line.
+  *
+  * @return    Integer representing the number of errors (0 for no errors).
+  *
+  * @note      This function uses std::unique_ptr for better memory management and
+  *            to avoid stack overflow issues.
+  *
+  * @warning   Make sure that the char arrays (textline, mainerrline01) are allocated
+  *            with sufficient space before calling this function.
+  *
+  * @author    Brian Howard
+  * @date      2001
+  * @revision  Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard
+  *            library functions to improve efficiency and safety. Update strcpy to strcpy_s.
+  */
+int ShowFormula(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
 {
-	//local variables
-	CBWRS			bwrs;
+	// Local variables
+	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// and more standard library functions. 
+	// Was: CBWRS bwrs;
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
 	char* peosline;
-	int				errs;
-	int				i;
+	int	errs;
+	int	i;
 	char* pmerrline;
 
-	//initialize localvariables
+	// Initialize local variables
 	errs = 0;
-	peosline = bwrs.GetFormula((int)fluidindex);
+	peosline = bwrs->GetFormula( *fluidindex);
 	i = 0;
 	pmerrline = NULL;
 
 	//initialize local variables
-	strcpy_s(textline, sizeof textline, peosline);
+	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
-	errs = bwrs.GetMessageCount();
+	errs = bwrs->GetMessageCount();
 	if (errs > 0)
 	{
-		pmerrline = bwrs.GetMessageMain(1);
+		pmerrline = bwrs->GetMessageMain(1);
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
-		*priority01 = bwrs.GetMessagePriority(1);
+		*priority01 = bwrs->GetMessagePriority(1);
 	}
 
 	return errs;
