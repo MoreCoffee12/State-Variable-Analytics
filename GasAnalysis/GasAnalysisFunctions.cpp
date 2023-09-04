@@ -74,14 +74,14 @@ int ShowName(int* fluidindex, char* textline,
 	i = 0;
 
 	// transfer internal value the to the function argument
-	strcpy_s(textline, sizeof textline, peosline);
+	strcpy_s(textline, strlen(textline), peosline);
 
 	//Check to see if the action generated any errors
 	errs			= bwrs->GetMessageCount();
 	if( errs > 0 )
 	{
 		pmerrline	= bwrs->GetMessageMain( 1 );
-		strcpy_s( mainerrline01, sizeof mainerrline01, pmerrline );
+		strcpy_s( mainerrline01, strlen(mainerrline01), pmerrline );
 		*priority01	= bwrs->GetMessagePriority( 1 );
 	}
 
