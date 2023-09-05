@@ -1056,11 +1056,23 @@ int ShowCritVol_SI(int* fluidindex, double* crittemp,
 	return errs;
 }
 
-/*********************************
- * Function Definition : ShowEcc *
- *-------------------------------********************
- * This function returns the eccentricity factor    *
- ****************************************************/
+/// <summary>
+/// Retrieves the ecentricity value, unitless, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="ecc">Pointer to a double to hold the fluid eccentricity value, unitless.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowEcc(int* fluidindex, double* ecc,
 	double* priority01,
 	char* mainerrline01)
@@ -1092,11 +1104,23 @@ int ShowEcc(int* fluidindex, double* ecc,
 	return errs;
 }
 
-/************************************
- * Function Definition : ShowR_USCS *
- *----------------------------------*****************
- * This function returns the gas constant			*
- ****************************************************/
+/// <summary>
+/// Retrieves the gas constant in USCS units, (psia-ft3)/(lbmol-R)  , and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="r">Pointer to a double to hold the fluid gas constant in USCS, (psia-ft3)/(lbmol-R).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowR_USCS(int* fluidindex, double* r,
 	double* priority01,
 	char* mainerrline01)
@@ -1128,12 +1152,23 @@ int ShowR_USCS(int* fluidindex, double* r,
 	return errs;
 }
 
-/************************************
- * Function Definition : ShowHfo_SI *
- *----------------------------------*****************
- * This function returns the enthalpy of formation  *
- * for the fluid at fluidindex						*
- ****************************************************/
+/// <summary>
+/// Retrieves the ethalpy of formation in SI units, J/(gmol-K), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="h">Pointer to a double to hold the fluid gas constant in  SI units, J/(gmol-K).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowHfo_SI(int* fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -1165,12 +1200,23 @@ int ShowHfo_SI(int* fluidindex, double* h,
 	return errs;
 }
 
-/**************************************
- * Function Definition : ShowHfo_USCS *
- *------------------------------------***************
- * This function returns the enthalpy of formation  *
- * for the fluid at fluidindex						*
- ****************************************************/
+/// <summary>
+/// Retrieves the ethalpy of formation in USCS units, BTU/(lbmol-R) , and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="h">Pointer to a double to hold the fluid enthalpy of formation in USCS units, BTU/(lbmol-R) .</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowHfo_USCS(int* fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -1326,12 +1372,24 @@ int ShowHfo_mx_USCS(double* eosset,
 	return errs;
 }
 
-/************************************
- * Function Definition : ShowSfo_SI *
- *----------------------------------*****************
- * This function returns the entropy of formation   *
- * for the fluid at fluidindex						*
- ****************************************************/
+
+ /// <summary>
+ /// Retrieves the entropy of formation in SI units, BTU/(lbmol-R), and error information for a given fluid index using the CBWRS class.
+ /// </summary>
+ /// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+ /// <param name="s">Pointer to a double to hold the fluid entropy of formation in SI units, BTU/(lbmol-R).</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSfo_SI(int* fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -1363,12 +1421,23 @@ int ShowSfo_SI(int* fluidindex, double* s,
 	return errs;
 }
 
-/**************************************
- * Function Definition : ShowSfo_USCS *
- *------------------------------------***************
- * This function returns the entropy of formation   *
- * for the fluid at fluidindex						*
- ****************************************************/
+/// <summary>
+/// Retrieves the entropy of formation in USCS units,J/(gmol-K), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="s">Pointer to a double to hold the fluid entropy of formation in  USCS units,J/(gmol-K).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSfo_USCS(int* fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
