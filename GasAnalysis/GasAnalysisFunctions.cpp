@@ -1594,12 +1594,23 @@ int ShowSfo_mx_USCS(double* eosset,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowLHV_USCS
-////////////////////////////////////////////////////////////
-// This function returns the lower heating value
-// for the fluid at fluidindex in USCS units
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the lower heating value in USCS units, (BTU/lbmol), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in USCS units, (BTU/lbmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowLHV_USCS(int* fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
@@ -1631,12 +1642,23 @@ int ShowLHV_USCS(int* fluidindex, double* lhv,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowLHV_SI
-////////////////////////////////////////////////////////////
-// This function returns the lower heating value
-// for the fluid at fluidindex.
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the lower heating value in SI units, (J/gmol), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in  SI units, (J/gmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowLHV_SI(int* fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
@@ -1668,13 +1690,24 @@ int ShowLHV_SI(int* fluidindex, double* lhv,
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowDipole_USCS *
- *---------------------------------------**********
- * This function returns the dipole moment        *
- * for the fluid at fluidindex in USCS units		*
- **************************************************/
-int ShowDipole_USCS(int *fluidindex, double* dipole,
+/// <summary>
+/// Retrieves the dipole moment in USCS units, (-), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="dipole">Pointer to a double to hold the fluid enthalpy of formation in USCS units, (-).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+int ShowDipole_USCS(int* fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
 {
@@ -1683,16 +1716,16 @@ int ShowDipole_USCS(int *fluidindex, double* dipole,
 	// and more standard library functions. 
 	// Was: CBWRS bwrs;
 	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
-	int                 errs;
-	int                 i;
+	int errs;
+	int i;
 	char* pmerrline;
-
+	
 	// Initialize local variables
 	errs = 0;
 	*dipole = bwrs->GetDipole_USCS(*fluidindex);
 	i = 0;
 	pmerrline = NULL;
-
+	
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
 	if (errs > 0)
@@ -1701,16 +1734,27 @@ int ShowDipole_USCS(int *fluidindex, double* dipole,
 		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
 		*priority01 = bwrs->GetMessagePriority(1);
 	}
-
+	
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowDipole_SI *
- *-------------------------------------************
- * This function returns the dipole moment        *
- * for the fluid at fluidindex in USCS units		*
- **************************************************/
+ /// <summary>
+ /// Retrieves the dipole moment in SI units, (debye), and error information for a given fluid index using the CBWRS class.
+ /// </summary>
+ /// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+ /// <param name="dipole">Pointer to a double to hold the fluid enthalpy of formation in SI units, (debye).</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowDipole_SI(int* fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
@@ -2185,12 +2229,28 @@ int ShowP_VT_USCS(double* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowV_TP_SI *
- *-----------------------------------****************
- * This function returns the pressure in SI given a *
- * specific volume and temperature					*
- ****************************************************/
+/// <summary>
+/// Retrieves the specific volume in SI units, cm3/g, for a given temperature and pressure using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a double representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
+/// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double to hold the calculated specific volume in SI units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowV_TP_SI(double* eosset,
 	double* temp,
 	double pres,
@@ -2249,12 +2309,28 @@ int ShowV_TP_SI(double* eosset,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowV_TP_USCS
-////////////////////////////////////////////////////////////
-// This function returns the pressure given a
-// specific volume and temperature
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the specific volume in USCS units, (ft3/lbm), for a given temperature and pressure using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a double representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in USCS units, Rankind.</param>
+/// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double to hold the calculated specific volume in SI units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 short ShowV_TP_USCS(short eosset,
 	double* temp,
 	double pres,
@@ -4923,12 +4999,23 @@ int ShowViscosityGas_TP_SI(double* eosset,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowHHV_SI
-////////////////////////////////////////////////////////////
-// This function returns the lower heating value
-// for the fluid at fluidindex.
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the higher heating value (HHV) in SI units, (J/gmol), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="hhv">Pointer to a double to hold the fluid higher heating value in SI units, (J/gmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowHHV_SI(int* fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
@@ -4960,12 +5047,23 @@ int ShowHHV_SI(int* fluidindex, double* hhv,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowHHV_USCS
-////////////////////////////////////////////////////////////
-// This function returns the higher heating value
-// for the fluid at fluidindex in USCS units
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the higher heating value (HHV) in USCS units, (BTU/lbmol), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="hhv">Pointer to a double to hold the fluid higher heating value in USCS units, (BTU/lbmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowHHV_USCS(int* fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
