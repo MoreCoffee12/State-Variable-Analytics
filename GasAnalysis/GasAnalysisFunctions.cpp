@@ -12,7 +12,7 @@
 /// <returns>An integer representing the build number.</returns>
 int ShowBuild()
 {
-	return 998;
+	return 1;
 }
 
 /// <summary>
@@ -24,7 +24,7 @@ int ShowBuild()
 /// <returns>An integer representing the version number.</returns>
 int	ShowVersion()
 {
-	return 0;
+	return 1;
 }
 
 // Revision, 4 Sep 2023, deprecated this function
@@ -4262,12 +4262,29 @@ int ShowT_HP_USCS(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowT_SP_SI *
- *-----------------------------------****************
- * This function returns the temperature given the  *
- * entropy and pressure of a fluid in SI units		*
- ****************************************************/
+/// <summary>
+/// Returns the temperature in SI units, kelvin, given the entropy and pressure of a fluid.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="s">Double representing the entropy of the fluid in SI,  kJ/(Kg-K).</param>
+/// <param name="p">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+ /// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 5 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+///
 int ShowT_SP_SI(int* eosset,
 	double s,
 	double p,
@@ -4326,12 +4343,49 @@ int ShowT_SP_SI(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowT_SP_USCS *
- *-------------------------------------**************
- * This function returns the temperature given the  *
- * entropy and pressure of a fluid.					*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the temperature in USCS units, ), and error information for a given fluid index using the CBWRS class.
+ /// </summary>
+ /// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+ /// <param name="hhv">Pointer to a double to hold the fluid higher heating value in USCS units, (BTU/lbmol).</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+ /// 
+ /// 
+ 
+ /// <summary>
+ /// Returns the temperature in USCS units, Rankine, given the entropy and pressure of a fluid.
+ /// </summary>
+ /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+ /// <param name="s">Double representing the entropy of the fluid in USCS, BTU/lb-R.</param>
+ /// <param name="p">Double representing the pressure of the fluid in USCS, PSIA.</param>
+ /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+ /// <returns>Integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+  /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 5 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+ ///
 int ShowT_SP_USCS(int* eosset,
 	double s,
 	double p,
