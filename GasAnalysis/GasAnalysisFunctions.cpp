@@ -232,7 +232,7 @@ int ShowFormula(int* fluidindex, char* textline,
 /// <param name="priority01">Pointer to store the priority of any generated message.</param>
 /// <param name="mainerrline01">Pointer to store any generated error message.</param>
 /// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
-int ShowH_H298_SI(short* eosset,
+int ShowH_H298_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -311,7 +311,7 @@ int ShowH_H298_SI(short* eosset,
 /// <param name="priority01">Pointer to store the priority of any generated message.</param>
 /// <param name="mainerrline01">Pointer to store any generated error message.</param>
 /// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
-int ShowH_H298_USCS(short* eosset,
+int ShowH_H298_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -390,7 +390,7 @@ int ShowH_H298_USCS(short* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-int ShowHIdeal_SI(short* eosset,
+int ShowHIdeal_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -469,7 +469,7 @@ int ShowHIdeal_SI(short* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-int ShowHIdeal_USCS(short* eosset,
+int ShowHIdeal_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -532,7 +532,7 @@ int ShowHIdeal_USCS(short* eosset,
  * This function returns the entropy (based on the  *
  * JANAF tables) SI									*
  ****************************************************/
-int ShowSo_SI(short* eosset,
+int ShowSo_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -595,7 +595,7 @@ int ShowSo_SI(short* eosset,
  * This function returns the entropy (based on the  *
  * JANAF tables) USCS								*
  ****************************************************/
-int ShowSo_USCS(short* eosset,
+int ShowSo_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -1254,7 +1254,7 @@ int ShowHfo_USCS(int* fluidindex, double* h,
  * This function returns the ideal gas enthalpy		*
  * formation for the mixture in SI units			*
  ****************************************************/
-int ShowHfo_mx_SI(short* eosset,
+int ShowHfo_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1316,7 +1316,7 @@ int ShowHfo_mx_SI(short* eosset,
  * This function returns the ideal gas enthalpy		*
  * formation for the mixture in USCS units			*
  ****************************************************/
-int ShowHfo_mx_USCS(short* eosset,
+int ShowHfo_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1475,7 +1475,7 @@ int ShowSfo_USCS(int* fluidindex, double* s,
  * This function returns the ideal gas entropy of   *
  * formation for the mixture						*
  ****************************************************/
-int ShowSfo_mx_SI(short* eosset,
+int ShowSfo_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1537,7 +1537,7 @@ int ShowSfo_mx_SI(short* eosset,
  * This function returns the ideal gas entropy of   *
  * formation for the mixture in USCS units			*
  ****************************************************/
-int ShowSfo_mx_USCS(short* eosset,
+int ShowSfo_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1792,7 +1792,7 @@ int ShowDipole_SI(int* fluidindex, double* dipole,
 // This function returns the lower heating value
 // for the mixture in USCS units.
 ////////////////////////////////////////////////////////////
-int ShowLHV_mx_USCS(short* eosset,
+int ShowLHV_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1855,7 +1855,7 @@ int ShowLHV_mx_USCS(short* eosset,
 // This function returns the lower heating value
 // for the mixture in SI units.
 ////////////////////////////////////////////////////////////
-int ShowLHV_mx_SI(short* eosset,
+int ShowLHV_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1917,7 +1917,7 @@ int ShowLHV_mx_SI(short* eosset,
  * This function returns the pressure given a molar *
  * density and temperature							*
  ****************************************************/
-int ShowP_MT_USCS(short* eosset,
+int ShowP_MT_USCS(int* eosset,
 	double md,
 	double* temp,
 	double* MixtureArray,
@@ -1979,7 +1979,7 @@ int ShowP_MT_USCS(short* eosset,
 // This function returns the pressure given a
 // specific volume and temperature
 /////////////////////////////////////////////////////
-short ShowP_VS_SI(short* eosset,
+short ShowP_VS_SI(int* eosset,
 	double v,
 	double s,
 	double* MixtureArray,
@@ -2043,7 +2043,7 @@ short ShowP_VS_SI(short* eosset,
 // This function returns the pressure given a
 // specific volume and temperature
 /////////////////////////////////////////////////////
-short ShowP_VS_USCS(short* eosset,
+short ShowP_VS_USCS(int* eosset,
 	double v,
 	double s,
 	double* MixtureArray,
@@ -2107,7 +2107,7 @@ short ShowP_VS_USCS(short* eosset,
  * This function returns the pressure given a       *
  * specific volume and temperature					*
  ****************************************************/
-int ShowP_VT_SI(short* eosset,
+int ShowP_VT_SI(int* eosset,
 	double sv,
 	double* temp,
 	double* MixtureArray,
@@ -2171,7 +2171,7 @@ int ShowP_VT_SI(short* eosset,
  * This function returns the pressure given a       *
  * specific volume and temperature					*
  ****************************************************/
-int ShowP_VT_USCS(short* eosset,
+int ShowP_VT_USCS(int* eosset,
 	double sv,
 	double* temp,
 	double* MixtureArray,
@@ -2251,7 +2251,7 @@ int ShowP_VT_USCS(short* eosset,
 /// <author>Brian Howard</author>
 /// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
-int ShowV_TP_SI(short* eosset,
+int ShowV_TP_SI(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -2331,7 +2331,7 @@ int ShowV_TP_SI(short* eosset,
 /// <author>Brian Howard</author>
 /// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
-short ShowV_TP_USCS(short* eosset,
+int ShowV_TP_USCS(int* eosset,
 	double temp,
 	double pres,
 	double* MixtureArray,
@@ -2410,7 +2410,7 @@ short ShowV_TP_USCS(short* eosset,
  * This function returns the entropy given a        *
  * specific temperature	and pressure in SI			*
  ****************************************************/
-int ShowS_TP_SI(short* eosset,
+int ShowS_TP_SI(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -2474,8 +2474,30 @@ int ShowS_TP_SI(short* eosset,
  * This function returns the entropy given a        *
  * specific temperature	and pressure               *
  ****************************************************/
-int ShowS_TP_USCS(short* eosset,
-	double* temp,
+ /// <summary>
+ /// Retrieves the entropy in USCS units, (BTU/lb-R), for a given temperature and pressure using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="temp">Pointer to a double representing the temperature in USCS units, (BTU/lb-R).</param>
+ /// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="v">Pointer to a double to hold the calculated specific volume in SI units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+int ShowS_TP_USCS(int* eosset,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2518,7 +2540,7 @@ int ShowS_TP_USCS(short* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs->GetS_TP_USCS(*temp, pres);
+	*s = bwrs->GetS_TP_USCS(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -2538,7 +2560,7 @@ int ShowS_TP_USCS(short* eosset,
  * This function returns the enthalpy given a       *
  * specific temperature	and pressure in SI         *
  ****************************************************/
-int ShowH_TP_SI(short* eosset,
+int ShowH_TP_SI(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -2602,7 +2624,7 @@ int ShowH_TP_SI(short* eosset,
  * This function returns the enthalpy given a       *
  * specific temperature	and pressure               *
  ****************************************************/
-int ShowH_TP_USCS(short* eosset,
+int ShowH_TP_USCS(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -2666,7 +2688,7 @@ int ShowH_TP_USCS(short* eosset,
  * This function returns the enthalpy given a       *
  * specific temperature and entropy                 *
  ****************************************************/
-int ShowH_TS_SI(short* eosset,
+int ShowH_TS_SI(int* eosset,
 	double* temp,
 	double entr,
 	double* MixtureArray,
@@ -2730,7 +2752,7 @@ int ShowH_TS_SI(short* eosset,
  * This function returns the enthalpy given a       *
  * specific temperature and entropy                 *
  ****************************************************/
-int ShowH_TS_USCS(short* eosset,
+int ShowH_TS_USCS(int* eosset,
 	double* temp,
 	double entr,
 	double* MixtureArray,
@@ -2794,7 +2816,7 @@ int ShowH_TS_USCS(short* eosset,
  * This function returns the enthalpy given a       *
  * specific pressure and entropy                    *
  ****************************************************/
-int ShowH_PS_SI(short* eosset,
+int ShowH_PS_SI(int* eosset,
 	double pres,
 	double entr,
 	double* MixtureArray,
@@ -2858,7 +2880,7 @@ int ShowH_PS_SI(short* eosset,
  * This function returns the enthalpy given a       *
  * specific pressure and entropy                    *
  ****************************************************/
-int ShowH_PS_USCS(short* eosset,
+int ShowH_PS_USCS(int* eosset,
 	double pres,
 	double entr,
 	double* MixtureArray,
@@ -2922,7 +2944,7 @@ int ShowH_PS_USCS(short* eosset,
  * This function returns the fugacity given a       *
  * specific temperature	and pressure				*
  ****************************************************/
-int ShowF_TP_USCS(short* eosset,
+int ShowF_TP_USCS(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -2986,7 +3008,7 @@ int ShowF_TP_USCS(short* eosset,
  * This function returns the vapor pressure for a   *
  * fluid.											*
  ****************************************************/
-int ShowVapPres_T_USCS(short* eosset,
+int ShowVapPres_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3048,7 +3070,7 @@ int ShowVapPres_T_USCS(short* eosset,
 //////////////////////////////////////////////////////////////
 // This function returns the vapor pressure for a fluid.											*
 //////////////////////////////////////////////////////////////
-int ShowVapPres_T_SI(short* eosset,
+int ShowVapPres_T_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3111,7 +3133,7 @@ int ShowVapPres_T_SI(short* eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatVapV_T_USCS(short* eosset,
+int ShowSatVapV_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3174,7 +3196,7 @@ int ShowSatVapV_T_USCS(short* eosset,
 // This function returns the specific volume for a
 // fluid.
 /////////////////////////////////////////////////////
-int ShowSatVapV_T_SI(short* eosset,
+int ShowSatVapV_T_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3237,7 +3259,7 @@ int ShowSatVapV_T_SI(short* eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatLiqV_T_USCS(short* eosset,
+int ShowSatLiqV_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3300,7 +3322,7 @@ int ShowSatLiqV_T_USCS(short* eosset,
 //This function returns the specific volume for a
 //fluid.
 //////////////////////////////////////////////////////
-int ShowSatLiqV_T_SI(short* eosset,
+int ShowSatLiqV_T_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3363,7 +3385,7 @@ int ShowSatLiqV_T_SI(short* eosset,
  * This function returns the ethalpy for a fluid at *
  * saturated vapor conditions in SI units.			*											*
  ****************************************************/
-int ShowSatVapH_T_SI(short* eosset,
+int ShowSatVapH_T_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3425,7 +3447,7 @@ int ShowSatVapH_T_SI(short* eosset,
  *------------------------------------------*********
  * This function returns the ethalpy for a fluid.	*											*
  ****************************************************/
-int ShowSatVapH_T_USCS(short* eosset,
+int ShowSatVapH_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3488,7 +3510,7 @@ int ShowSatVapH_T_USCS(short* eosset,
  * This function returns the ehtalpy for a fluid at *
  * saturated liquid conditions in SI units.			*
  ****************************************************/
-int ShowSatLiqH_T_SI(short* eosset,
+int ShowSatLiqH_T_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3551,7 +3573,7 @@ int ShowSatLiqH_T_SI(short* eosset,
  * This function returns the ehtalpy for a fluid at *
  * saturated liquid conditions.						*
  ****************************************************/
-int ShowSatLiqH_T_USCS(short* eosset,
+int ShowSatLiqH_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3613,7 +3635,7 @@ int ShowSatLiqH_T_USCS(short* eosset,
  *------------------------------------------*********
  * This function returns the ethalpy for a fluid.	*											*
  ****************************************************/
-int ShowSatVapS_T_USCS(short* eosset,
+int ShowSatVapS_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3676,7 +3698,7 @@ int ShowSatVapS_T_USCS(short* eosset,
  * This function returns the ehtalpy for a fluid at *
  * saturated liquid conditions.						*
  ****************************************************/
-int ShowSatLiqS_T_USCS(short* eosset,
+int ShowSatLiqS_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3739,7 +3761,7 @@ int ShowSatLiqS_T_USCS(short* eosset,
  * This function returns the vapor temperature for a*
  * fluid.											*
  ****************************************************/
-int ShowVapTemp_P_USCS(short* eosset,
+int ShowVapTemp_P_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3803,7 +3825,7 @@ int ShowVapTemp_P_USCS(short* eosset,
  * This function returns the vapor temperature for a*
  * fluid in SI units.								*
  ****************************************************/
-int ShowVapTemp_P_SI(short* eosset,
+int ShowVapTemp_P_SI(int* eosset,
 	double* temp,
 	double* MixtureArray,
 	double Precision,
@@ -3866,7 +3888,7 @@ int ShowVapTemp_P_SI(short* eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatLiqV_P_USCS(short* eosset,
+int ShowSatLiqV_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3929,7 +3951,7 @@ int ShowSatLiqV_P_USCS(short* eosset,
  * This function returns the specific volume for a  *
  * fluid.											*
  ****************************************************/
-int ShowSatLiqV_P_SI(short* eosset,
+int ShowSatLiqV_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3992,7 +4014,7 @@ int ShowSatLiqV_P_SI(short* eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure.			*
  ****************************************************/
-int ShowSatVapV_P_USCS(short* eosset,
+int ShowSatVapV_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4055,7 +4077,7 @@ int ShowSatVapV_P_USCS(short* eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure in SI		*
  ****************************************************/
-int ShowSatVapV_P_SI(short* eosset,
+int ShowSatVapV_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4118,7 +4140,7 @@ int ShowSatVapV_P_SI(short* eosset,
  * This function returns the temperature given the  *
  * enthalpy and pressure of a fluid in SI units.	*
  ****************************************************/
-int ShowT_HP_SI(short* eosset,
+int ShowT_HP_SI(int* eosset,
 	double h,
 	double p,
 	double* MixtureArray,
@@ -4182,7 +4204,7 @@ int ShowT_HP_SI(short* eosset,
  * This function returns the temperature given the  *
  * enthalpy and pressure of a fluid.				*
  ****************************************************/
-int ShowT_HP_USCS(short* eosset,
+int ShowT_HP_USCS(int* eosset,
 	double h,
 	double p,
 	double* MixtureArray,
@@ -4246,7 +4268,7 @@ int ShowT_HP_USCS(short* eosset,
  * This function returns the temperature given the  *
  * entropy and pressure of a fluid in SI units		*
  ****************************************************/
-int ShowT_SP_SI(short* eosset,
+int ShowT_SP_SI(int* eosset,
 	double s,
 	double p,
 	double* MixtureArray,
@@ -4310,7 +4332,7 @@ int ShowT_SP_SI(short* eosset,
  * This function returns the temperature given the  *
  * entropy and pressure of a fluid.					*
  ****************************************************/
-int ShowT_SP_USCS(short* eosset,
+int ShowT_SP_USCS(int* eosset,
 	double s,
 	double p,
 	double* MixtureArray,
@@ -4374,7 +4396,7 @@ int ShowT_SP_USCS(short* eosset,
  * This function returns the specific volume for a  *
  * saturated fluid given pressure.					*
  ****************************************************/
-int ShowSatLiqH_P_USCS(short* eosset,
+int ShowSatLiqH_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4437,7 +4459,7 @@ int ShowSatLiqH_P_USCS(short* eosset,
  * This function returns the specific volume for a  *
  * saturated fluid given pressure in SI.			*
  ****************************************************/
-int ShowSatLiqH_P_SI(short* eosset,
+int ShowSatLiqH_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4500,7 +4522,7 @@ int ShowSatLiqH_P_SI(short* eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure.			*
  ****************************************************/
-int ShowSatVapH_P_USCS(short* eosset,
+int ShowSatVapH_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4563,7 +4585,7 @@ int ShowSatVapH_P_USCS(short* eosset,
  * This function returns the specific volume for a  *
  * fluid at saturation given the pressure in SI.	*
  ****************************************************/
-int ShowSatVapH_P_SI(short* eosset,
+int ShowSatVapH_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4626,7 +4648,7 @@ int ShowSatVapH_P_SI(short* eosset,
  * This function returns the entropy for a			*
  * saturated fluid given pressure.					*
  ****************************************************/
-int ShowSatLiqS_P_USCS(short* eosset,
+int ShowSatLiqS_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4689,7 +4711,7 @@ int ShowSatLiqS_P_USCS(short* eosset,
  * This function returns the entropy for a			*
  * saturated fluid given pressure.					*
  ****************************************************/
-int ShowSatLiqS_P_SI(short* eosset,
+int ShowSatLiqS_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4752,7 +4774,7 @@ int ShowSatLiqS_P_SI(short* eosset,
  * This function returns the entropy for a			*
  * fluid at saturation given the pressure.			*
  ****************************************************/
-int ShowSatVapS_P_USCS(short* eosset,
+int ShowSatVapS_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4815,7 +4837,7 @@ int ShowSatVapS_P_USCS(short* eosset,
  * This function returns the entropy for a			*
  * fluid at saturation given the pressure in SI.	*
  ****************************************************/
-int ShowSatVapS_P_SI(short* eosset,
+int ShowSatVapS_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -4878,7 +4900,7 @@ int ShowSatVapS_P_SI(short* eosset,
  * This function returns the viscosity for a fluid  *
  * at a given the pressure and temperature          *
  ****************************************************/
-int ShowViscosityGas_TP_USCS(short* eosset,
+int ShowViscosityGas_TP_USCS(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -4942,7 +4964,7 @@ int ShowViscosityGas_TP_USCS(short* eosset,
 // This function returns the viscosity for a fluid
 // at a given the pressure and temperature
 /////////////////////////////////////////////////////
-int ShowViscosityGas_TP_SI(short* eosset,
+int ShowViscosityGas_TP_SI(int* eosset,
 	double* temp,
 	double pres,
 	double* MixtureArray,
@@ -5102,7 +5124,7 @@ int ShowHHV_USCS(int* fluidindex, double* hhv,
 // This function returns the higher heating value
 // for the mixture in SI units.
 ////////////////////////////////////////////////////////////
-int ShowHHV_mx_SI(short* eosset,
+int ShowHHV_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -5164,7 +5186,7 @@ int ShowHHV_mx_SI(short* eosset,
 // This function returns the higher heating value
 // for the mixture in USCS units.
 ////////////////////////////////////////////////////////////
-int ShowHHV_mx_USCS(short* eosset,
+int ShowHHV_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
