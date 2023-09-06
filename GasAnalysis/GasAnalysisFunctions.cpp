@@ -2468,22 +2468,16 @@ int ShowS_TP_SI(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowS_TP_USCS *
- *-------------------------------------**************
- * This function returns the entropy given a        *
- * specific temperature	and pressure               *
- ****************************************************/
  /// <summary>
  /// Retrieves the entropy in USCS units, (BTU/lb-R), for a given temperature and pressure using the CBWRS class.
  /// </summary>
  /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="temp">Pointer to a double representing the temperature in USCS units, (BTU/lb-R).</param>
+ /// <param name="temp">Pointer to a double representing the temperature in USCS units, Rankine.</param>
  /// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
  /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
  /// <param name="Precision">Double representing the solver precision.</param>
  /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="v">Pointer to a double to hold the calculated specific volume in SI units.</param>
+ /// <param name="v">Pointer to a double to hold the calculated specific volume in USCS units.</param>
  /// <param name="priority01">Pointer to a double representing the error priority.</param>
  /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
  /// <returns>An integer representing the number of errors (0 for no errors).</returns>
@@ -2560,8 +2554,30 @@ int ShowS_TP_USCS(int* eosset,
  * This function returns the enthalpy given a       *
  * specific temperature	and pressure in SI         *
  ****************************************************/
+ /// <summary>
+ /// Retrieves the enthalpy in SI units, (kJ/kg), for a given temperature and pressure using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
+ /// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="h">Pointer to a double to hold the calculated enthalpy in SI units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowH_TP_SI(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2604,7 +2620,7 @@ int ShowH_TP_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetH_TP_SI(*temp, pres);
+	*h = bwrs->GetH_TP_SI(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -2618,14 +2634,30 @@ int ShowH_TP_SI(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowH_TP_USCS *
- *-------------------------------------**************
- * This function returns the enthalpy given a       *
- * specific temperature	and pressure               *
- ****************************************************/
+ /// <summary>
+ /// Retrieves the enthalpy in USCS units, (BTU/lb), for a given temperature and pressure using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
+ /// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="v">Pointer to a double to hold the calculated enthalpy in USCS units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowH_TP_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2668,7 +2700,7 @@ int ShowH_TP_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetH_TP_USCS(*temp, pres);
+	*h = bwrs->GetH_TP_USCS(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
