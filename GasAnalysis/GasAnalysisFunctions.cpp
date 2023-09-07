@@ -2101,15 +2101,31 @@ short ShowP_VS_USCS(int* eosset,
 	return errs;
 }
 
-/****************************************
- * Function Definition : ShowPres_VT_SI *
- *--------------------------------------*************
- * This function returns the pressure given a       *
- * specific volume and temperature					*
- ****************************************************/
+/// <summary>
+/// Retrieves the pressure in SI units, bar(a), for a given specific volume and temperature using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="sv">Double representing the specific volume in SI units, cm3/g.</param>
+/// <param name="temp">Double representing the temperature in SI units, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double to hold the calculated specific volume in USCS units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowP_VT_SI(int* eosset,
 	double sv,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2151,7 +2167,7 @@ int ShowP_VT_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs->GetP_VT_SI(sv, *temp);
+	*pres = bwrs->GetP_VT_SI(sv, temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -2165,15 +2181,31 @@ int ShowP_VT_SI(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowPres_VT_USCS *
- *----------------------------------------***********
- * This function returns the pressure given a       *
- * specific volume and temperature					*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the pressure in USCS units, PSIA, for a given specific volume and temperature using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="sv">Double representing the specific volume in USCS units, ft3/lb.</param>
+ /// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="v">Pointer to a double to hold the calculated specific volume in USCS units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowP_VT_USCS(int* eosset,
 	double sv,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -2215,7 +2247,7 @@ int ShowP_VT_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs->GetP_VT_USCS(sv, *temp);
+	*pres = bwrs->GetP_VT_USCS(sv, temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
