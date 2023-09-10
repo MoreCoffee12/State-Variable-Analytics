@@ -85,7 +85,6 @@ Declare PtrSafe Function ShowVapPres_T_SI _
 '                            ByRef h As Double, _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
-'                            ByVal temp As Double, _
 
 Declare PtrSafe Function ShowSatLiqH_T_USCS _
     Lib "GasAnalysis.dll" (ByRef eosset As Long, _
