@@ -85,26 +85,27 @@ Declare PtrSafe Function ShowVapPres_T_SI _
 '                            ByRef h As Double, _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
-'
-'Declare PtrSafe Function ShowSatLiqH_T_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
-'                            MixtureArray As Double, _
-'                            ByVal Precision As Double, _
-'                            ByVal MaxIterations As Double, _
-'                            ByRef h As Double, _
-'                            ByRef priority01 As Double, _
-'                            ByVal textline01 As String) As Long
-'
-'Declare PtrSafe Function ShowSatLiqH_T_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-'                            ByVal temp As Double, _
-'                            MixtureArray As Double, _
-'                            ByVal Precision As Double, _
-'                            ByVal MaxIterations As Double, _
-'                            ByRef h As Double, _
-'                            ByRef priority01 As Double, _
-'                            ByVal textline01 As String) As Long
+
+Declare PtrSafe Function ShowSatLiqH_T_USCS _
+    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+                            ByVal temp As Double, _
+                            MixtureArray As Double, _
+                            ByVal Precision As Double, _
+                            ByVal MaxIterations As Double, _
+                            ByRef h As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Long
+
+Declare PtrSafe Function ShowSatLiqH_T_SI _
+    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+                            ByVal temp As Double, _
+                            MixtureArray As Double, _
+                            ByVal Precision As Double, _
+                            ByVal MaxIterations As Double, _
+                            ByRef h As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapS_T_USCS _
 '    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
@@ -734,7 +735,7 @@ End Function
 '       each component in the mixture.
 '
 ' Returns:
-' - Double: pressure calculated in SI units, SI
+' - Double: pressure calculated in SI units, bar(a)
 ' - String: Error line if the error priority is within the defined tolerance
 '
 ' Error Handling:
@@ -874,6 +875,9 @@ End Function
 '    Dim v As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSatVapV_T_USCS
@@ -882,6 +886,7 @@ End Function
 '    v = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -967,6 +972,9 @@ End Function
 '    Dim v As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSatVapV_T_SI
@@ -975,6 +983,7 @@ End Function
 '    v = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -1060,6 +1069,9 @@ End Function
 '    Dim v As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSatLiqV_T_USCS
@@ -1068,6 +1080,7 @@ End Function
 '    v = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -1124,284 +1137,388 @@ End Function
 '
 'End Function
 '
-'Function VBShowSatLiqV_T_SI(eosset As Long, _
-'                        Temperature As Double, _
-'                        Precision As Double, MaxIterations As Double, _
-'                        PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
+' =============================================================================
+' Function Name:  VBShowSatLiqV_T_SI
+' Name: VBShowSatLiqV_T_SI
+' Purpose: Retrieves the enthalpy in SI units,  kJ/kg, for a given
+'          temperature and returns it as either a double value or
+'          an error string based on the error priority and tolerance.
+'          It serves as a wrapper for the ShowSatLiqV_T_SI DLL function.
 '
-'    'Local variables
-'    Dim v As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Temperature: Double, temperature in SI units, kelvin
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowSatLiqV_T_SI
+' Returns:
+' - Double: pressure calculated in SI units, bar(a)
+' - String: Error line if the error priority is within the defined tolerance
 '
-'    'Initialize local variables
-'    v = 0
-'    priority01 = 0
-'    ErrTolerance = 10
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowSatLiqV_T_SI function and handles its return values and errors
 '
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowSatLiqV_T_SI(eosset, _
-'                    Temperature, _
-'                    MixingArray(0), _
-'                    Precision, _
-'                    MaxIterations, _
-'                    v, _
-'                    priority01, _
-'                    eline01)
+' Author: Brian Howard
+' Date: 2001
+' Revision: 7 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowSatLiqV_T_SI(eosset As Long, _
+                        Temperature As Double, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim v As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Integer
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowSatLiqV_T_SI
+
+    'Initialize local variables
+    v = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowSatLiqV_T_SI(eosset, _
+                    Temperature, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    v, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowSatLiqV_T_SI = eline01
+    Else
+        VBShowSatLiqV_T_SI = v
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowSatLiqV_T_SI:
+
+    VBShowSatLiqV_T_SI = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
 '
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowSatLiqV_T_SI = eline01
-'    Else
-'        VBShowSatLiqV_T_SI = v
-'    End If
+
+' =============================================================================
+' Function Name:  VBShowSatVapH_T_SI
+' Name: VBShowSatVapH_T_SI
+' Purpose: Retrieves the enthalpy in SI units, kJ/kg, at saturated vapor conditions
+'          as either a double value or an error string based on the error priority
+'          and tolerance. It serves as a wrapper for the ShowSatLiqH_T_SI DLL function.
 '
-'    'Avoid the error handler
-'    Exit Function
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Temperature: Double, temperature in SI units, kelvin
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'ErrorVBShowSatLiqV_T_SI:
+' Returns:
+' - Double: enthalpy calculated in SI units,  kJ/kg
+' - String: Error line if the error priority is within the defined tolerance
 '
-'    VBShowSatLiqV_T_SI = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'End Function
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowSatLiqH_T_SI function and handles its return values and errors
 '
-'Function VBShowSatVapH_T_SI(eosset As Long, _
-'                        Temperature As Double, _
-'                        Precision As Double, MaxIterations As Double, _
-'                        PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
+' Author: Brian Howard
+' Date: 2001
+' Revision: 7 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowSatVapH_T_SI(eosset As Long, _
+                        Temperature As Double, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim h As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Integer
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowSatVapH_T_SI
+
+    'Initialize local variables
+    h = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowSatVapH_T_SI(eosset, _
+                    Temperature, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    h, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowSatVapH_T_SI = eline01
+    Else
+        VBShowSatVapH_T_SI = h
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowSatVapH_T_SI:
+
+    VBShowSatVapH_T_SI = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
+
+' =============================================================================
+' Function Name:  VBShowSatVapH_T_USCS
+' Name: VBShowSatVapH_T_USCS
+' Purpose: Retrieves the enthalpy in USCS units, BTU/lb, at saturated vapor conditions
+'          as either a double value or an error string based on the error priority
+'          and tolerance. It serves as a wrapper for the ShowSatVapH_T_USCS DLL function.
 '
-'    'Local variables
-'    Dim h As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Temperature: Double, temperature in USCS units, Rankine
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowSatVapH_T_SI
+' Returns:
+' - Double: enthalpy calculated in USCS units, BTU/lb
+' - String: Error line if the error priority is within the defined tolerance
 '
-'    'Initialize local variables
-'    h = 0
-'    priority01 = 0
-'    ErrTolerance = 10
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowSatVapH_T_USCS function and handles its return values and errors
 '
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowSatVapH_T_SI(eosset, _
-'                    Temperature, _
-'                    MixingArray(0), _
-'                    Precision, _
-'                    MaxIterations, _
-'                    h, _
-'                    priority01, _
-'                    eline01)
-'
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowSatVapH_T_SI = eline01
-'    Else
-'        VBShowSatVapH_T_SI = h
-'    End If
-'
-'    'Avoid the error handler
-'    Exit Function
-'
-'ErrorVBShowSatVapH_T_SI:
-'
-'    VBShowSatVapH_T_SI = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
-'
-'End Function
-'
-'Function VBShowSatVapH_T_USCS(eosset As Long, _
-'                        Temperature As Double, _
-'                        Precision As Double, MaxIterations As Double, _
-'                        PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
-'
-'    'Local variables
-'    Dim h As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
-'
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowSatVapH_T_USCS
-'
-'    'Initialize local variables
-'    h = 0
-'    priority01 = 0
-'    ErrTolerance = 10
-'
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
-'
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowSatVapH_T_USCS(eosset, _
-'                    Temperature, _
-'                    MixingArray(0), _
-'                    Precision, _
-'                    MaxIterations, _
-'                    h, _
-'                    priority01, _
-'                    eline01)
-'
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowSatVapH_T_USCS = eline01
-'    Else
-'        VBShowSatVapH_T_USCS = h
-'    End If
-'
-'    'Avoid the error handler
-'    Exit Function
-'
-'ErrorVBShowSatVapH_T_USCS:
-'
-'    VBShowSatVapH_T_USCS = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
-'
-'End Function
+' Author: Brian Howard
+' Date: 2001
+' Revision: 7 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowSatVapH_T_USCS(eosset As Long, _
+                        Temperature As Double, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim h As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Integer
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowSatVapH_T_USCS
+
+    'Initialize local variables
+    h = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowSatVapH_T_USCS(eosset, _
+                    Temperature, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    h, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowSatVapH_T_USCS = eline01
+    Else
+        VBShowSatVapH_T_USCS = h
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowSatVapH_T_USCS:
+
+    VBShowSatVapH_T_USCS = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
 '
 'Function VBShowSatVapS_T_USCS(eosset As Long, _
 '                        Temperature As Double, _
@@ -1432,6 +1549,9 @@ End Function
 '    Dim s As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSatVapS_T_USCS
@@ -1440,6 +1560,7 @@ End Function
 '    s = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -1525,6 +1646,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSatLiqH_T_SI
@@ -1533,6 +1657,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -1589,191 +1714,259 @@ End Function
 '
 'End Function
 '
-'Function VBShowSatLiqH_T_USCS(eosset As Long, _
-'                        Temperature As Double, _
-'                        Precision As Double, MaxIterations As Double, _
-'                        PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
+' =============================================================================
+' Function Name:  VBShowSatLiqH_T_USCS
+' Name: VBShowSatLiqH_T_USCS
+' Purpose: Retrieves the enthalpy in USCS units, BTU/lb, at saturated liquid conditions
+'          as either a double value or an error string based on the error priority
+'          and tolerance. It serves as a wrapper for the ShowSatLiqH_T_USCS DLL function.
 '
-'    'Local variables
-'    Dim h As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Temperature: Double, temperature in USCS units, Rankine
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowSatLiqH_T_USCS
+' Returns:
+' - Double: enthalpy calculated in USCS units, BTU/lb
+' - String: Error line if the error priority is within the defined tolerance
 '
-'    'Initialize local variables
-'    h = 0
-'    priority01 = 0
-'    ErrTolerance = 10
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowSatLiqH_T_USCS function and handles its return values and errors
 '
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowSatLiqH_T_USCS(eosset, _
-'                    Temperature, _
-'                    MixingArray(0), _
-'                    Precision, _
-'                    MaxIterations, _
-'                    h, _
-'                    priority01, _
-'                    eline01)
+' Author: Brian Howard
+' Date: 2001
+' Revision: 7 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowSatLiqH_T_USCS(eosset As Long, _
+                        Temperature As Double, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim h As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Integer
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowSatLiqH_T_USCS
+
+    'Initialize local variables
+    h = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowSatLiqH_T_USCS(eosset, _
+                    Temperature, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    h, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowSatLiqH_T_USCS = eline01
+    Else
+        VBShowSatLiqH_T_USCS = h
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowSatLiqH_T_USCS:
+
+    VBShowSatLiqH_T_USCS = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
+
+' =============================================================================
+' Function Name:  VBShowSatLiqS_T_USCS
+' Name: VBShowSatLiqS_T_USCS
+' Purpose: Retrieves the enthalpy in USCS units, BTU/lb, at saturated liquid conditions
+'          as either a double value or an error string based on the error priority
+'          and tolerance. It serves as a wrapper for the ShowSatLiqS_T_USCS DLL function.
 '
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowSatLiqH_T_USCS = eline01
-'    Else
-'        VBShowSatLiqH_T_USCS = h
-'    End If
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Temperature: Double, temperature in USCS units, Rankine
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'    'Avoid the error handler
-'    Exit Function
+' Returns:
+' - Double: enthalpy calculated in USCS units, BTU/lb
+' - String: Error line if the error priority is within the defined tolerance
 '
-'ErrorVBShowSatLiqH_T_USCS:
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'    VBShowSatLiqH_T_USCS = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowSatLiqS_T_USCS function and handles its return values and errors
 '
-'End Function
-'
-'Function VBShowSatLiqS_T_USCS(eosset As Long, _
-'                        Temperature As Double, _
-'                        Precision As Double, MaxIterations As Double, _
-'                        PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
-'
-'    'Local variables
-'    Dim s As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
-'
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowSatLiqS_T_USCS
-'
-'    'Initialize local variables
-'    s = 0
-'    priority01 = 0
-'    ErrTolerance = 10
-'
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
-'
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowSatLiqS_T_USCS(eosset, _
-'                    Temperature, _
-'                    MixingArray(0), _
-'                    Precision, _
-'                    MaxIterations, _
-'                    s, _
-'                    priority01, _
-'                    eline01)
-'
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowSatLiqS_T_USCS = eline01
-'    Else
-'        VBShowSatLiqS_T_USCS = s
-'    End If
-'
-'    'Avoid the error handler
-'    Exit Function
-'
-'ErrorVBShowSatLiqS_T_USCS:
-'
-'    VBShowSatLiqS_T_USCS = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
-'
-'End Function
+' Author: Brian Howard
+' Date: 2001
+' Revision: 7 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowSatLiqS_T_USCS(eosset As Long, _
+                        Temperature As Double, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim s As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Integer
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowSatLiqS_T_USCS
+
+    'Initialize local variables
+    s = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowSatLiqS_T_USCS(eosset, _
+                    Temperature, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    s, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowSatLiqS_T_USCS = eline01
+    Else
+        VBShowSatLiqS_T_USCS = s
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowSatLiqS_T_USCS:
+
+    VBShowSatLiqS_T_USCS = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
 '
 'Function VBShowHfo_mx_SI(eosset As Long, _
 '                        Precision As Double, MaxIterations As Double, _
@@ -1803,6 +1996,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowHfo_mx_SI
@@ -1811,6 +2007,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -1894,6 +2091,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowHfo_mx_USCS
@@ -1902,6 +2102,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -1986,6 +2187,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowH_H298_SI
@@ -1994,6 +2198,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -2079,6 +2284,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowH_H298_USCS
@@ -2087,6 +2295,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -2172,6 +2381,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowHIdeal_SI
@@ -2180,6 +2392,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -2265,6 +2478,9 @@ End Function
 '    Dim h As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowHIdeal_USCS
@@ -2273,6 +2489,7 @@ End Function
 '    h = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -2355,6 +2572,9 @@ End Function
 '    Dim mw As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowMolWeight_mx
@@ -2363,6 +2583,7 @@ End Function
 '    mw = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane
@@ -2444,6 +2665,9 @@ End Function
 '    Dim pres As Double
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
+'    Dim eline01 As String
+'    Dim i As Integer
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowP_MT_USCS
@@ -2452,6 +2676,7 @@ End Function
 '    pres = 0
 '    priority01 = 0
 '    ErrTolerance = 10
+'    eline01 = String(256, "a")
 '
 '    'Begin by filling the mixing array with these values
 '    MixingArray(0) = PercentMethane

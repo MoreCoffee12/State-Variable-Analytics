@@ -3144,12 +3144,6 @@ int ShowVapPres_T_USCS(int* eosset,
 	return errs;
 }
 
-//////////////////////////////////////////////////////////////
-// Function Definition : ShowVapPres_T_SI
-//////////////////////////////////////////////////////////////
-// This function returns the vapor pressure for a fluid.											*
-//////////////////////////////////////////////////////////////
-
 ///
  /// <summary>
  /// Returns the vapor pressure in SI units, bar(a), given the fluid temperature.
@@ -3425,7 +3419,7 @@ int ShowSatLiqV_T_USCS(int* eosset,
 //fluid.
 //////////////////////////////////////////////////////
 int ShowSatLiqV_T_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3467,7 +3461,7 @@ int ShowSatLiqV_T_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs->GetSatLiqV_T_SI(*temp);
+	*v = bwrs->GetSatLiqV_T_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3481,14 +3475,29 @@ int ShowSatLiqV_T_SI(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatVapH_T_SI *
- *----------------------------------------***********
- * This function returns the ethalpy for a fluid at *
- * saturated vapor conditions in SI units.			*											*
- ****************************************************/
+ /// <summary>
+ /// Returns the enthalpy in SI units, kJ/kg, at saturated vapor conditions. Useful for generating a pressure-enthalphy diagram.
+ /// </summary>
+ /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+ /// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+ /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+ /// <returns>Integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSatVapH_T_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3530,7 +3539,7 @@ int ShowSatVapH_T_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetSatVapH_T_SI(*temp);
+	*h = bwrs->GetSatVapH_T_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3544,11 +3553,27 @@ int ShowSatVapH_T_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatVapH_T_USCS *
- *------------------------------------------*********
- * This function returns the ethalpy for a fluid.	*											*
- ****************************************************/
+ /// <summary>
+ /// Returns the enthalpy in USCS units, BTU/lb, at saturated vapor conditions. Useful for generating a pressure-enthalphy diagram.
+ /// </summary>
+ /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+ /// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+ /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+ /// <returns>Integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSatVapH_T_USCS(int* eosset,
 	double* temp,
 	double* MixtureArray,
@@ -3606,14 +3631,29 @@ int ShowSatVapH_T_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatLiqH_T_SI *
- *----------------------------------------***********
- * This function returns the ehtalpy for a fluid at *
- * saturated liquid conditions in SI units.			*
- ****************************************************/
+ /// <summary>
+ /// Returns the enthalpy in SI units, kJ/kg, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
+ /// </summary>
+ /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+ /// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+ /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+ /// <returns>Integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSatLiqH_T_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3655,7 +3695,7 @@ int ShowSatLiqH_T_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetSatLiqH_T_SI(*temp);
+	*h = bwrs->GetSatLiqH_T_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3669,14 +3709,29 @@ int ShowSatLiqH_T_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatLiqH_T_USCS *
- *------------------------------------------*********
- * This function returns the ehtalpy for a fluid at *
- * saturated liquid conditions.						*
- ****************************************************/
+  /// <summary>
+  /// Returns the enthalpy in USCS units, BTU/lb, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
+  /// </summary>
+  /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+  /// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+  /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+  /// <param name="Precision">Double representing the solver precision.</param>
+  /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+  /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+  /// <param name="priority01">Pointer to a double representing the error priority.</param>
+  /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+  /// <returns>Integer representing the number of errors (0 for no errors).</returns>
+  /// <remarks>
+  /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+  /// </remarks>
+  /// <warning>
+  /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+  /// </warning>
+  /// <author>Brian Howard</author>
+  /// <date>2001</date>
+  /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSatLiqH_T_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3718,7 +3773,7 @@ int ShowSatLiqH_T_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetSatLiqH_T_USCS(*temp);
+	*h = bwrs->GetSatLiqH_T_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
