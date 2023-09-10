@@ -3,6 +3,8 @@
 #include "oleauto.h"
 #include <memory>
 
+
+
 /// <summary>
 /// Retrieves the the C++ dll version number.
 /// </summary>
@@ -74,6 +76,11 @@ int ShowFluidCount()
 /// <note>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</note>
 /// <warning>Make sure that the char arrays (textline, mainerrline01) are allocated with sufficient space before calling this function.</warning>
 /// </remarks>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowName(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -128,6 +135,11 @@ int ShowName(int* fluidindex, char* textline,
 /// <note>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</note>
 /// <warning>Make sure that the char arrays (textline, mainerrline01) are allocated with sufficient space before calling this function.</warning>
 /// </remarks>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowName_Alt01(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -181,6 +193,11 @@ int ShowName_Alt01(int* fluidindex, char* textline,
 /// <note>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</note>
 /// <warning>Make sure that the char arrays (textline, mainerrline01) are allocated with sufficient space before calling this function.</warning>
 /// </remarks>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowFormula(int* fluidindex, char* textline,
 	double* priority01,
 	char* mainerrline01)
@@ -232,6 +249,11 @@ int ShowFormula(int* fluidindex, char* textline,
 /// <param name="priority01">Pointer to store the priority of any generated message.</param>
 /// <param name="mainerrline01">Pointer to store any generated error message.</param>
 /// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_H298_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -311,6 +333,11 @@ int ShowH_H298_SI(int* eosset,
 /// <param name="priority01">Pointer to store the priority of any generated message.</param>
 /// <param name="mainerrline01">Pointer to store any generated error message.</param>
 /// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_H298_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -390,6 +417,11 @@ int ShowH_H298_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHIdeal_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -469,6 +501,11 @@ int ShowHIdeal_SI(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHIdeal_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -544,9 +581,12 @@ int ShowHIdeal_USCS(int* eosset,
  /// <warning>
  /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
  /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
  /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSo_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -622,9 +662,12 @@ int ShowSo_SI(int* eosset,
  /// <warning>
  /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
  /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
  /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSo_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -696,9 +739,12 @@ int ShowSo_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 3 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowMolWeight(int* fluidindex, double* molweight,
 	double* priority01,
 	char* mainerrline01)
@@ -745,9 +791,12 @@ int ShowMolWeight(int* fluidindex, double* molweight,
 /// <warning>
 /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowMolWeight_mx(double* molweight,
 	double* priority01,
 	char* mainerrline01,
@@ -812,9 +861,12 @@ int ShowMolWeight_mx(double* molweight,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowCritTemp_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -860,9 +912,12 @@ int ShowCritTemp_USCS(int* fluidindex, double* crittemp,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowCritTemp_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -908,9 +963,12 @@ int ShowCritTemp_SI(int* fluidindex, double* crittemp,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowCritPres_USCS(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -956,9 +1014,12 @@ int ShowCritPres_USCS(int* fluidindex, double* crittemp,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowCritPres_SI(int* fluidindex, double* critpres,
 	double* priority01,
 	char* mainerrline01)
@@ -1004,9 +1065,12 @@ int ShowCritPres_SI(int* fluidindex, double* critpres,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowCritVol_USCS(int* fluidindex, double* critvol,
 	double* priority01,
 	char* mainerrline01)
@@ -1052,9 +1116,12 @@ int ShowCritVol_USCS(int* fluidindex, double* critvol,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowCritVol_SI(int* fluidindex, double* crittemp,
 	double* priority01,
 	char* mainerrline01)
@@ -1100,9 +1167,12 @@ int ShowCritVol_SI(int* fluidindex, double* crittemp,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowEcc(int* fluidindex, double* ecc,
 	double* priority01,
 	char* mainerrline01)
@@ -1148,9 +1218,12 @@ int ShowEcc(int* fluidindex, double* ecc,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowR_USCS(int* fluidindex, double* r,
 	double* priority01,
 	char* mainerrline01)
@@ -1196,9 +1269,12 @@ int ShowR_USCS(int* fluidindex, double* r,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHfo_SI(int* fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -1244,9 +1320,12 @@ int ShowHfo_SI(int* fluidindex, double* h,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHfo_USCS(int* fluidindex, double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -1295,9 +1374,12 @@ int ShowHfo_USCS(int* fluidindex, double* h,
  /// <warning>
  /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
  /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
  /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHfo_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1371,9 +1453,12 @@ int ShowHfo_mx_SI(int* eosset,
 /// <warning>
 /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHfo_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1444,9 +1529,12 @@ int ShowHfo_mx_USCS(int* eosset,
  /// <warning>
  /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
  /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
  /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSfo_SI(int* fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -1492,9 +1580,12 @@ int ShowSfo_SI(int* fluidindex, double* s,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSfo_USCS(int* fluidindex, double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -1543,9 +1634,12 @@ int ShowSfo_USCS(int* fluidindex, double* s,
  /// <warning>
  /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
  /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
  /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSfo_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1602,26 +1696,29 @@ int ShowSfo_mx_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the ideal gas entropy of formation for the mixture in USCS, BTU/(lb-R), using the CBWRS class.
- /// </summary>
- /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="s">Pointer to a double to hold the calculated entropy in SI units.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the ideal gas entropy of formation for the mixture in USCS, BTU/(lb-R), using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double to hold the calculated entropy in SI units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSfo_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1693,9 +1790,12 @@ int ShowSfo_mx_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowLHV_USCS(int* fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
@@ -1741,9 +1841,12 @@ int ShowLHV_USCS(int* fluidindex, double* lhv,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowLHV_SI(int* fluidindex, double* lhv,
 	double* priority01,
 	char* mainerrline01)
@@ -1789,9 +1892,12 @@ int ShowLHV_SI(int* fluidindex, double* lhv,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowDipole_USCS(int* fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
@@ -1823,23 +1929,26 @@ int ShowDipole_USCS(int* fluidindex, double* dipole,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the dipole moment in SI units, (debye), and error information for a given fluid index using the CBWRS class.
- /// </summary>
- /// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
- /// <param name="dipole">Pointer to a double to hold the fluid enthalpy of formation in SI units, (debye).</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the dipole moment in SI units, (debye), and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="dipole">Pointer to a double to hold the fluid enthalpy of formation in SI units, (debye).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowDipole_SI(int* fluidindex, double* dipole,
 	double* priority01,
 	char* mainerrline01)
@@ -1888,9 +1997,12 @@ int ShowDipole_SI(int* fluidindex, double* dipole,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowLHV_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1965,9 +2077,12 @@ int ShowLHV_mx_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowLHV_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -2043,9 +2158,12 @@ int ShowLHV_mx_SI(int* eosset,
  /// <warning>
  /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
  /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
  /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowP_MT_USCS(int* eosset,
 	double md,
 	double temp,
@@ -2121,9 +2239,12 @@ int ShowP_MT_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowP_VS_SI(int* eosset,
 	double v,
 	double s,
@@ -2201,9 +2322,12 @@ int ShowP_VS_SI(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 short ShowP_VS_USCS(int* eosset,
 	double v,
 	double s,
@@ -2281,9 +2405,12 @@ short ShowP_VS_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowP_VT_SI(int* eosset,
 	double sv,
 	double temp,
@@ -2342,28 +2469,31 @@ int ShowP_VT_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the pressure in USCS units, PSIA, for a given specific volume and temperature using the CBWRS class.
- /// </summary>
- /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="sv">Double representing the specific volume in USCS units, ft3/lb.</param>
- /// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
- /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="v">Pointer to a double to hold the calculated specific volume in USCS units.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the pressure in USCS units, PSIA, for a given specific volume and temperature using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="sv">Double representing the specific volume in USCS units, ft3/lb.</param>
+/// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double to hold the calculated specific volume in USCS units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowP_VT_USCS(int* eosset,
 	double sv,
 	double temp,
@@ -2441,9 +2571,12 @@ int ShowP_VT_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowV_TP_SI(int* eosset,
 	double temp,
 	double pres,
@@ -2521,9 +2654,12 @@ int ShowV_TP_SI(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowV_TP_USCS(int* eosset,
 	double temp,
 	double pres,
@@ -2597,28 +2733,31 @@ int ShowV_TP_USCS(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the mixtrue entropy in SI units, kJ/(Kg-K), for a given temperature and pressure using the CBWRS class.
- /// </summary>
- /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
- /// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
- /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="s">Pointer to a double to hold the calculated entropy in SI units, kJ/(Kg-K).</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the mixtrue entropy in SI units, kJ/(Kg-K), for a given temperature and pressure using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
+/// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double to hold the calculated entropy in SI units, kJ/(Kg-K).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowS_TP_SI(int* eosset,
 	double temp,
 	double pres,
@@ -2677,28 +2816,31 @@ int ShowS_TP_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the entropy in USCS units, (BTU/lb-R), for a given temperature and pressure using the CBWRS class.
- /// </summary>
- /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="temp">Pointer to a double representing the temperature in USCS units, Rankine.</param>
- /// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
- /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="s">Pointer to a double to hold the calculated entropy in USCS units, kJ/(Kg-K)</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the entropy in USCS units, (BTU/lb-R), for a given temperature and pressure using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in USCS units, Rankine.</param>
+/// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double to hold the calculated entropy in USCS units, kJ/(Kg-K)</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowS_TP_USCS(int* eosset,
 	double temp,
 	double pres,
@@ -2757,28 +2899,31 @@ int ShowS_TP_USCS(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the enthalpy in SI units, (kJ/kg), for a given temperature and pressure using the CBWRS class.
- /// </summary>
- /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
- /// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
- /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="h">Pointer to a double to hold the calculated enthalpy in SI units.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the enthalpy in SI units, (kJ/kg), for a given temperature and pressure using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
+/// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double to hold the calculated enthalpy in SI units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_TP_SI(int* eosset,
 	double temp,
 	double pres,
@@ -2837,28 +2982,31 @@ int ShowH_TP_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Retrieves the enthalpy in USCS units, (BTU/lb), for a given temperature and pressure using the CBWRS class.
- /// </summary>
- /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
- /// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
- /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="v">Pointer to a double to hold the calculated enthalpy in USCS units.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
- /// <returns>An integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Retrieves the enthalpy in USCS units, (BTU/lb), for a given temperature and pressure using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
+/// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double to hold the calculated enthalpy in USCS units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_TP_USCS(int* eosset,
 	double temp,
 	double pres,
@@ -2917,12 +3065,31 @@ int ShowH_TP_USCS(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowH_TS_SI *
- *-----------------------------------****************
- * This function returns the enthalpy given a       *
- * specific temperature and entropy                 *
- ****************************************************/
+/// <summary>
+/// Retrieves the mixture enthalpy in SI units, kJ/kg, for a given temperature and entropy using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Double representing the temperature in SI units, kelvin.</param>
+/// <param name="entr">Double representing the entropy in SI units, kJ/(Kg-K).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double to hold the calculated enthalpy in SI units, kJ/kg.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_TS_SI(int* eosset,
 	double temp,
 	double entr,
@@ -2938,8 +3105,8 @@ int ShowH_TS_SI(int* eosset,
 	// and more standard library functions. 
 	// Was: CBWRS bwrs;
 	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
-	int                 errs;
-	int                 i;
+	int errs;
+	int i;
 	char* pmerrline;
 
 	// Initialize local variables
@@ -2981,12 +3148,31 @@ int ShowH_TS_SI(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowH_TS_USCS *
- *-------------------------------------**************
- * This function returns the enthalpy given a       *
- * specific temperature and entropy                 *
- ****************************************************/
+/// <summary>
+/// Retrieves the mixture enthalpy in USCS units, BTU/lb, for a given temperature and entropy using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
+/// <param name="entr">Double representing the entropy in USCS units, BTU/(lb-R).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double to hold the calculated enthalpy in USCS units, BTU/lb.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_TS_USCS(int* eosset,
 	double temp,
 	double entr,
@@ -3002,8 +3188,8 @@ int ShowH_TS_USCS(int* eosset,
 	// and more standard library functions. 
 	// Was: CBWRS bwrs;
 	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
-	int                 errs;
-	int                 i;
+	int errs;
+	int i;
 	char* pmerrline;
 
 	// Initialize local variables
@@ -3045,12 +3231,31 @@ int ShowH_TS_USCS(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowH_PS_SI *
- *-----------------------------------****************
- * This function returns the enthalpy given a       *
- * specific pressure and entropy                    *
- ****************************************************/
+/// <summary>
+/// Retrieves the mixture enthalpy in SI units, kJ/kg, for a given pressure and entropy using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+/// <param name="entr">Double representing the entropy in SI units, kJ/(Kg-K).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double to hold the calculated enthalpy in SI units, kJ/kg.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_PS_SI(int* eosset,
 	double pres,
 	double entr,
@@ -3109,12 +3314,31 @@ int ShowH_PS_SI(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowH_PS_USCS *
- *-------------------------------------**************
- * This function returns the enthalpy given a       *
- * specific pressure and entropy                    *
- ****************************************************/
+/// <summary>
+/// Retrieves the mixture enthalpy in USCS units, BTU/lb, for a given pressure and entropy using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Double representing the pressure in USCS units, PSIA.</param>
+/// <param name="entr">Double representing the entropy in USCS units, BTU/(lb-R).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double to hold the calculated enthalpy in USCS units, BTU/lb.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowH_PS_USCS(int* eosset,
 	double pres,
 	double entr,
@@ -3173,12 +3397,31 @@ int ShowH_PS_USCS(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowF_TP_USCS *
- *-------------------------------------**************
- * This function returns the fugacity given a       *
- * specific temperature	and pressure				*
- ****************************************************/
+/// <summary>
+/// Retrieves the mixture fugacity in USCS units, PSIA, for a given pressure and temperature using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="temp">Double representing the pressure in USCS units, PSIA.</param>
+/// <param name="pres">Double representing the pressure in USCS units, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="f">Pointer to a double to hold the calculated fugacity in USCS units, PSIA.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowF_TP_USCS(int* eosset,
 	double temp,
 	double pres,
@@ -3237,27 +3480,30 @@ int ShowF_TP_USCS(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the vapor pressure in USCS units, PSIA, given the fluid temperature.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="ps">Pointer to a double where the calculated vapor pressure will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
-  /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 7 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the vapor pressure in USCS units, PSIA, given the fluid temperature.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="ps">Pointer to a double where the calculated vapor pressure will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 7 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowVapPres_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3315,28 +3561,30 @@ int ShowVapPres_T_USCS(int* eosset,
 	return errs;
 }
 
-///
- /// <summary>
- /// Returns the vapor pressure in SI units, bar(a), given the fluid temperature.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="ps">Pointer to a double where the calculated vapor pressure will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
-  /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 7 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the vapor pressure in SI units, bar(a), given the fluid temperature.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="ps">Pointer to a double where the calculated vapor pressure will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 7 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowVapPres_T_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3394,12 +3642,30 @@ int ShowVapPres_T_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatVapV_T_USCS *
- *------------------------------------------*********
- * This function returns the specific volume for a  *
- * fluid.											*
- ****************************************************/
+/// <summary>
+/// Returns the specific volume at saturated vapor conditions in USCS units, ft3/lb, given the fluid temperature.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapV_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3457,12 +3723,33 @@ int ShowSatVapV_T_USCS(int* eosset,
 	return errs;
 }
 
-/////////////////////////////////////////////////////
-// Function Definition : ShowSatVapV_T_SI
-/////////////////////////////////////////////////////
-// This function returns the specific volume for a
-// fluid.
-/////////////////////////////////////////////////////
+/// <summary>
+/// Returns the specific volume at saturated vapor conditions in SI units, cm3/g, given the fluid temperature.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// <para>If MixtureArray is a nullptr then the function returns errs = 1, priority01 = 1, and places the error message "MixtureArray pointer is null" in mainerrline01.</para>
+/// <para>If v is a nullptr then the function returns errs = 1, priority01 = 1, and places the error message "v pointer is null" in mainerrline01.</para>
+/// <para>If priority01 is a nullptr then the function returns errs = 1 and places the error message "v pointer is null" in mainerrline01.</para>
+/// <para>If mainerrline01 is a nullptr then the function returns errs = 1 and priority01 = 1.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Add validation and test harness.
+/// </todo>
 int ShowSatVapV_T_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3485,6 +3772,34 @@ int ShowSatVapV_T_SI(int* eosset,
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
+
+	// Handle null pointers
+	if (MixtureArray == nullptr)
+	{
+		errs = 1;
+		strcpy_s(mainerrline01, strlen(mainerrline01), "MixtureArray pointer is null");
+		*priority01 = 1;
+		return errs;
+	}
+	if (v == nullptr)
+	{
+		errs = 1;
+		strcpy_s(mainerrline01, strlen(mainerrline01), "v pointer is null");
+		*priority01 = 1;
+		return errs;
+	}
+	if (priority01 == nullptr)
+	{
+		errs = 1;
+		strcpy_s(mainerrline01, strlen(mainerrline01), "priority01 pointer is null");
+		return errs;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		errs = 1;
+		*priority01 = 1;
+		return errs;
+	}
 
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
@@ -3520,27 +3835,33 @@ int ShowSatVapV_T_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the specific volume in USCS units, FT3/lb, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the specific volume in USCS units, FT3/lb, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// <para>If MixtureArray is a nullptr then the function returns errs = 1, priority01 = 1, and places the error message "MixtureArray pointer is null" in mainerrline01.</para>
+/// <para>If v is a nullptr then the function returns errs = 1, priority01 = 1, and places the error message "v pointer is null" in mainerrline01.</para>
+/// <para>If priority01 is a nullptr then the function returns errs = 1 and places the error message "v pointer is null" in mainerrline01.</para>
+/// <para>If mainerrline01 is a nullptr then the function returns errs = 1 and priority01 = 1.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Add validation and test harness.
+/// </todo>
 int ShowSatLiqV_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3563,6 +3884,34 @@ int ShowSatLiqV_T_USCS(int* eosset,
 	errs = 0;
 	i = 0;
 	pmerrline = NULL;
+
+	// Handle null pointers
+	if (MixtureArray == nullptr)
+	{
+		errs = 1;
+		strcpy_s(mainerrline01, strlen(mainerrline01), "MixtureArray pointer is null");
+		*priority01 = 1;
+		return errs;
+	}
+	if (v == nullptr)
+	{
+		errs = 1;
+		strcpy_s(mainerrline01, strlen(mainerrline01), "v pointer is null");
+		*priority01 = 1;
+		return errs;
+	}
+	if (priority01 == nullptr)
+	{
+		errs = 1;
+		strcpy_s(mainerrline01, strlen(mainerrline01), "priority01 pointer is null");
+		return errs;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		errs = 1;
+		*priority01 = 1;
+		return errs;
+	}
 
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
@@ -3598,28 +3947,31 @@ int ShowSatLiqV_T_USCS(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the specific volume in SI units, cm3/g, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
-int ShowSatLiqV_T_SI(int* eosset,
+/// <summary>
+/// Returns the specific volume in SI units, cm3/g, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
+	int ShowSatLiqV_T_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
 	double Precision,
@@ -3676,27 +4028,30 @@ int ShowSatLiqV_T_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the enthalpy in SI units, kJ/kg, at saturated vapor conditions. Useful for generating a pressure-enthalphy diagram.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the enthalpy in SI units, kJ/kg, at saturated vapor conditions. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapH_T_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3754,27 +4109,30 @@ int ShowSatVapH_T_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the enthalpy in USCS units, BTU/lb, at saturated vapor conditions. Useful for generating a pressure-enthalphy diagram.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the enthalpy in USCS units, BTU/lb, at saturated vapor conditions. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapH_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3832,27 +4190,30 @@ int ShowSatVapH_T_USCS(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the enthalpy in SI units, kJ/kg, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
- /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the enthalpy in SI units, kJ/kg, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqH_T_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3910,27 +4271,30 @@ int ShowSatLiqH_T_SI(int* eosset,
 	return errs;
 }
 
-  /// <summary>
-  /// Returns the enthalpy in USCS units, BTU/lb, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
-  /// </summary>
-  /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-  /// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
-  /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-  /// <param name="Precision">Double representing the solver precision.</param>
-  /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
-  /// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
-  /// <param name="priority01">Pointer to a double representing the error priority.</param>
-  /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
-  /// <returns>Integer representing the number of errors (0 for no errors).</returns>
-  /// <remarks>
-  /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
-  /// </remarks>
-  /// <warning>
-  /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
-  /// </warning>
-  /// <author>Brian Howard</author>
-  /// <date>2001</date>
-  /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the enthalpy in USCS units, BTU/lb, at saturated liquid conditions. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqH_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -3988,11 +4352,30 @@ int ShowSatLiqH_T_USCS(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatVapS_T_USCS *
- *------------------------------------------*********
- * This function returns the ethalpy for a fluid.	*											*
- ****************************************************/
+/// <summary>
+/// Returns the entropy in USCS units, BTU/(lb-R), at saturated vapor conditions, given temperature. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapS_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -4050,12 +4433,30 @@ int ShowSatVapS_T_USCS(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatLiqS_T_USCS *
- *------------------------------------------*********
- * This function returns the ehtalpy for a fluid at *
- * saturated liquid conditions.						*
- ****************************************************/
+/// <summary>
+/// Returns the entropy in USCS units, BTU/(lb-R), at saturated liquid conditions, given temperature. Useful for generating a pressure-enthalphy diagram.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqS_T_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -4113,12 +4514,30 @@ int ShowSatLiqS_T_USCS(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowVapTemp_P_USCS *
- *------------------------------------------*********
- * This function returns the vapor temperature for a*
- * fluid.											*
- ****************************************************/
+/// <summary>
+/// Returns the vapor temperature in USCS units, Rankine, given temperature.
+/// </summary>s
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="ts">Pointer to a double where the calculated temperature will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowVapTemp_P_USCS(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -4177,12 +4596,30 @@ int ShowVapTemp_P_USCS(int* eosset,
 
 }
 
-/******************************************
- * Function Definition : ShowVapTemp_P_SI *
- *----------------------------------------***********
- * This function returns the vapor temperature for a*
- * fluid in SI units.								*
- ****************************************************/
+/// <summary>
+/// Returns the vapor temperature in SI units, kelvin, given temperature.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="ts">Pointer to a double where the calculated temperature will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowVapTemp_P_SI(int* eosset,
 	double temp,
 	double* MixtureArray,
@@ -4240,12 +4677,30 @@ int ShowVapTemp_P_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatLiqV_P_USCS *
- *------------------------------------------*********
- * This function returns the specific volume for a  *
- * fluid.											*
- ****************************************************/
+/// <summary>
+/// Returns the specific volume at saturated liquid conditions in USCS units, ft3/lb, given pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqV_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4303,12 +4758,30 @@ int ShowSatLiqV_P_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatLiqV_P_SI *
- *----------------------------------------***********
- * This function returns the specific volume for a  *
- * fluid.											*
- ****************************************************/
+/// <summary>
+/// Returns the specific volume at saturated liquid conditions in SI units, cm3/g, given pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqV_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4366,12 +4839,30 @@ int ShowSatLiqV_P_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatVapV_P_USCS *
- *------------------------------------------*********
- * This function returns the specific volume for a  *
- * fluid at saturation given the pressure.			*
- ****************************************************/
+/// <summary>
+/// Returns the specific volume at saturated vapor conditions in USCS units, ft3/lb, given pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapV_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4429,12 +4920,30 @@ int ShowSatVapV_P_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatVapV_P_SI *
- *----------------------------------------***********
- * This function returns the specific volume for a  *
- * fluid at saturation given the pressure in SI		*
- ****************************************************/
+/// <summary>
+/// Returns the specific volume at saturated vapor conditions in SI units, cm3/g, given pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated specific volume will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapV_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4492,12 +5001,31 @@ int ShowSatVapV_P_SI(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowT_HP_SI *
- *-----------------------------------****************
- * This function returns the temperature given the  *
- * enthalpy and pressure of a fluid in SI units.	*
- ****************************************************/
+/// <summary>
+/// Returns the temperature in USCS units, Rankine, given enthalpy and pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="h">Double representing the enthalpy of the fluid in USCS, BTU/lb.</param>
+/// <param name="p">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowT_HP_SI(int* eosset,
 	double h,
 	double p,
@@ -4556,12 +5084,31 @@ int ShowT_HP_SI(int* eosset,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowT_HP_USCS *
- *-------------------------------------**************
- * This function returns the temperature given the  *
- * enthalpy and pressure of a fluid.				*
- ****************************************************/
+/// <summary>
+/// Returns the temperature in SI units, kelvin, given the enthalpy and pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="h">Double representing the enthalpy of the fluid in SI, kJ/kg.</param>
+/// <param name="p">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowT_HP_USCS(int* eosset,
 	double h,
 	double p,
@@ -4639,9 +5186,12 @@ int ShowT_HP_USCS(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
- /// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 5 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowT_SP_SI(int* eosset,
 	double s,
 	double p,
@@ -4700,28 +5250,31 @@ int ShowT_SP_SI(int* eosset,
 	return errs;
 }
 
- /// <summary>
- /// Returns the temperature in USCS units, Rankine, given the entropy and pressure of a fluid.
- /// </summary>
- /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
- /// <param name="s">Double representing the entropy of the fluid in USCS, BTU/lb-R.</param>
- /// <param name="p">Double representing the pressure of the fluid in USCS, PSIA.</param>
- /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
- /// <param name="priority01">Pointer to a double representing the error priority.</param>
- /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
- /// <returns>Integer representing the number of errors (0 for no errors).</returns>
- /// <remarks>
- /// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
- /// </remarks>
- /// <warning>
- /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
- /// </warning>
-  /// <author>Brian Howard</author>
- /// <date>2001</date>
- /// <revision>Revision, 5 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <summary>
+/// Returns the temperature in USCS units, Rankine, given the entropy and pressure of a fluid.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="s">Double representing the entropy of the fluid in USCS, BTU/lb-R.</param>
+/// <param name="p">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 5 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowT_SP_USCS(int* eosset,
 	double s,
 	double p,
@@ -4780,12 +5333,30 @@ int ShowT_SP_USCS(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatLiqH_P_USCS *
- *------------------------------------------*********
- * This function returns the specific volume for a  *
- * saturated fluid given pressure.					*
- ****************************************************/
+/// <summary>
+/// Returns the enthalpy at saturated liquid conditions in USCS units, BTU/lb, given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqH_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4843,12 +5414,30 @@ int ShowSatLiqH_P_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatLiqH_P_SI *
- *----------------------------------------***********
- * This function returns the specific volume for a  *
- * saturated fluid given pressure in SI.			*
- ****************************************************/
+/// <summary>
+/// Returns the enthalpy at saturated liquid conditions in SI units, KJ/kg, given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqH_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4906,12 +5495,30 @@ int ShowSatLiqH_P_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatVapH_P_USCS *
- *------------------------------------------*********
- * This function returns the specific volume for a  *
- * fluid at saturation given the pressure.			*
- ****************************************************/
+/// <summary>
+/// Returns the enthalpy at saturated vapor conditions in USCS units, BTU/lb, given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapH_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -4969,12 +5576,30 @@ int ShowSatVapH_P_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatVapH_P_SI *
- *----------------------------------------***********
- * This function returns the specific volume for a  *
- * fluid at saturation given the pressure in SI.	*
- ****************************************************/
+/// <summary>
+/// Returns the enthalpy at saturated vapor conditions in SI units, KJ/kg, given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double where the calculated enthalpy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapH_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -5032,12 +5657,30 @@ int ShowSatVapH_P_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatLiqS_P_USCS *
- *------------------------------------------*********
- * This function returns the entropy for a			*
- * saturated fluid given pressure.					*
- ****************************************************/
+/// <summary>
+/// Returns the entropy at saturated liquid conditions in USCS units, BTU/(lb-R), given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqS_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -5095,12 +5738,30 @@ int ShowSatLiqS_P_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatLiqS_P_SI *
- *----------------------------------------***********
- * This function returns the entropy for a			*
- * saturated fluid given pressure.					*
- ****************************************************/
+/// <summary>
+/// Returns the entropy at saturated liquid conditions in SI units, KJ/(kg-K), given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatLiqS_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -5158,12 +5819,30 @@ int ShowSatLiqS_P_SI(int* eosset,
 	return errs;
 }
 
-/********************************************
- * Function Definition : ShowSatVapS_P_USCS *
- *------------------------------------------*********
- * This function returns the entropy for a			*
- * fluid at saturation given the pressure.			*
- ****************************************************/
+/// <summary>
+/// Returns the entropy at saturated vapor conditions in USCS units, BTU/(lb-R), given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapS_P_USCS(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -5221,12 +5900,30 @@ int ShowSatVapS_P_USCS(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowSatVapS_P_SI *
- *----------------------------------------***********
- * This function returns the entropy for a			*
- * fluid at saturation given the pressure in SI.	*
- ****************************************************/
+/// <summary>
+/// Returns the entropy at saturated vapor conditions in SI units, KJ/(kg-K), given the mixture pressure.
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowSatVapS_P_SI(int* eosset,
 	double pres,
 	double* MixtureArray,
@@ -5284,12 +5981,31 @@ int ShowSatVapS_P_SI(int* eosset,
 	return errs;
 }
 
-/***********************************************
- * Function Definition : ShowViscosityGas_USCS *
- *---------------------------------------------******
- * This function returns the viscosity for a fluid  *
- * at a given the pressure and temperature          *
- ****************************************************/
+/// <summary>
+/// Returns the gas absolute viscosity at in USCS units, lb/ft-sec, given the mixture temperture and pressure
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated viscosity will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowViscosityGas_TP_USCS(int* eosset,
 	double temp,
 	double pres,
@@ -5348,12 +6064,31 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 	return errs;
 }
 
-/////////////////////////////////////////////////////
-// Function Definition : ShowViscosityGas_TP_SI
-/////////////////////////////////////////////////////
-// This function returns the viscosity for a fluid
-// at a given the pressure and temperature
-/////////////////////////////////////////////////////
+/// <summary>
+/// Returns the gas absolute viscosity at in SI units, kg/m-sec, given the mixture temperture and pressure
+/// </summary>
+/// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
+/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated viscosity will be stored.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
+/// <returns>Integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// <para>This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.</para>
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowViscosityGas_TP_SI(int* eosset,
 	double temp,
 	double pres,
@@ -5426,9 +6161,12 @@ int ShowViscosityGas_TP_SI(int* eosset,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHHV_SI(int* fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
@@ -5474,9 +6212,12 @@ int ShowHHV_SI(int* fluidindex, double* hhv,
 /// <warning>
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
-/// <author>Brian Howard</author>
-/// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHHV_USCS(int* fluidindex, double* hhv,
 	double* priority01,
 	char* mainerrline01)
@@ -5508,12 +6249,29 @@ int ShowHHV_USCS(int* fluidindex, double* hhv,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowHHV_mx_SI
-////////////////////////////////////////////////////////////
-// This function returns the higher heating value
-// for the mixture in SI units.
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the higher heating value in USCS units, (BTU/lbmol), and error information for a mixture using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in USCS units, (BTU/lbmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHHV_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -5570,12 +6328,29 @@ int ShowHHV_mx_SI(int* eosset,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowHHV_mx_USCS
-////////////////////////////////////////////////////////////
-// This function returns the higher heating value
-// for the mixture in USCS units.
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the higher heating value in USCS units, (BTU/lbmol), and error information for a mixture using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in USCS units, (BTU/lbmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
 int ShowHHV_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
