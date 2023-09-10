@@ -81,7 +81,7 @@ CEOSMODEL::CEOSMODEL()
      -----------------------------------------------------------------------------
      Pressure                      PSIA                     bar
      Temperature                   R                        K
-     Volume                        FT3/lb                   cm3/g
+     Volume                        ft3/lb                   cm3/g
      Gas Constant                  (psia-ft3)/(lbmol-R)     (bar-cm3)/(gmol-K)
      Entropy                       BTU/(lb-R)               kJ/(Kg-K)
      Enthalpy                      BTU/lb                   kJ/kg

@@ -233,7 +233,7 @@ int ShowFormula(int* fluidindex, char* textline,
 /// <param name="mainerrline01">Pointer to store any generated error message.</param>
 /// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
 int ShowH_H298_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -281,7 +281,7 @@ int ShowH_H298_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy by passing the temperature into the BWRS object
-	*h = bwrs->Geth_h298_SI(*temp);
+	*h = bwrs->Geth_h298_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -312,7 +312,7 @@ int ShowH_H298_SI(int* eosset,
 /// <param name="mainerrline01">Pointer to store any generated error message.</param>
 /// <returns>An integer representing the number of errors. If greater than zero, an error has occurred and additional information can be found in 'priority01' and 'mainerrline01'.</returns>
 int ShowH_H298_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -358,7 +358,7 @@ int ShowH_H298_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->Geth_h298_USCS(*temp);
+	*h = bwrs->Geth_h298_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -391,7 +391,7 @@ int ShowH_H298_USCS(int* eosset,
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
 int ShowHIdeal_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -437,7 +437,7 @@ int ShowHIdeal_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the ideal entropy
-	*h = bwrs->GetHIdeal_SI(*temp);
+	*h = bwrs->GetHIdeal_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -470,7 +470,7 @@ int ShowHIdeal_SI(int* eosset,
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
 int ShowHIdeal_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -512,7 +512,7 @@ int ShowHIdeal_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetHIdeal_USCS(*temp);
+	*h = bwrs->GetHIdeal_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -526,14 +526,29 @@ int ShowHIdeal_USCS(int* eosset,
 	return errs;
 }
 
-/***********************************
- * Function Definition : ShowSo_SI *
- *---------------------------------******************
- * This function returns the entropy (based on the  *
- * JANAF tables) SI									*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the entropy (based on the JANAF tables) in SI, kJ/(Kg-K), for a given fluid index using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="temp">Double representing the temperature in SI units, kelvin.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="s">Pointer to a double to hold the calculated entorpy USCS units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSo_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -575,7 +590,7 @@ int ShowSo_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs->Getso_SI(*temp);
+	*s = bwrs->Getso_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -589,14 +604,29 @@ int ShowSo_SI(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowSo_USCS *
- *-----------------------------------****************
- * This function returns the entropy (based on the  *
- * JANAF tables) USCS								*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the entropy (based on the JANAF tables) in USCS, BTU/(lb-R), for a given fluid index using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="temp">Double representing the temperature in USCS units, Rankine.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="s">Pointer to a double to hold the calculated entorpy USCS units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSo_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -638,7 +668,7 @@ int ShowSo_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs->Getso_USCS(*temp);
+	*s = bwrs->Getso_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -1248,12 +1278,26 @@ int ShowHfo_USCS(int* fluidindex, double* h,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowHfo_mx_SI *
- *-------------------------------------**************
- * This function returns the ideal gas enthalpy		*
- * formation for the mixture in SI units			*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the ideal gas enthalpy of formation for the mixture in SI, kJ/kg, using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="h">Pointer to a double to hold the calculated ethalpy in SI units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowHfo_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1310,12 +1354,26 @@ int ShowHfo_mx_SI(int* eosset,
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowHfo_mx_USCS *
- *---------------------------------------************
- * This function returns the ideal gas enthalpy		*
- * formation for the mixture in USCS units			*
- ****************************************************/
+/// <summary>
+/// Retrieves the ideal gas enthalpy of formation for the mixture in USCS, BTU/lb, using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="h">Pointer to a double to hold the calculated ethalpy in USCS units.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowHfo_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1371,7 +1429,6 @@ int ShowHfo_mx_USCS(int* eosset,
 
 	return errs;
 }
-
 
  /// <summary>
  /// Retrieves the entropy of formation in SI units, BTU/(lbmol-R), and error information for a given fluid index using the CBWRS class.
@@ -1469,12 +1526,26 @@ int ShowSfo_USCS(int* fluidindex, double* s,
 	return errs;
 }
 
-/***************************************
- * Function Definition : ShowSfo_mx_SI *
- *-------------------------------------**************
- * This function returns the ideal gas entropy of   *
- * formation for the mixture						*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the ideal gas entropy of formation for the mixture in SI, kJ/(Kg-K), using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="s">Pointer to a double to hold the calculated entropy in SI units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSfo_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1531,12 +1602,26 @@ int ShowSfo_mx_SI(int* eosset,
 	return errs;
 }
 
-/*****************************************
- * Function Definition : ShowSfo_mx_USCS *
- *---------------------------------------************
- * This function returns the ideal gas entropy of   *
- * formation for the mixture in USCS units			*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the ideal gas entropy of formation for the mixture in USCS, BTU/(lb-R), using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="s">Pointer to a double to hold the calculated entropy in SI units.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char array (mainerrline01) is allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSfo_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1786,12 +1871,26 @@ int ShowDipole_SI(int* fluidindex, double* dipole,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowLHV_mx_USCS
-////////////////////////////////////////////////////////////
-// This function returns the lower heating value
-// for the mixture in USCS units.
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the lower heating value in USCS units, (BTU/lbmol), and error information for a mixture using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in USCS units, (BTU/lbmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowLHV_mx_USCS(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1849,12 +1948,26 @@ int ShowLHV_mx_USCS(int* eosset,
 	return errs;
 }
 
-////////////////////////////////////////////////////////////
-// Function Definition : ShowLHV_mx_SI
-////////////////////////////////////////////////////////////
-// This function returns the lower heating value
-// for the mixture in SI units.
-////////////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the lower heating value in SI units, (J/gmol), and error information for a mixture using the CBWRS class.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in SI units, (J/gmol).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowLHV_mx_SI(int* eosset,
 	double* MixtureArray,
 	double Precision,
@@ -1911,15 +2024,31 @@ int ShowLHV_mx_SI(int* eosset,
 	return errs;
 }
 
-/******************************************
- * Function Definition : ShowPres_MT_USCS *
- *----------------------------------------***********
- * This function returns the pressure given a molar *
- * density and temperature							*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the pressure in USCS units, PSIA, and error information for a mixture using the CBWRS class, given the molar density and pressure.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="md">Double holding the molar density in USCS units, .</param>
+ /// <param name="temp">Double holding the temperature in USCS units, Rankine.</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="pres">Pointer to a double to hold the pressure in USCS units, PSIA.</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowP_MT_USCS(int* eosset,
 	double md,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -1959,7 +2088,7 @@ int ShowP_MT_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*pres = bwrs->GetP_MT_USCS(md, *temp);
+	*pres = bwrs->GetP_MT_USCS(md, temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -1973,13 +2102,29 @@ int ShowP_MT_USCS(int* eosset,
 	return errs;
 }
 
-/////////////////////////////////////////////////////
-// Function Definition : ShowPres_VS_SI
-/////////////////////////////////////////////////////
-// This function returns the pressure given a
-// specific volume and temperature
-/////////////////////////////////////////////////////
-short ShowP_VS_SI(int* eosset,
+/// <summary>
+/// Retrieves the pressure in SI units, bar(a), and error information for a mixture using the CBWRS class, given the specific volume and entropy.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="v">Double holding the specific volume SI units, cm3/g.</param>
+/// <param name="s">Double holding the entropy in SI units, kJ/(Kg-K).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="pres">Pointer to a double to hold the pressure in SI units, bar(a).</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+int ShowP_VS_SI(int* eosset,
 	double v,
 	double s,
 	double* MixtureArray,
@@ -2037,12 +2182,28 @@ short ShowP_VS_SI(int* eosset,
 	return errs;
 }
 
-/////////////////////////////////////////////////////
-// Function Definition : ShowPres_VS_USCS
-/////////////////////////////////////////////////////
-// This function returns the pressure given a
-// specific volume and temperature
-/////////////////////////////////////////////////////
+/// <summary>
+/// Retrieves the pressure in USCS units, PSIA, and error information for a mixture using the CBWRS class, given the specific volume and entropy.
+/// </summary>
+/// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+/// <param name="v">Double holding the specific volume USCS units, ft3/lb.</param>
+/// <param name="s">Double holding the entropy in USCS units, BTU/(lb-R).</param>
+/// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+/// <param name="Precision">Double representing the solver precision.</param>
+/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="pres">Pointer to a double to hold the pressure in USCS units, PSIA.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 short ShowP_VS_USCS(int* eosset,
 	double v,
 	double s,
@@ -2105,7 +2266,7 @@ short ShowP_VS_USCS(int* eosset,
 /// Retrieves the pressure in SI units, bar(a), for a given specific volume and temperature using the CBWRS class.
 /// </summary>
 /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
- /// <param name="sv">Double representing the specific volume in SI units, cm3/g.</param>
+/// <param name="sv">Double representing the specific volume in SI units, cm3/g.</param>
 /// <param name="temp">Double representing the temperature in SI units, kelvin.</param>
 /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
 /// <param name="Precision">Double representing the solver precision.</param>
@@ -2284,7 +2445,7 @@ int ShowP_VT_USCS(int* eosset,
 /// <date>2001</date>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowV_TP_SI(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2327,7 +2488,7 @@ int ShowV_TP_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*v = bwrs->GetV_TP_SI(*temp, pres);
+	*v = bwrs->GetV_TP_SI(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -2436,14 +2597,30 @@ int ShowV_TP_USCS(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowS_TP_SI *
- *-----------------------------------****************
- * This function returns the entropy given a        *
- * specific temperature	and pressure in SI			*
- ****************************************************/
+ /// <summary>
+ /// Retrieves the mixtrue entropy in SI units, kJ/(Kg-K), for a given temperature and pressure using the CBWRS class.
+ /// </summary>
+ /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
+ /// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
+ /// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+ /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
+ /// <param name="Precision">Double representing the solver precision.</param>
+ /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="s">Pointer to a double to hold the calculated entropy in SI units, kJ/(Kg-K).</param>
+ /// <param name="priority01">Pointer to a double representing the error priority.</param>
+ /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+ /// <returns>An integer representing the number of errors (0 for no errors).</returns>
+ /// <remarks>
+ /// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+ /// </remarks>
+ /// <warning>
+ /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+ /// </warning>
+ /// <author>Brian Howard</author>
+ /// <date>2001</date>
+ /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowS_TP_SI(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -2486,7 +2663,7 @@ int ShowS_TP_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs->GetS_TP_SI(*temp, pres);
+	*s = bwrs->GetS_TP_SI(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -2509,7 +2686,7 @@ int ShowS_TP_SI(int* eosset,
  /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
  /// <param name="Precision">Double representing the solver precision.</param>
  /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
- /// <param name="v">Pointer to a double to hold the calculated specific volume in USCS units.</param>
+ /// <param name="s">Pointer to a double to hold the calculated entropy in USCS units, kJ/(Kg-K)</param>
  /// <param name="priority01">Pointer to a double representing the error priority.</param>
  /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
  /// <returns>An integer representing the number of errors (0 for no errors).</returns>
@@ -2580,12 +2757,6 @@ int ShowS_TP_USCS(int* eosset,
 	return errs;
 }
 
-/*************************************
- * Function Definition : ShowH_TP_SI *
- *-----------------------------------****************
- * This function returns the enthalpy given a       *
- * specific temperature	and pressure in SI         *
- ****************************************************/
  /// <summary>
  /// Retrieves the enthalpy in SI units, (kJ/kg), for a given temperature and pressure using the CBWRS class.
  /// </summary>
@@ -2753,7 +2924,7 @@ int ShowH_TP_USCS(int* eosset,
  * specific temperature and entropy                 *
  ****************************************************/
 int ShowH_TS_SI(int* eosset,
-	double* temp,
+	double temp,
 	double entr,
 	double* MixtureArray,
 	double Precision,
@@ -2796,7 +2967,7 @@ int ShowH_TS_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetH_TS_SI(*temp, entr);
+	*h = bwrs->GetH_TS_SI(temp, entr);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -2817,7 +2988,7 @@ int ShowH_TS_SI(int* eosset,
  * specific temperature and entropy                 *
  ****************************************************/
 int ShowH_TS_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double entr,
 	double* MixtureArray,
 	double Precision,
@@ -2860,7 +3031,7 @@ int ShowH_TS_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetH_TS_USCS(*temp, entr);
+	*h = bwrs->GetH_TS_USCS(temp, entr);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3009,7 +3180,7 @@ int ShowH_PS_USCS(int* eosset,
  * specific temperature	and pressure				*
  ****************************************************/
 int ShowF_TP_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -3052,7 +3223,7 @@ int ShowF_TP_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the fugacity
-	*f = bwrs->GetFugacity_TP_USCS(*temp, pres);
+	*f = bwrs->GetFugacity_TP_USCS(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3230,7 +3401,7 @@ int ShowVapPres_T_SI(int* eosset,
  * fluid.											*
  ****************************************************/
 int ShowSatVapV_T_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3272,7 +3443,7 @@ int ShowSatVapV_T_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the specific volume
-	*v = bwrs->GetSatVapV_T_USCS(*temp);
+	*v = bwrs->GetSatVapV_T_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3293,7 +3464,7 @@ int ShowSatVapV_T_USCS(int* eosset,
 // fluid.
 /////////////////////////////////////////////////////
 int ShowSatVapV_T_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3335,7 +3506,7 @@ int ShowSatVapV_T_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the specific volume
-	*v = bwrs->GetSatVapV_T_SI(*temp);
+	*v = bwrs->GetSatVapV_T_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3823,7 +3994,7 @@ int ShowSatLiqH_T_USCS(int* eosset,
  * This function returns the ethalpy for a fluid.	*											*
  ****************************************************/
 int ShowSatVapS_T_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3865,7 +4036,7 @@ int ShowSatVapS_T_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs->GetSatVapS_T_USCS(*temp);
+	*s = bwrs->GetSatVapS_T_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3886,7 +4057,7 @@ int ShowSatVapS_T_USCS(int* eosset,
  * saturated liquid conditions.						*
  ****************************************************/
 int ShowSatLiqS_T_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3928,7 +4099,7 @@ int ShowSatLiqS_T_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*s = bwrs->GetSatLiqS_T_USCS(*temp);
+	*s = bwrs->GetSatLiqS_T_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -3949,7 +4120,7 @@ int ShowSatLiqS_T_USCS(int* eosset,
  * fluid.											*
  ****************************************************/
 int ShowVapTemp_P_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3991,7 +4162,7 @@ int ShowVapTemp_P_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*ts = bwrs->GetVaporTemperature_P_USCS(*temp);
+	*ts = bwrs->GetVaporTemperature_P_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -4013,7 +4184,7 @@ int ShowVapTemp_P_USCS(int* eosset,
  * fluid in SI units.								*
  ****************************************************/
 int ShowVapTemp_P_SI(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -4055,7 +4226,7 @@ int ShowVapTemp_P_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*ts = bwrs->GetVaporTemperature_P_SI(*temp);
+	*ts = bwrs->GetVaporTemperature_P_SI(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -5120,7 +5291,7 @@ int ShowSatVapS_P_SI(int* eosset,
  * at a given the pressure and temperature          *
  ****************************************************/
 int ShowViscosityGas_TP_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -5163,7 +5334,7 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*v = bwrs->GetViscosityGas_TP_USCS(*temp, pres);
+	*v = bwrs->GetViscosityGas_TP_USCS(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -5184,7 +5355,7 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 // at a given the pressure and temperature
 /////////////////////////////////////////////////////
 int ShowViscosityGas_TP_SI(int* eosset,
-	double* temp,
+	double temp,
 	double pres,
 	double* MixtureArray,
 	double Precision,
@@ -5227,7 +5398,7 @@ int ShowViscosityGas_TP_SI(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the entropy
-	*v = bwrs->GetViscosityGas_TP_SI(*temp, pres);
+	*v = bwrs->GetViscosityGas_TP_SI(temp, pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
