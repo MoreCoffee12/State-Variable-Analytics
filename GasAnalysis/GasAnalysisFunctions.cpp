@@ -3575,7 +3575,7 @@ int ShowSatVapH_T_SI(int* eosset,
  /// <date>2001</date>
  /// <revision>Revision, 9 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 int ShowSatVapH_T_USCS(int* eosset,
-	double* temp,
+	double temp,
 	double* MixtureArray,
 	double Precision,
 	double MaxIterations,
@@ -3617,7 +3617,7 @@ int ShowSatVapH_T_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the pressure
-	*h = bwrs->GetSatVapH_T_USCS(*temp);
+	*h = bwrs->GetSatVapH_T_USCS(temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();

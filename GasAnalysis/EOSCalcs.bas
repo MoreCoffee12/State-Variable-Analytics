@@ -65,16 +65,16 @@ Declare PtrSafe Function ShowVapPres_T_SI _
 '                            ByRef v As Double, _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
-'
-'Declare PtrSafe Function ShowSatVapH_T_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-'                            ByVal temp As Double, _
-'                            MixtureArray As Double, _
-'                            ByVal Precision As Double, _
-'                            ByVal MaxIterations As Double, _
-'                            ByRef h As Double, _
-'                            ByRef priority01 As Double, _
-'                            ByVal textline01 As String) As Long
+
+Declare PtrSafe Function ShowSatVapH_T_USCS _
+    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+                            ByVal temp As Double, _
+                            MixtureArray As Double, _
+                            ByVal Precision As Double, _
+                            ByVal MaxIterations As Double, _
+                            ByRef h As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapH_T_SI _
 '    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
