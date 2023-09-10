@@ -79,7 +79,7 @@ CEOSMODEL::CEOSMODEL()
   
      Description                   USCS                     SI
      -----------------------------------------------------------------------------
-     Pressure                      PSIA                     bar
+     Pressure                      PSIA                     bar(a)
      Temperature                   R                        K
      Volume                        ft3/lb                   cm3/g
      Gas Constant                  (psia-ft3)/(lbmol-R)     (bar-cm3)/(gmol-K)
@@ -89,6 +89,7 @@ CEOSMODEL::CEOSMODEL()
      Enthalpy of formation         BTU/lbmol                J/gmol
      Dipole Moment                 -                        Debye, 3.162 * 10^-25 (J-m3)^(1/2)
      Viscosity (absolute)          lb/ft-sec                kg/m-sec
+     Fugacity 				       PSIA                     bar(a)
      -----------------------------------------------------------------------------*/
 
      //Initialize local variables
