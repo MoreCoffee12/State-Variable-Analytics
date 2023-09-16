@@ -650,7 +650,7 @@ Function VBShowVapPres_T_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -778,7 +778,7 @@ Function VBShowVapPres_T_SI(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -875,7 +875,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -972,7 +972,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -1100,7 +1100,7 @@ Function VBShowSatLiqV_T_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -1228,7 +1228,7 @@ Function VBShowSatLiqV_T_SI(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -1356,7 +1356,7 @@ Function VBShowSatVapH_T_SI(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -1483,7 +1483,7 @@ Function VBShowSatVapH_T_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -1580,7 +1580,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -1677,7 +1677,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -1804,7 +1804,7 @@ Function VBShowSatLiqH_T_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -1931,7 +1931,7 @@ Function VBShowSatLiqS_T_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -2027,7 +2027,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2122,7 +2122,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2218,7 +2218,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2315,7 +2315,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2412,7 +2412,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2509,7 +2509,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2603,7 +2603,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2696,7 +2696,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -2826,7 +2826,7 @@ Function VBShowP_VT_SI(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -2956,7 +2956,7 @@ Function VBShowP_VT_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -3054,7 +3054,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowP_VS_SI
@@ -3151,7 +3151,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowP_VS_USCS
@@ -3249,7 +3249,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSo_SI
@@ -3345,7 +3345,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSo_USCS
@@ -3441,7 +3441,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowT_HP_SI
@@ -3544,7 +3544,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowT_HP_USCS
@@ -3647,7 +3647,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowT_SP_SI
@@ -3782,7 +3782,7 @@ Function VBShowT_SP_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -3887,7 +3887,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowV_TP_SI
@@ -4024,7 +4024,7 @@ Function VBShowV_TP_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
         
     'Establish error trapping
@@ -4263,7 +4263,7 @@ Function VBShowS_TP_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -4494,7 +4494,7 @@ Function VBShowH_TP_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -4593,7 +4593,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -4692,7 +4692,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -4791,7 +4791,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -4921,7 +4921,7 @@ Function VBShowVapTemp_P_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
     
     'Establish error trapping
@@ -5050,7 +5050,7 @@ Function VBShowVapTemp_P_SI(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
     
     'Establish error trapping
@@ -5150,7 +5150,7 @@ End Function
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSfo_mx_SI
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Initialize local variables
@@ -5243,7 +5243,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5340,7 +5340,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5438,7 +5438,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5536,7 +5536,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5634,7 +5634,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5732,7 +5732,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5830,7 +5830,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -5928,7 +5928,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -6026,7 +6026,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -6124,7 +6124,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -6253,7 +6253,7 @@ Function VBShowSatLiqS_P_USCS(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -6382,7 +6382,7 @@ Function VBShowSatVapS_P_SI(eosset As Long, _
     Dim MixingArray(25) As Double
     Dim ErrTolerance As Integer
     Dim eline01 As String
-    Dim i As Integer
+    Dim i As Long
     Dim priority01 As Double
 
     'Establish error trapping
@@ -6480,7 +6480,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -6578,7 +6578,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
@@ -6678,7 +6678,7 @@ End Function
 '    Dim MixingArray(25) As Double
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
-'    Dim i As Integer
+'    Dim i As Long
 '    Dim priority01 As Double
 '
 '    'Establish error trapping
