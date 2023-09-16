@@ -2657,8 +2657,7 @@ int ShowV_TP_SI(int* eosset,
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowV_TP_USCS(int* eosset,
 	double temp,
@@ -2711,8 +2710,6 @@ int ShowV_TP_USCS(int* eosset,
 	}
 	if (mainerrline01 == nullptr)
 	{
-		char* errptr = "mainerrline01 is null";
-		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
 		return 1;
 	}
 
