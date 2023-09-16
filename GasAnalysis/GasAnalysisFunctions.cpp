@@ -2684,10 +2684,34 @@ int ShowV_TP_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
-	// Check for null pointer
+	// Check for null pointers
 	if (eosset == nullptr)
 	{
 		char *errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (v == nullptr)
+	{
+		char* errptr = "v is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		char* errptr = "mainerrline01 is null";
 		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
 		return 1;
 	}
