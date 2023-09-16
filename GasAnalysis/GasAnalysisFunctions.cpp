@@ -2684,6 +2684,14 @@ int ShowV_TP_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointer
+	if (eosset == nullptr)
+	{
+		char *errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+
 	//See what EOS was selected
 	switch (*eosset)
 	{
