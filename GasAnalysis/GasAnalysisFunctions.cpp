@@ -2656,7 +2656,7 @@ int ShowV_TP_SI(int* eosset,
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
-/// <revision>Revision, 16 Sep 2023: added null pointer checks</revision>
+/// <revision>Revision, 16 Sep 2023: added null pointer ; all pointers for input arguments</revision>
 /// <todo>
 /// Next-time-open items:
 /// 1. Add validation and test harness.
@@ -2891,6 +2891,7 @@ int ShowS_TP_SI(int* eosset,
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <revision>Revision, 16 Sep 2023: added null pointer ; all pointers for input arguments</revision>
 /// <todo>
 /// Next-time-open items:
 /// 1. Add validation and test harness.
@@ -5378,17 +5379,18 @@ int ShowT_SP_SI(int* eosset,
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
 /// <revision>Revision, 5 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <revision>Revision, 16 Sep 2023: added null pointer ; all pointers for input arguments</revision>
 /// <todo>
 /// Next-time-open items:
 /// 1. Handle nullptr values.
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowT_SP_USCS(int* eosset,
-	double s,
-	double p,
+	double* s,
+	double* p,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* t,
 	double* priority01,
 	char* mainerrline01)
@@ -5407,6 +5409,60 @@ int ShowT_SP_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (s == nullptr)
+	{
+		char* errptr = "s is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (p == nullptr)
+	{
+		char* errptr = "p is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (t == nullptr)
+	{
+		char* errptr = "t is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -5423,11 +5479,11 @@ int ShowT_SP_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the temperature
-	*t = bwrs->GetT_SP_USCS(s, p);
+	*t = bwrs->GetT_SP_USCS(*s, *p);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
