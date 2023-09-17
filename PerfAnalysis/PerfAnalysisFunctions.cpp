@@ -9,14 +9,28 @@
 #include "PerfAnalysisHarness\pressurecurveanalytics.h"
 #include "crankslider.h"
 
+/// <summary>
+/// Retrieves the the C++ dll version number.
+/// </summary>
+/// <file>PerfAnalysisFunctions.cpp.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <returns>An integer representing the build number.</returns>
 int	PerfShowVersion()
 {
-	return 0;
+	return 1;
 }
 
+/// <summary>
+/// Retrieves the the C++ dll build number.
+/// </summary>
+/// <file>PerfAnalysisFunctions.cpp.cpp</file>
+/// <author>Brian Howard</author>
+/// <date>2001</date>
+/// <returns>An integer representing the build number.</returns>
 int PerfShowBuild()
 {
-	return 22;
+	return 0;
 }
 
 double IMMSCFD2LBHR(double MMSCFD,
@@ -560,6 +574,39 @@ bool bGetAdiabaticPressureCurveGage_USCS( double *dIndicatedPressureCurveArrayGa
     return true;
 }
 
+
+/// <summary>
+/// Computes the absolute crank angle pressure based on compressor kinematics and gas properties.
+/// </summary>
+/// <file>PerfAnalysisFunctions.cpp.cpp</file>
+/// <param name="connrodlength">The connecting rod length in USCS units, inches.</param>
+/// <param name="stroke">The compressor stroke in USCS units, inches.</param>
+/// <param name="bore">The bore diameter in USCS units, inches.</param>
+/// <param name="rod">The rod diameter in USCS units, inches.</param>
+/// <param name="crankangle">The crank angle in degrees.</param>
+/// <param name="clearance">The clearance in percentage.</param>
+/// <param name="nexp">The polytropic expansion exponent (unitless).</param>
+/// <param name="ncomp">The polytropic compression exponent (unitless).</param>
+/// <param name="psuct">The absolute suction pressure in USCS units, PSIA.</param>
+/// <param name="pdish">The absolute discharge pressure in USCS units, PSIA.</param>
+/// <param name="headend">A boolean value set to true for the head end or false for the crank end.</param>
+/// <returns>
+/// The calculated absolute pressure at the given crank angle in USCS units. Returns -1.00 if any step in the calculation fails.
+/// </returns>
+/// <remarks>
+/// <para>This function utilizes the CCompExpCurve class for computation.</para>
+/// <para>The function returns -1.00 for invalid inputs or calculation failures.</para>
+/// </remarks>
+/// <example>
+/// <code>
+/// double result = CCOMPEXP(5.0, 2.0, 4.0, 1.0, 90.0, 0.1, 1.3, 1.4, 14.7, 100.0, true);
+/// </code>
+/// </example>
+/// <exception cref="std::bad_alloc">Throws if memory allocation for CCompExpCurve fails.</exception>
+/// <todo>
+/// Next-time-open items:
+/// 1. Currently using magic number return, not best practice. Replace with enum list.
+/// </todo>
 double CCOMPEXP(double connrodlength,
                     double stroke,
                     double bore,
@@ -572,15 +619,15 @@ double CCOMPEXP(double connrodlength,
                     double pdish,
                     bool headend )
 {
-	//Initialize object
-    class CCompExpCurve *compexp;
-    double temp;
+    // Define local variables
+    // Revision, 16 Sep 2023, used heap memory to avoid stack overflow
+    // and more standard library functions. 
+    // Was class CCompExpCurve *compexp;
+    std::unique_ptr<CCompExpCurve> compexp = std::make_unique<CCompExpCurve>();
+    double d_press = 0.00;
 
-	//Define local variables
-	compexp = new CCompExpCurve();
-    temp = 0.00;
-
-     //Transfer data
+     // Transfer data into the compression/expansion object. 
+     // The CCompExpCurve class handles exceptions for this function
      if( !compexp->bSetHeadEnd( headend, true ) )
           return -1.00;
      if( !compexp->SetStroke_USCS ( stroke ) )
@@ -604,20 +651,16 @@ double CCOMPEXP(double connrodlength,
      if( !compexp->SetPressureAbsDischarge_USCS( pdish ) )
           return -1.00;
 
-     //make the calculation
+     // Make the calculation
      if( !compexp->bCalcPressure() )
           return -1.00;
 
-     //retrieve the data
-     temp = compexp->GetPressureAbsCrankAngle_USCS();
+     // Retrieve the data
+     d_press = compexp->GetPressureAbsCrankAngle_USCS();
 
-     //Free all elements in the strand
-	delete compexp;
+	// Return the value
+	return d_press;
 
-	//Make the calculation and return the value
-	return temp;
-
-     
 }
 
 //return swept volume in SI units
