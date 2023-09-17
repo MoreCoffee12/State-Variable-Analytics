@@ -607,17 +607,17 @@ bool bGetAdiabaticPressureCurveGage_USCS( double *dIndicatedPressureCurveArrayGa
 /// Next-time-open items:
 /// 1. Currently using magic number return, not best practice. Replace with enum list.
 /// </todo>
-double CCOMPEXP(double connrodlength,
-                    double stroke,
-                    double bore,
-                    double rod,
-                    double crankangle,
-                    double clearance,
-                    double nexp,
-                    double ncomp,
-                    double psuct,
-                    double pdish,
-                    bool headend )
+double CCOMPEXP(double* connrodlength,
+                    double* stroke,
+                    double* bore,
+                    double* rod,
+                    double* crankangle,
+                    double* clearance,
+                    double* nexp,
+                    double* ncomp,
+                    double* psuct,
+                    double* pdish,
+                    bool* headend )
 {
     // Define local variables
     // Revision, 16 Sep 2023, used heap memory to avoid stack overflow
@@ -626,29 +626,53 @@ double CCOMPEXP(double connrodlength,
     std::unique_ptr<CCompExpCurve> compexp = std::make_unique<CCompExpCurve>();
     double d_press = 0.00;
 
+    // Check for null pionters
+    if( connrodlength == nullptr )
+		return -1.00;
+    if( stroke == nullptr )
+        return -1.00;
+    if( bore == nullptr )
+        return -1.00;
+    if( rod == nullptr )
+        return -1.00;
+    if( crankangle == nullptr )
+        return -1.00;
+    if( clearance == nullptr )
+        return -1.00;
+    if( nexp == nullptr )
+        return -1.00;
+    if( ncomp == nullptr )
+        return -1.00;
+    if( psuct == nullptr )
+        return -1.00;
+    if( pdish == nullptr )
+        return -1.00;
+    if( headend == nullptr )
+        return -1.00;
+
      // Transfer data into the compression/expansion object. 
      // The CCompExpCurve class handles exceptions for this function
-     if( !compexp->bSetHeadEnd( headend, true ) )
+     if( !compexp->bSetHeadEnd( *headend, true ) )
           return -1.00;
-     if( !compexp->SetStroke_USCS ( stroke ) )
+     if( !compexp->SetStroke_USCS ( *stroke ) )
           return -1.00;
-     if( !compexp->SetConnRodLength_USCS( connrodlength ) )
+     if( !compexp->SetConnRodLength_USCS( *connrodlength ) )
           return -1.00;
-     if( !compexp->SetBoreDiameter_USCS( bore ) )
+     if( !compexp->SetBoreDiameter_USCS( *bore ) )
           return -1.00;
-     if( !compexp->SetRodDiameter_USCS( rod ) )
+     if( !compexp->SetRodDiameter_USCS( *rod ) )
           return -1.00;
-     if( !compexp->SetCrankAngleDegrees( crankangle ) )
+     if( !compexp->SetCrankAngleDegrees( *crankangle ) )
           return -1.00;
-     if( !compexp->SetClearance_Percent( clearance ) )
+     if( !compexp->SetClearance_Percent( *clearance ) )
           return -1.00;
-     if( !compexp->SetnComp( ncomp ) )
+     if( !compexp->SetnComp( *ncomp ) )
           return -1.00;
-     if( !compexp->SetnExp( nexp ) )
+     if( !compexp->SetnExp( *nexp ) )
           return -1.00;
-     if( !compexp->SetPressureAbsSuction_USCS( psuct ) )
+     if( !compexp->SetPressureAbsSuction_USCS( *psuct ) )
           return -1.00;
-     if( !compexp->SetPressureAbsDischarge_USCS( pdish ) )
+     if( !compexp->SetPressureAbsDischarge_USCS( *pdish ) )
           return -1.00;
 
      // Make the calculation
