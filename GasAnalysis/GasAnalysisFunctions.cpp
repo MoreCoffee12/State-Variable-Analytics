@@ -1,3 +1,4 @@
+#include <cstdint>
 #include "gasanalysisfunctions.h"
 #include "windows.h"
 #include "oleauto.h"
@@ -14,7 +15,7 @@
 /// <returns>An integer representing the build number.</returns>
 int ShowBuild()
 {
-	return 1;
+	return 2;
 }
 
 /// <summary>
@@ -2655,16 +2656,17 @@ int ShowV_TP_SI(int* eosset,
 /// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
 /// </warning>
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
+/// <revision>Revision, 16 Sep 2023: added null pointer checks</revision>
 /// <todo>
 /// Next-time-open items:
 /// 1. Add validation and test harness.
 /// </todo>
-int ShowV_TP_USCS(int* eosset,
-	double temp,
-	double pres,
+int32_t ShowV_TP_USCS(int32_t* eosset,
+	double* temp,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* v,
 	double* priority01,
 	char* mainerrline01)
@@ -2690,9 +2692,33 @@ int ShowV_TP_USCS(int* eosset,
 		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
 		return 1;
 	}
+	if (temp == nullptr)
+	{
+		char* errptr = "temp is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
 	if (MixtureArray == nullptr)
 	{
 		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
 		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
 		return 1;
 	}
@@ -2734,11 +2760,11 @@ int ShowV_TP_USCS(int* eosset,
 		}
 
 		//Now load the solver configuration
-		bwrs->SetPrecision(Precision);
-		bwrs->SetMaxIterations((int)MaxIterations);
+		bwrs->SetPrecision(*Precision);
+		bwrs->SetMaxIterations((int)(*MaxIterations));
 
 		//and get the pressure
-		*v = bwrs->GetV_TP_USCS(temp, pres);
+		*v = bwrs->GetV_TP_USCS(*temp, *pres);
 
 		//Check to see if the action generated any errors
 		errs = bwrs->GetMessageCount();
