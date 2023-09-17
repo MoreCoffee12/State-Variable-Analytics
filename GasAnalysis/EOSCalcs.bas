@@ -389,22 +389,22 @@ Declare PtrSafe Function ShowV_TP_USCS _
 
 'Declare PtrSafe Function ShowS_TP_SI _
 '    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-'                            ByVal temp As Double, _
-'                            ByVal pres As Double, _
+'                            ByRef temp As Double, _
+'                            ByRef pres As Double, _
 '                            MixtureArray As Double, _
-'                            ByVal Precision As Double, _
-'                            ByVal MaxIterations As Double, _
+'                            ByRef Precision As Double, _
+'                            ByRef MaxIterations As Double, _
 '                            ByRef s As Double, _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowS_TP_USCS _
     Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-                            ByVal temp As Double, _
-                            ByVal pres As Double, _
+                            ByRef temp As Double, _
+                            ByRef pres As Double, _
                             MixtureArray As Double, _
-                            ByVal Precision As Double, _
-                            ByVal MaxIterations As Double, _
+                            ByRef Precision As Double, _
+                            ByRef MaxIterations As Double, _
                             ByRef s As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long

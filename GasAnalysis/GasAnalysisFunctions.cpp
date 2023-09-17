@@ -2893,15 +2893,14 @@ int ShowS_TP_SI(int* eosset,
 /// <revision>Revision, 4 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowS_TP_USCS(int* eosset,
-	double temp,
-	double pres,
+	double* temp,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -2920,6 +2919,60 @@ int ShowS_TP_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (temp == nullptr)
+	{
+		char* errptr = "temp is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (s == nullptr)
+	{
+		char* errptr = "s is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -2936,11 +2989,11 @@ int ShowS_TP_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the pressure
-	*s = bwrs->GetS_TP_USCS(temp, pres);
+	*s = bwrs->GetS_TP_USCS(*temp, *pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
