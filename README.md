@@ -17,3 +17,7 @@ This library has the code that solves the BWRS equation of state. The code opera
 With these functions, the vapor dome can be plotted against the measured reciprocating compressor pressures and temperatures. For example, the figure below shows the pressure-enthalpy vapor dome as a black line. The red lines show the measured compression process for three stages. This process falls on the vapor side of the dome, so this component should not condense as it passes through the intercoolers.
 
 ![](media/81de11ca95200a8b4565b07f43182b69.png)
+
+The GasAnalysis library can be combined with the MechAnalysis kinematic functions to plot isentropic (adiabatic) pressure against the indicated press for reciprocating compressors. The figure below shows an example of this.
+
+![](media/2dd25bede2f1349d96c7451c412ef63e.png)
