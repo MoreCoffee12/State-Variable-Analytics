@@ -2793,10 +2793,10 @@ int32_t ShowV_TP_USCS(int32_t* eosset,
 /// </summary>
 /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
 /// <param name="temp">Pointer to a double representing the temperature in SI units, kelvin.</param>
-/// <param name="pres">Double representing the pressure in SI units, bar(a).</param>
+/// <param name="pres">Pointer to a double representing the pressure in SI units, bar(a).</param>
 /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="s">Pointer to a double to hold the calculated entropy in SI units, kJ/(Kg-K).</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -2814,11 +2814,11 @@ int32_t ShowV_TP_USCS(int32_t* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowS_TP_SI(int* eosset,
-	double temp,
-	double pres,
+	double* temp,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -2853,11 +2853,11 @@ int ShowS_TP_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the pressure
-	*s = bwrs->GetS_TP_SI(temp, pres);
+	*s = bwrs->GetS_TP_SI(*temp, *pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
