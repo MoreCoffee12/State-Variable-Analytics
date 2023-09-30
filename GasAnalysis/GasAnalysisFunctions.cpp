@@ -4735,7 +4735,7 @@ int ShowSatLiqS_T_USCS(int* eosset,
 /// Returns the vapor temperature in USCS units, Rankine, given pressure.
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="temp">Pointer to a double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="pres">Pointer to a double representing the pressure of the fluid in USCS, PSIA.</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
 /// <param name="Precision">Pointer to a double representing the solver precision.</param>
 /// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
@@ -4756,7 +4756,7 @@ int ShowSatLiqS_T_USCS(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowVapTemp_P_USCS(int* eosset,
-	double* temp,
+	double* pres,
 	double* MixtureArray,
 	double* Precision,
 	double* MaxIterations,
@@ -4778,6 +4778,54 @@ int ShowVapTemp_P_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (ts == nullptr)
+	{
+		char* errptr = "ts is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -4798,7 +4846,7 @@ int ShowVapTemp_P_USCS(int* eosset,
 	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the pressure
-	*ts = bwrs->GetVaporTemperature_P_USCS(*temp);
+	*ts = bwrs->GetVaporTemperature_P_USCS(*pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -4834,8 +4882,7 @@ int ShowVapTemp_P_USCS(int* eosset,
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowVapTemp_P_SI(int* eosset,
 	double* pres,
@@ -6143,10 +6190,10 @@ int ShowSatLiqS_P_SI(int* eosset,
 /// Returns the entropy at saturated vapor conditions in USCS units, BTU/(lb-R), given the mixture pressure.
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="pres">Pointer to a double representing the pressure of the fluid in USCS, PSIA.</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
@@ -6160,14 +6207,13 @@ int ShowSatLiqS_P_SI(int* eosset,
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowSatVapS_P_USCS(int* eosset,
-	double pres,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -6186,6 +6232,54 @@ int ShowSatVapS_P_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (s == nullptr)
+	{
+		char* errptr = "s is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -6202,11 +6296,11 @@ int ShowSatVapS_P_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the entropy
-	*s = bwrs->GetSatVapS_P_USCS(pres);
+	*s = bwrs->GetSatVapS_P_USCS(*pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -6224,10 +6318,10 @@ int ShowSatVapS_P_USCS(int* eosset,
 /// Returns the entropy at saturated vapor conditions in SI units, KJ/(kg-K), given the mixture pressure.
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="pres">Pointer to a double representing the pressure of the fluid in SI, bar(a).</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="s">Pointer to a double where the calculated entropy will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
@@ -6241,14 +6335,13 @@ int ShowSatVapS_P_USCS(int* eosset,
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowSatVapS_P_SI(int* eosset,
-	double pres,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* s,
 	double* priority01,
 	char* mainerrline01)
@@ -6267,6 +6360,54 @@ int ShowSatVapS_P_SI(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (s == nullptr)
+	{
+		char* errptr = "s is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -6283,11 +6424,11 @@ int ShowSatVapS_P_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the entropy
-	*s = bwrs->GetSatVapS_P_SI(pres);
+	*s = bwrs->GetSatVapS_P_SI(*pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
