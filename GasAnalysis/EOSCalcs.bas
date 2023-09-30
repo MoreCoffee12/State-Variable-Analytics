@@ -587,7 +587,26 @@ Declare PtrSafe Function ShowMolWeight_mx _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String, _
                             ByRef MixtureArray As Double) As Long
+                            
+                            
+Declare PtrSafe Function ShowLHV_mx_SI _
+    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+                            ByRef MixtureArray As Double, _
+                            ByRef Precision As Double, _
+                            ByRef MaxIterations As Double, _
+                            ByRef lhv As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Integer
 
+Declare PtrSafe Function ShowLHV_mx_USCS _
+    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+                            ByRef MixtureArray As Double, _
+                            ByRef Precision As Double, _
+                            ByRef MaxIterations As Double, _
+                            ByRef lhv As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Integer
+                            
 
 ' =============================================================================
 ' Function Name:  VBShowVapPres_T_USCS
@@ -6948,8 +6967,255 @@ End Function
 '
 '
 
+' =============================================================================
+' Function Name:  VBShowLHV_mx_SI
+' Name: VBShowLHV_mx_SI
+' Purpose: Retrieves the lower heating value in SI units, J/gmol, for a given
+'          mixture and returns it as either a double value or
+'          an error string based on the error priority and tolerance.
+'          It serves as a wrapper for the ShowLHV_mx_SI DLL function.
+'
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
+'
+' Returns:
+' - Double: Lower heating value in SI units, J/gmol
+' - String: Error line if the error priority is within the defined tolerance
+'
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
+'
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowLHV_mx_SI function and handles its return values and errors
+'
+' Author: Brian Howard
+' Date: 2001
+' Revision: 30 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowLHV_mx_SI(eosset As Long, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
 
+    'Local variables
+    Dim lhv As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Long
+    Dim priority01 As Double
+    
+    'Establish error trapping
+    On Error GoTo ErrorVBShowLHV_mx_SI
+    
+    'Initialize local variables
+    lhv = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+    
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
 
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowLHV_mx_SI(eosset, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    lhv, _
+                    priority01, _
+                    eline01)
+    
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowLHV_mx_SI = eline01
+    Else
+        VBShowLHV_mx_SI = lhv
+    End If
+    
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowLHV_mx_SI:
+    
+    VBShowLHV_mx_SI = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
+
+' =============================================================================
+' Function Name:  VBShowLHV_mx_USCS
+' Name: VBShowLHV_mx_USCS
+' Purpose: Retrieves the lower heating value in USCS units, BTU/lbmol, for a given
+'          mixture and returns it as either a double value or
+'          an error string based on the error priority and tolerance.
+'          It serves as a wrapper for the ShowLHV_mx_USCS DLL function.
+'
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
+'
+' Returns:
+' - Double: Lower heating value in USCS units, BTU/lbmol
+' - String: Error line if the error priority is within the defined tolerance
+'
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
+'
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowLHV_mx_USCS function and handles its return values and errors
+'
+' Author: Brian Howard
+' Date: 2001
+' Revision: 30 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowLHV_mx_USCS(eosset As Long, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim lhv As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Long
+    Dim priority01 As Double
+    
+    'Establish error trapping
+    On Error GoTo ErrorVBShowLHV_mx_USCS
+    
+    'Initialize local variables
+    lhv = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+    
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+    
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowLHV_mx_USCS(eosset, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    lhv, _
+                    priority01, _
+                    eline01)
+    
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowLHV_mx_USCS = eline01
+    Else
+        VBShowLHV_mx_USCS = lhv
+    End If
+    
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowLHV_mx_USCS:
+    
+    VBShowLHV_mx_USCS = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
 
 
 

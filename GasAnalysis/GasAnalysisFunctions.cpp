@@ -1986,8 +1986,8 @@ int ShowDipole_SI(int* fluidindex, double* dipole,
 /// </summary>
 /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
 /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in USCS units, (BTU/lbmol).</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -2001,13 +2001,12 @@ int ShowDipole_SI(int* fluidindex, double* dipole,
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowLHV_mx_USCS(int* eosset,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* lhv,
 	double* priority01,
 	char* mainerrline01)
@@ -2026,6 +2025,48 @@ int ShowLHV_mx_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (lhv == nullptr)
+	{
+		char* errptr = "lhv is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -2042,9 +2083,9 @@ int ShowLHV_mx_USCS(int* eosset,
 	}
 
 	// Now load the solver configuration, starting with precision
-	bwrs->SetPrecision(Precision);
+	bwrs->SetPrecision(*Precision);
 	//	...and the maximum number of iterations
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the enthalpy
 	*lhv = bwrs->GetLHV_mx_USCS();
@@ -2066,8 +2107,8 @@ int ShowLHV_mx_USCS(int* eosset,
 /// </summary>
 /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
 /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="lhv">Pointer to a double to hold the fluid enthalpy of formation in SI units, (J/gmol).</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -2081,13 +2122,12 @@ int ShowLHV_mx_USCS(int* eosset,
 /// <revision>Revision, 10 Sep 2023: used heap memory via std::unique_ptr and more standard library functions to improve efficiency and safety. Update strcpy to strcpy_s.</revision>
 /// <todo>
 /// Next-time-open items:
-/// 1. Handle nullptr values.
-/// 2. Add validation and test harness.
+/// 1. Add validation and test harness.
 /// </todo>
 int ShowLHV_mx_SI(int* eosset,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* lhv,
 	double* priority01,
 	char* mainerrline01)
@@ -2106,6 +2146,48 @@ int ShowLHV_mx_SI(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (lhv == nullptr)
+	{
+		char* errptr = "lhv is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -2122,7 +2204,7 @@ int ShowLHV_mx_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
+	bwrs->SetPrecision(*Precision);
 	bwrs->SetMaxIterations((int)MaxIterations);
 
 	//and get the enthalpy
