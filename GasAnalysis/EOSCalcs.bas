@@ -128,20 +128,20 @@ Declare PtrSafe Function ShowSatLiqH_T_SI _
 
 Declare PtrSafe Function ShowVapTemp_P_USCS _
     Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-                            ByVal temp As Double, _
-                            MixtureArray As Double, _
-                            ByVal Precision As Double, _
-                            ByVal MaxIterations As Double, _
+                            ByRef pres As Double, _
+                            ByRef MixtureArray As Double, _
+                            ByRef Precision As Double, _
+                            ByRef MaxIterations As Double, _
                             ByRef ts As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowVapTemp_P_SI _
     Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-                            ByVal temp As Double, _
-                            MixtureArray As Double, _
-                            ByVal Precision As Double, _
-                            ByVal MaxIterations As Double, _
+                            ByRef pres As Double, _
+                            ByRef MixtureArray As Double, _
+                            ByRef Precision As Double, _
+                            ByRef MaxIterations As Double, _
                             ByRef ts As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -5188,7 +5188,7 @@ End Function
 ' Revision: 5 Sep 2023, Upgraded to 64-bit code
 ' =============================================================================
 Function VBShowVapTemp_P_SI(eosset As Long, _
-                        Temperature As Double, _
+                        Pressure As Double, _
                         Precision As Double, MaxIterations As Double, _
                         PercentMethane As Double, PercentEthane As Double, _
                         PercentPropane As Double, PercentI_Butane As Double, _
@@ -5260,7 +5260,7 @@ Function VBShowVapTemp_P_SI(eosset As Long, _
     'If we need to we can check the return value
     'to see if there was an error
     i = ShowVapTemp_P_SI(eosset, _
-                    Temperature, _
+                    Pressure, _
                     MixingArray(0), _
                     Precision, _
                     MaxIterations, _
