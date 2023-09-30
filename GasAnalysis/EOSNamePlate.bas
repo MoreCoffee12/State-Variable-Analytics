@@ -1,6 +1,11 @@
 Attribute VB_Name = "EOSNamePlate"
 Option Explicit
 
+'This function returns the number of fluids in
+'the EOS engine
+Declare PtrSafe Function ShowFluidCount _
+    Lib "GasAnalysis.dll" () As Integer
+
 'This function returns the primary name of a fluid
 Declare PtrSafe Function ShowName _
     Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
@@ -174,6 +179,34 @@ Declare PtrSafe Function ShowDipole_SI _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
                             
+' =============================================================================
+' Function Name:  VBShowFluidCount
+' Purpose:        This function interacts with a C++ DLL to retrieve the
+'                 number of fluids.
+'                 It serves as a wrapper for the ShowFluidCount DLL function.
+'
+' Parameters:
+'   - [None]
+'
+' Returns:
+'   - A Long with number of fluids stored in the DLL.
+'
+' Usage:
+'   num_fluids = VBShowFluidCount()
+'
+' Error Handling:
+'   - The DLL handles all errors
+'
+' Author:         Brian Howard
+' Date Created:   2001
+' Last Updated:   30 Sep 2023
+' =============================================================================
+Function VBShowFluidCount()
+ 
+    VBShowFluidCount = ShowFluidCount()
+ 
+End Function
+
 
 
 ' =============================================================================
