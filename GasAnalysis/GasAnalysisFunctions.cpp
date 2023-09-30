@@ -5222,11 +5222,11 @@ int ShowSatVapV_P_SI(int* eosset,
 /// Returns the temperature in USCS units, Rankine, given enthalpy and pressure.
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="h">Double representing the enthalpy of the fluid in USCS, BTU/lb.</param>
-/// <param name="p">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="h">Pointer to a double representing the enthalpy of the fluid in USCS, BTU/lb.</param>
+/// <param name="p">Pointer to a double representing the pressure of the fluid in USCS, PSIA.</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
@@ -5244,17 +5244,17 @@ int ShowSatVapV_P_SI(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowT_HP_SI(int* eosset,
-	double h,
-	double p,
+	double* h,
+	double* p,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* t,
 	double* priority01,
 	char* mainerrline01)
 {
 	// Local variables
-	// Revision, 3 Sep 2023, used heap memory to avoid stack overflow
+	// Revision, 10 Sep 2023, used heap memory to avoid stack overflow
 	// and more standard library functions. 
 	// Was: CBWRS bwrs;
 	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
@@ -5283,11 +5283,11 @@ int ShowT_HP_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the temperature
-	*t = bwrs->GetT_HP_SI(h, p);
+	*t = bwrs->GetT_HP_SI(*h, *p);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();

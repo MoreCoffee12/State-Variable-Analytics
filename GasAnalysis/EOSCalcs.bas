@@ -321,24 +321,24 @@ Declare PtrSafe Function ShowP_VT_SI _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
 '
-'Declare PtrSafe Function ShowT_HP_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-'                            ByVal h As Double, _
-'                            ByVal p As Double, _
-'                            MixtureArray As Double, _
-'                            ByVal Precision As Double, _
-'                            ByVal MaxIterations As Double, _
-'                            ByRef t As Double, _
-'                            ByRef priority01 As Double, _
-'                            ByVal textline01 As String) As Long
-'
+Declare PtrSafe Function ShowT_HP_SI _
+    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+                            ByRef h As Double, _
+                            ByRef p As Double, _
+                            ByRef MixtureArray As Double, _
+                            ByRef Precision As Double, _
+                            ByRef MaxIterations As Double, _
+                            ByRef t As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Long
+
 'Declare PtrSafe Function ShowT_HP_USCS _
 '    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
-'                            ByVal h As Double, _
-'                            ByVal p As Double, _
+'                            ByRef h As Double, _
+'                            ByRef p As Double, _
 '                            MixtureArray As Double, _
-'                            ByVal Precision As Double, _
-'                            ByVal MaxIterations As Double, _
+'                            ByRef Precision As Double, _
+'                            ByRef MaxIterations As Double, _
 '                            ByRef t As Double, _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
@@ -3080,6 +3080,7 @@ End Function
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
 '    Dim i As Long
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowP_VS_SI
@@ -3177,6 +3178,7 @@ End Function
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
 '    Dim i As Long
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowP_VS_USCS
@@ -3275,6 +3277,7 @@ End Function
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
 '    Dim i As Long
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSo_SI
@@ -3371,6 +3374,7 @@ End Function
 '    Dim ErrTolerance As Integer
 '    Dim eline01 As String
 '    Dim i As Long
+'    Dim priority01 As Double
 '
 '    'Establish error trapping
 '    On Error GoTo ErrorVBShowSo_USCS
@@ -3436,109 +3440,142 @@ End Function
 '
 'End Function
 '
-'Function VBShowT_HP_SI(eosset As Long, _
-'                        Enthalpy As Double, Pressure As Double, _
-'                        Precision As Double, MaxIterations As Double, _
-'                        PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
+' =============================================================================
+' Function Name:  VBShowT_HP_SI
+' Name: VBShowT_HP_SI
+' Purpose: Retrieves the temperature in SI units, kelvin, for a given
+'          enthalpy and pressure and returns it as either a double value or
+'          an error string based on the error priority and tolerance.
+'          It serves as a wrapper for the ShowT_HP_SI DLL function.
 '
-'    'Local variables
-'    Dim t As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
-'    Dim eline01 As String
-'    Dim i As Long
+' Parameters:
+' - eosset: Integer, Equation of State Set
+' - Enthalpy: Double, enthalpy in SI units, kJ/kg
+' - Pressure: Double, temperature in SI units, bar
+' - Precision: Double, solver precision
+' - MaxIterations: Double, maximum number of solver iterations
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowT_HP_SI
+' Returns:
+' - Double: temperature calculated in SI units, kelvin
+' - String: Error line if the error priority is within the defined tolerance
 '
-'    'Initialize local variables
-'    t = 0
-'    priority01 = 0
-'    ErrTolerance = 10
-'    eline01 = String(256, "a")
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'    'Check that the Error Tolerance is above minimum
-'    'Threshold
-'    If (ErrTolerance < 10) Then
-'        ErrTolerance = 10
-'    End If
+' Notes:
+' - Error tolerance can be adjusted through the ErrTolerance variable
+' - The function relies on the ShowT_HP_SI function and handles its return values and errors
 '
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
-'
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowT_HP_SI(eosset, _
-'                    Enthalpy, _
-'                    Pressure, _
-'                    MixingArray(0), _
-'                    Precision, _
-'                    MaxIterations, _
-'                    t, _
-'                    priority01, _
-'                    eline01)
-'
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowT_HP_SI = eline01
-'    Else
-'        VBShowT_HP_SI = t
-'    End If
-'
-'    'Avoid the error handler
-'    Exit Function
-'
-'ErrorVBShowT_HP_SI:
-'
-'    VBShowT_HP_SI = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
-'
-'End Function
-'
+' Author: Brian Howard
+' Date: 2001
+' Revision: 30 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowT_HP_SI(eosset As Long, _
+                        Enthalpy As Double, Pressure As Double, _
+                        Precision As Double, MaxIterations As Double, _
+                        PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim t As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Long
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowT_HP_SI
+
+    'Initialize local variables
+    t = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Check that the Error Tolerance is above minimum
+    'Threshold
+    If (ErrTolerance < 10) Then
+        ErrTolerance = 10
+    End If
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowT_HP_SI(eosset, _
+                    Enthalpy, _
+                    Pressure, _
+                    MixingArray(0), _
+                    Precision, _
+                    MaxIterations, _
+                    t, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowT_HP_SI = eline01
+    Else
+        VBShowT_HP_SI = t
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowT_HP_SI:
+
+    VBShowT_HP_SI = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
+
 'Function VBShowT_HP_USCS(eosset As Long, _
 '                        Enthalpy As Double, Pressure As Double, _
 '                        Precision As Double, MaxIterations As Double, _
