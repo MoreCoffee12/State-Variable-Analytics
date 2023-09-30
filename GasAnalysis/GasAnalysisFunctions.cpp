@@ -2205,7 +2205,7 @@ int ShowLHV_mx_SI(int* eosset,
 
 	//Now load the solver configuration
 	bwrs->SetPrecision(*Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the enthalpy
 	*lhv = bwrs->GetLHV_mx_SI();
