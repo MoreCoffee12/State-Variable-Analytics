@@ -5388,11 +5388,11 @@ int ShowT_HP_USCS(int* eosset,
 /// Returns the temperature in SI units, kelvin, given the entropy and pressure of a fluid.
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="s">Double representing the entropy of the fluid in SI,  kJ/(Kg-K).</param>
-/// <param name="p">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="s">Pointer to a double representing the entropy of the fluid in SI,  kJ/(Kg-K).</param>
+/// <param name="p">Pointer to a double representing the pressure of the fluid in SI, bar(a).</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="t">Pointer to a double where the calculated temperature will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
@@ -5410,11 +5410,11 @@ int ShowT_HP_USCS(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowT_SP_SI(int* eosset,
-	double s,
-	double p,
+	double* s,
+	double* p,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double*  Precision,
+	double* MaxIterations,
 	double* t,
 	double* priority01,
 	char* mainerrline01)
@@ -5449,11 +5449,11 @@ int ShowT_SP_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the temperature
-	*t = bwrs->GetT_SP_SI(s, p);
+	*t = bwrs->GetT_SP_SI(*s, *p);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
