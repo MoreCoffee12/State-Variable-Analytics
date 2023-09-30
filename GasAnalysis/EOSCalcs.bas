@@ -582,12 +582,12 @@ Declare PtrSafe Function ShowH_TS_SI _
 '                            ByRef priority01 As Double, _
 '                            ByVal textline01 As String) As Long
 '
-'Declare PtrSafe Function ShowMolWeight_mx _
-'    Lib "GasAnalysis.dll" (ByRef molweight As Double, _
-'                            ByRef priority01 As Double, _
-'                            ByVal textline01 As String, _
-'                             MixtureArray As Double) As Long
-'
+Declare PtrSafe Function ShowMolWeight_mx _
+    Lib "GasAnalysis.dll" (ByRef molweight As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String, _
+                            ByRef MixtureArray As Double) As Long
+
 
 ' =============================================================================
 ' Function Name:  VBShowVapPres_T_USCS
@@ -2576,95 +2576,120 @@ End Function
 '
 'End Function
 '
-'Function VBShowMolWeight_mx(PercentMethane As Double, PercentEthane As Double, _
-'                        PercentPropane As Double, PercentI_Butane As Double, _
-'                        PercentN_Butane As Double, PercentI_Pentane As Double, _
-'                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
-'                        PercentN_Heptane As Double, _
-'                        PercentN_Octane As Double, _
-'                        PercentEthylene As Double, _
-'                        PercentPropylene As Double, _
-'                        PercentCarbonDioxide As Double, _
-'                        PercentHydrogenSulfide As Double, _
-'                        PercentNitrogen As Double, _
-'                        PercentHydrogen As Double, _
-'                        PercentAmmonia As Double, _
-'                        PercentWater As Double, _
-'                        PercentAir As Double, _
-'                        PercentCarbonMonoxide As Double, _
-'                        PercentArgon As Double, _
-'                        PercentOxygen As Double, _
-'                        PercentSulfDiox As Double, _
-'                        PercentR134a As Double, _
-'                        PercentSilane As Double)
+' =============================================================================
+' Function Name:  VBShowMolWeight_mx
+' Name: VBShowMolWeight_mx
+' Purpose: Retrieves the fluid mixture mole weight as either a double value or
+'          an error string based on the error priority
+'          and tolerance. It serves as a wrapper for the ShowMolWeight_mx DLL function.
 '
-'    'Local variables
-'    Dim mw As Double
-'    Dim MixingArray(25) As Double
-'    Dim ErrTolerance As Integer
-'    Dim eline01 As String
-'    Dim i As Long
-'    Dim priority01 As Double
+' Parameters:
+' - PercentMethane, PercentEthane, ..., PercentSilane: Doubles, percent composition of
+'       each component in the mixture.
 '
-'    'Establish error trapping
-'    On Error GoTo ErrorVBShowMolWeight_mx
+' Returns:
+' - Double: fluid mixture mol weight
+' - String: Error line if the error priority is within the defined tolerance
 '
-'    'Initialize local variables
-'    mw = 0
-'    priority01 = 0
-'    ErrTolerance = 10
-'    eline01 = String(256, "a")
+' Error Handling:
+' The function has built-in error handling which returns the error number and description.
 '
-'    'Begin by filling the mixing array with these values
-'    MixingArray(0) = PercentMethane
-'    MixingArray(1) = PercentEthane
-'    MixingArray(2) = PercentPropane
-'    MixingArray(3) = PercentI_Butane
-'    MixingArray(4) = PercentN_Butane
-'    MixingArray(5) = PercentI_Pentane
-'    MixingArray(6) = PercentN_Pentane
-'    MixingArray(7) = PercentN_Hexane
-'    MixingArray(8) = PercentN_Heptane
-'    MixingArray(9) = PercentN_Octane
-'    MixingArray(10) = PercentEthylene
-'    MixingArray(11) = PercentPropylene
-'    MixingArray(12) = PercentCarbonDioxide
-'    MixingArray(13) = PercentHydrogenSulfide
-'    MixingArray(14) = PercentNitrogen
-'    MixingArray(15) = PercentHydrogen
-'    MixingArray(16) = PercentAmmonia
-'    MixingArray(17) = PercentWater
-'    MixingArray(18) = PercentAir
-'    MixingArray(19) = PercentCarbonMonoxide
-'    MixingArray(20) = PercentArgon
-'    MixingArray(21) = PercentOxygen
-'    MixingArray(22) = PercentSulfDiox
-'    MixingArray(23) = PercentR134a
-'    MixingArray(24) = PercentSilane
+' Notes:
+' - The function relies on the ShowMolWeight_mx function and handles its return values and errors
 '
-'    'If we need to we can check the return value
-'    'to see if there was an error
-'    i = ShowMolWeight_mx(mw, _
-'                    priority01, _
-'                    eline01, _
-'                    MixingArray(0))
-'
-'    'return the value
-'    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
-'        VBShowMolWeight_mx = eline01
-'    Else
-'        VBShowMolWeight_mx = mw
-'    End If
-'
-'    'Avoid the error handler
-'    Exit Function
-'
-'ErrorVBShowMolWeight_mx:
-'
-'    VBShowMolWeight_mx = (Str(Err.Number) & ":" & Err.Description)
-'    Exit Function
-'
-'End Function
+' Author: Brian Howard
+' Date: 2001
+' Revision: 30 Sep 2023, Upgraded to 64-bit code
+' =============================================================================
+Function VBShowMolWeight_mx(PercentMethane As Double, PercentEthane As Double, _
+                        PercentPropane As Double, PercentI_Butane As Double, _
+                        PercentN_Butane As Double, PercentI_Pentane As Double, _
+                        PercentN_Pentane As Double, PercentN_Hexane As Double, _
+                        PercentN_Heptane As Double, _
+                        PercentN_Octane As Double, _
+                        PercentEthylene As Double, _
+                        PercentPropylene As Double, _
+                        PercentCarbonDioxide As Double, _
+                        PercentHydrogenSulfide As Double, _
+                        PercentNitrogen As Double, _
+                        PercentHydrogen As Double, _
+                        PercentAmmonia As Double, _
+                        PercentWater As Double, _
+                        PercentAir As Double, _
+                        PercentCarbonMonoxide As Double, _
+                        PercentArgon As Double, _
+                        PercentOxygen As Double, _
+                        PercentSulfDiox As Double, _
+                        PercentR134a As Double, _
+                        PercentSilane As Double)
+
+    'Local variables
+    Dim mw As Double
+    Dim MixingArray(25) As Double
+    Dim ErrTolerance As Integer
+    Dim eline01 As String
+    Dim i As Long
+    Dim priority01 As Double
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowMolWeight_mx
+
+    'Initialize local variables
+    mw = 0
+    priority01 = 0
+    ErrTolerance = 10
+    eline01 = String(256, "a")
+
+    'Begin by filling the mixing array with these values
+    MixingArray(0) = PercentMethane
+    MixingArray(1) = PercentEthane
+    MixingArray(2) = PercentPropane
+    MixingArray(3) = PercentI_Butane
+    MixingArray(4) = PercentN_Butane
+    MixingArray(5) = PercentI_Pentane
+    MixingArray(6) = PercentN_Pentane
+    MixingArray(7) = PercentN_Hexane
+    MixingArray(8) = PercentN_Heptane
+    MixingArray(9) = PercentN_Octane
+    MixingArray(10) = PercentEthylene
+    MixingArray(11) = PercentPropylene
+    MixingArray(12) = PercentCarbonDioxide
+    MixingArray(13) = PercentHydrogenSulfide
+    MixingArray(14) = PercentNitrogen
+    MixingArray(15) = PercentHydrogen
+    MixingArray(16) = PercentAmmonia
+    MixingArray(17) = PercentWater
+    MixingArray(18) = PercentAir
+    MixingArray(19) = PercentCarbonMonoxide
+    MixingArray(20) = PercentArgon
+    MixingArray(21) = PercentOxygen
+    MixingArray(22) = PercentSulfDiox
+    MixingArray(23) = PercentR134a
+    MixingArray(24) = PercentSilane
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowMolWeight_mx(mw, _
+                    priority01, _
+                    eline01, _
+                    MixingArray(0))
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowMolWeight_mx = eline01
+    Else
+        VBShowMolWeight_mx = mw
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowMolWeight_mx:
+
+    VBShowMolWeight_mx = (Str(Err.Number) & ":" & Err.Description)
+    Exit Function
+
+End Function
 '
 'Function VBShowP_MT_USCS(eosset As Long, _
 '                        MolarDensity As Double, Temperature As Double, _
