@@ -8,6 +8,30 @@ Option Explicit
 '   based on components present. It needs refinment to handle general cases.
 '   It also assumes the dileunts do not interact and that they scale with the
 '   air flow.
+'   This code draws heavily from the paper "Flame Temperature and Species
+'   Calculations with an Excel/VBA Computer Code." Refer to that paper for
+'   additional details on nomenclature and derivations.
+'
+'   In general:
+'   CxHyOzNuSv + m(O2 + fN2) -> n1CO + n2CO2 + n3H2O + n4N2 + n5O2 + n6H2 + n7SO2
+'
+'   Nomenclature:
+'   x = carbonMols, assembled by adding all the carbons in the strFuel,
+'       multiplied by the mols.
+'   y = hydrogenMols, assembled by adding all the hydrogen in the strFuel,
+'       multiplied by the mols.
+'   z = oxygenFuelMols, assembled by adding all the hydrogen in the strFuel,
+'       multiplied by the mols.
+'   u = Not Used. None of the fuels in the EOS have nitrogen.
+'   v = Not Used. None of the fuels in the EOS have sulfur.
+'   ms = molStoichm, caclulated using the equation for stoichiometric ratio below:
+'       Stoichiometric: m = ms = x + y/4 – z/2 + v
+'   m = ( oxygenAirMols / 2 ), extracted from the strAir formula
+'
+'   n1 = molsProducts(idxCO), equals the number of carbon monoxide mols
+'   n2 = molsProducts(idxCO2), equals the number of carbon mols
+'   n3 = molsProducts(idxH2O), equals the half the number of hydrogen mols
+'   n4 = molsProducts(idxN2), equals mols of air times mols of nitrogen
 '
 ' Parameters:
 ' - inputString: String, String contains the left-hand side of the equation.
@@ -33,9 +57,19 @@ Function BalanceCombustion(strFuel As Variant, strAir As Variant, _
     Dim molsFuel(25) As Double
     Dim molsAir(25) As Double
     Dim molsDiluent(25) As Double
-    Dim carbonAtoms(25) As Double
-    Dim hydrogenAtoms(25) As Double
-    Dim oxygenAtoms(25) As Double
+    Dim carbonAtomsChem(25) As Double
+    Dim hydrogenAtomsChem(25) As Double
+    Dim oxygenAtomsChem(25) As Double
+    
+    ' Store the total atom counts
+    Dim carbonMols As Double
+    carbonMols = 0#
+    Dim hydrogenMols As Double
+    hydrogenMols = 0#
+    Dim oxygenFuelMols As Double
+    oxygenFuelMols = 0#
+    Dim oxygenAirMols As Double
+    oxygenAirMols = 0#
     
     ' Indexing and arrays for EOS information
     Dim iChems As Long
@@ -88,12 +122,29 @@ Function BalanceCombustion(strFuel As Variant, strAir As Variant, _
         molsAir(idx) = GetMols(strChem(idx), strAir)
         molsDiluent(idx) = GetMols(strChem(idx), strDiluent)
         
-        ' Extract the number of atoms for each fluid in the database
-        carbonAtoms(idx) = GetElem(strChem(idx), "C")
-        hydrogenAtoms(idx) = GetElem(strChem(idx), "H")
-        oxygenAtoms(idx) = GetElem(strChem(idx), "O")
+        ' Extract the number of atoms for each fluid in the database and total
+        ' the mols for each one.
+        carbonAtomsChem(idx) = GetElem(strChem(idx), "C")
+        carbonMols = carbonMols + (molsFuel(idx) * carbonAtomsChem(idx))
+        
+        hydrogenAtomsChem(idx) = GetElem(strChem(idx), "H")
+        hydrogenMols = hydrogenMols + (molsFuel(idx) * hydrogenAtomsChem(idx))
+        
+        oxygenAtomsChem(idx) = GetElem(strChem(idx), "O")
+        oxygenFuelMols = oxygenFuelMols + (molsFuel(idx) * oxygenAtomsChem(idx))
+        oxygenAirMols = oxygenAirMols + (molsAir(idx) * oxygenAtomsChem(idx))
         
     Next idx
+    
+    ' Some of the calculatioins are simpler if we define mols of air
+    Dim molsAirO2 As Double
+    molsAirO2 = (oxygenAirMols / 2#)
+    
+    ' To simplify the problem force the fuel to have hydrogen
+    If hydrogenMols <= 0 Then
+        Err.Raise 1, "FuelHasNoHydrogen", _
+            "Assertion failed: Fuel must have at least one hydrogen atom"
+    End If
     
     ' Setup the combustion product mol weight vector
     Dim molsProducts(25) As Double
@@ -101,55 +152,103 @@ Function BalanceCombustion(strFuel As Variant, strAir As Variant, _
         molsProducts(idx) = 0#
     Next idx
     
-    ' Setup indexes to the assumed combustion products
+    ' Set indexes to the assumed combustion products
     Dim idxCO2 As Long
     idxCO2 = 12
     Dim idxN2 As Long
     idxN2 = 14
     Dim idxH2O As Long
     idxH2O = 17
+    Dim idxCO As Long
+    idxCO = 19
     Dim idxO2 As Long
     idxO2 = 21
             
     ' Calculate total carbon and hydrogen mols in the fuel and oxygen in the air
-    Dim molsO As Double
-    molsO = 0#
-    For idx = 0 To (iEOSCount - 1)
+    Dim molStoich As Double
+    molStoich = carbonMols + (hydrogenMols / 4#) - (oxygenFuelMols / 2#)
     
-        molsProducts(idxCO2) = molsProducts(idxCO2) + (molsFuel(idx) * carbonAtoms(idx))
-        molsProducts(idxH2O) = molsProducts(idxH2O) + (molsFuel(idx) * hydrogenAtoms(idx)) / 2
-        molsO = molsO + (molsAir(idx) * oxygenAtoms(idx))
+    
+    ' Calculate the equivalence ratio as:
+    Dim equivRatio As Double
+    equivRatio = molStoich / (oxygenAirMols / 2#)
         
-    Next idx
+    ' If allowed by input arguements, balance the elements
+    If bStoichometric Or ((equivRatio - 1) < dTrace) Then
     
+        ' For the stoichiometric case (no dissasociation):
+        ' molsProducts(idxCO), equals zero for this case (complete combustion)
+        ' molsProducts(idxCO2), equals the number of carbon mols (n2 = x)
+        ' molsProducts(idxH2O), equals the half the number of hydrogen mols (n3 = y/2)
+        ' molsProducts(idxN2), equals mols of air times mols of nitrogen (m * f)
+        molsProducts(idxCO) = 0#
+        molsProducts(idxCO2) = carbonMols
+        molsProducts(idxH2O) = (hydrogenMols / 2#)
+        ' Finally, balance out the nitrogen and input air
+        molsProducts(idxN2) = (molStoich * molsAir(idxN2))
+        
+        ' Update input air stream to finish the balance
+        molsAir(idxN2) = molsProducts(idxN2)
+        molsAir(idxO2) = (molStoich * molsAir(idxO2))
     
-    ' To simplify the problem force the fuel to have hydrogen
-    If molsProducts(idxH2O) <= 0 Then
-        Err.Raise 1, "FuelHasNoHydrogen", _
-            "Assertion failed: Fuel must have hydrogen"
+    Else
+        
+        ' For this case, the product stream may contain excess oxygen
+        ' or excess fuel.
+        
+        ' Fuel rich case ignoring disassociation. From the paper the rationale is as follows:
+        '   "If fuel rich, m < ms, and there is no O2 or H2 in the products, it is
+        '   assumed that the lack of sufficient oxygen affects the CO2 only
+        '   (part of the C oxidizing only as far as CO). The very reactive hydrogen, H,
+        '   is assumed to fully oxidize to H2O.
+        '   ...
+        '   These equations hold for m ? mmin only. The cases m < mmin are of limited
+        '   interest, for then not all the fuel burns, flame temperatures are low, ignition
+        '   is a problem, and poor flames result. These extreme fuel-rich flames will be
+        '   excluded from further discussion."
+        
+        ' n1 = molsProducts(idxCO), twice the difference between stoichiometery and input
+        ' air mass, n1 = 2 *(ms – m)
+        molsProducts(idxCO) = 2# * (molStoich - molsAirO2)
+        
+        ' Minimum air calculation (only oxidizes to CO and H2O)
+        Dim molMin As Double
+        molMin = (carbonMols / 2#) + (hydrogenMols / 4#)
+        
+        ' Enforce the limit on excessive fuel
+        If molsAirO2 < molMin Then
+            Err.Raise 1, "ExcessiveFuel", _
+                "Assertion failed: Fuel mass results in low flame temperatures and unlikely to ignite."
+        End If
+    
+        ' Use the minimum air mass to determine rest of components
+        ' n2 = molsProducts(idxCO2), equals the number of carbon mols (n2 =  2 *( m - mmin))
+        molsProducts(idxCO2) = (2# * (molsAirO2 - molMin))
+        
+        ' n3 = molsProducts(idxH2O), All the reactive hydrogens bond to oxygen (n3 = y/2)
+        molsProducts(idxH2O) = (hydrogenMols / 2#)
+        
+        ' Bring across the unburned fuel
+        molsFuelUnburned = carbonMols - (molsProducts(idxCO) + molsProducts(idxCO2))
+        For idx = 0 To (iEOSCount - 1)
+            If molsFuel(idx) > dTrace Then
+                molsProducts(idx) = molsFuelUnburned
+            End If
+        Next idx
+        
+        ' Finally, balance out the nitrogen and input air
+        molsProducts(idxN2) = molsAir(idxN2)
+        
+         
     End If
-
-    ' Calculate required oxygen for complete combustion
-    Dim molsOComplete As Double
-    ' CO2 requires 2 O per C, and H2O requires 1 O per H
-    molsOComplete = (2 * molsProducts(idxCO2) + (molsProducts(idxH2O) * 2#) / 2#)
     
-    ' Does the reaction require additional oxygen need to
-    ' balance for complete combustion?
-    Dim AirIncrease As Double
-    AirIncrease = 1#
-    If molsOComplete > molsO Then
-        AirIncrease = molsOComplete / molsO
-    End If
     
-    ' Finally, balance out the nitrogen
-    molsProducts(idxN2) = AirIncrease * molsAir(14)
-    
-    ' Build the reaction streams
-    Dim strFuelMod As String, strAirMod As String, strDiluentMod As String
+    ' Build the reaction strings
+    Dim strFuelMod As String, strAirMod As String, strDiluentMod As String, strProd As String
     strFuelMod = ""
     strAirMod = ""
     strDiluentMod = ""
+    strProd = ""
     For idx = 0 To (iEOSCount - 1)
             
         ' Build out the fuel formulas
@@ -171,9 +270,9 @@ Function BalanceCombustion(strFuel As Variant, strAir As Variant, _
             
             ' Seed the string if it hasn't been done
             If Len(strAirMod) < 1 Then
-                strAirMod = FormatNumber(AirIncrease * molsAir(idx), 4)
+                strAirMod = FormatNumber(molsAir(idx), 4)
             Else
-                strAirMod = strAirMod & " + " & FormatNumber(AirIncrease * molsAir(idx), 4)
+                strAirMod = strAirMod & " + " & FormatNumber(molsAir(idx), 4)
             End If
             
             strAirMod = strAirMod & strChem(idx)
@@ -184,34 +283,40 @@ Function BalanceCombustion(strFuel As Variant, strAir As Variant, _
         If molsDiluent(idx) > 0 Then
             
             ' Seed the string if it hasn't been done
-            If Len(strAirMod) < 1 Then
-                strDiluentMod = FormatNumber(AirIncrease * molsDiluent(idx), 4)
+            If Len(strDiluentMod) < 1 Then
+                strDiluentMod = FormatNumber(molsDiluent(idx), 4)
             Else
-                strDiluentMod = strDiluentMod & " + " & FormatNumber(AirIncrease * molsDiluent(idx), 4)
+                strDiluentMod = strDiluentMod & " + " & FormatNumber(molsDiluent(idx), 4)
             End If
             
             strDiluentMod = strDiluentMod & strChem(idx)
             
         End If
         
+        ' Build out the combustion products stream
+        If molsProducts(idx) > 0 Then
+            
+            ' Seed the string if it hasn't been done
+            If Len(strProd) < 1 Then
+                strProd = FormatNumber(molsProducts(idx), 4)
+            Else
+                strProd = strProd & " + " & FormatNumber(molsProducts(idx), 4)
+            End If
+            
+            strProd = strProd & strChem(idx)
+            
+        End If
+        
     Next idx
 
-    ' Build the balanced equation string
+    ' Build the final balanced equation string
     outputString = strFuelMod & " + " & strAirMod
     If Len(strDiluentMod) > 1 Then
         outputString = outputString & " + " & strDiluentMod & "-> "
     Else
         outputString = outputString & "->"
     End If
-    If molsProducts(idxCO2) > dTrace Then
-        outputString = outputString & FormatNumber(molsProducts(idxCO2), 4) & "CO2 + "
-    End If
-    If molsProducts(idxH2O) > dTrace Then
-        outputString = outputString & FormatNumber(molsProducts(idxH2O), 4) & "H2O + "
-    End If
-    If molsProducts(idxN2) > dTrace Then
-        outputString = outputString & FormatNumber(molsProducts(idxN2), 4) & "N2"
-    End If
+    outputString = outputString & strProd
 
     ' Return the balanced equation
     BalanceCombustion = outputString
