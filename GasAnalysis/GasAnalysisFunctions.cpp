@@ -401,13 +401,13 @@ int ShowH_H298_USCS(int* eosset,
 }
 
 /// <summary>
-/// Returns the ideal gas entropy in SI units based on the Passut-Danner correlation.
+/// Returns the ideal gas enthalpy in SI units based on the Passut-Danner correlation.
 /// </summary>
 /// <param name="eosset">Pointer to a double representing the EOS set. Currently not used but included for future compatibility.</param>
 /// <param name="temp">Pointer to a double representing the temperature in kelvin.</param>
 /// <param name="MixtureArray">Pointer to a double array representing the mixture.</param>
-/// <param name="Precision">Double representing the solver's precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of iterations for the solver.</param>
+/// <param name="Precision">Pointer to a double representing the solver's precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of iterations for the solver.</param>
 /// <param name="h">Pointer to a double where the calculated entropy will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -424,10 +424,10 @@ int ShowH_H298_USCS(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowHIdeal_SI(int* eosset,
-	double temp,
+	double* temp,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -466,11 +466,11 @@ int ShowHIdeal_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the ideal entropy
-	*h = bwrs->GetHIdeal_SI(temp);
+	*h = bwrs->GetHIdeal_SI(*temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -490,8 +490,8 @@ int ShowHIdeal_SI(int* eosset,
 /// <param name="eosset">Pointer to a double representing the EOS set. Currently not used but included for future compatibility.</param>
 /// <param name="temp">Pointer to a double representing the temperature in Rankine.</param>
 /// <param name="MixtureArray">Pointer to a double array representing the mixture.</param>
-/// <param name="Precision">Double representing the solver's precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of iterations for the solver.</param>
+/// <param name="Precision">Pointer to a double representing the solver's precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of iterations for the solver.</param>
 /// <param name="h">Pointer to a double where the calculated entropy will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -508,10 +508,10 @@ int ShowHIdeal_SI(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowHIdeal_USCS(int* eosset,
-	double temp,
+	double* temp,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -546,11 +546,11 @@ int ShowHIdeal_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the pressure
-	*h = bwrs->GetHIdeal_USCS(temp);
+	*h = bwrs->GetHIdeal_USCS(*temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
