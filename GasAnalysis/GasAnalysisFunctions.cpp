@@ -256,10 +256,10 @@ int ShowFormula(int* fluidindex, char* textline,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowH_H298_SI(int* eosset,
-	double temp,
+	double* temp,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -298,13 +298,13 @@ int ShowH_H298_SI(int* eosset,
 	}
 
 	//Now load the solver configuration. Begin by setting the solver precision.
-	bwrs->SetPrecision(Precision);
+	bwrs->SetPrecision(*Precision);
 
 	//...And the maximum number of iterations
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the enthalpy by passing the temperature into the BWRS object
-	*h = bwrs->Geth_h298_SI(temp);
+	*h = bwrs->Geth_h298_SI(*temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -340,10 +340,10 @@ int ShowH_H298_SI(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowH_H298_USCS(int* eosset,
-	double temp,
+	double* temp,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -382,11 +382,11 @@ int ShowH_H298_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the pressure
-	*h = bwrs->Geth_h298_USCS(temp);
+	*h = bwrs->Geth_h298_USCS(*temp);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -1363,8 +1363,8 @@ int ShowHfo_USCS(int* fluidindex, double* h,
  /// </summary>
  /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
  /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
- /// <param name="Precision">Double representing the solver precision.</param>
- /// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+ /// <param name="Precision">Pointer to a double representing the solver precision.</param>
+ /// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
  /// <param name="h">Pointer to a double to hold the calculated ethalpy in SI units.</param>
  /// <param name="priority01">Pointer to a double representing the error priority.</param>
  // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -1383,8 +1383,8 @@ int ShowHfo_USCS(int* fluidindex, double* h,
 /// </todo>
 int ShowHfo_mx_SI(int* eosset,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -1419,8 +1419,8 @@ int ShowHfo_mx_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the enthalpy
 	*h = bwrs->Gethfo_SI();
@@ -1442,8 +1442,8 @@ int ShowHfo_mx_SI(int* eosset,
 /// </summary>
 /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
 /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer  to a couble representing the maximum number of solver iterations.</param>
 /// <param name="h">Pointer to a double to hold the calculated ethalpy in USCS units.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 // <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
@@ -1462,8 +1462,8 @@ int ShowHfo_mx_SI(int* eosset,
 /// </todo>
 int ShowHfo_mx_USCS(int* eosset,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* h,
 	double* priority01,
 	char* mainerrline01)
@@ -1498,8 +1498,8 @@ int ShowHfo_mx_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the pressure
 	*h = bwrs->Gethfo_USCS();
