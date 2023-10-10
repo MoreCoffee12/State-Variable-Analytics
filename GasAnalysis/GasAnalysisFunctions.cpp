@@ -1359,7 +1359,7 @@ int ShowHfo_USCS(int* fluidindex, double* h,
 }
 
  /// <summary>
- /// Retrieves the ideal gas enthalpy of formation for the mixture in SI, kJ/kg, using the CBWRS class.
+ /// Retrieves the ideal gas enthalpy of formation for the mixture in SI, J/gmol, using the CBWRS class.
  /// </summary>
  /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
  /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
@@ -1438,7 +1438,7 @@ int ShowHfo_mx_SI(int* eosset,
 }
 
 /// <summary>
-/// Retrieves the ideal gas enthalpy of formation for the mixture in USCS, BTU/lb, using the CBWRS class.
+/// Retrieves the ideal gas enthalpy of formation for the mixture in USCS, BTU/lbmol, using the CBWRS class.
 /// </summary>
 /// <param name="eosset">Pointer to a short representing the equation of state set. Currently unused, but reserved for future compatibility.</param>
 /// <param name="MixtureArray">Pointer to a double array containing the mole percentages of the mixture.</param>
