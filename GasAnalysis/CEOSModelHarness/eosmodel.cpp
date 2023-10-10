@@ -50,7 +50,7 @@ CEOSMODEL::CEOSMODEL()
            2nd ed.  Houston : Gulf Publishing Co., 1981.
 
      4.   Reynolds, W.C.  Thermodynamic Properties in SI.
-           Stanform : Department of Mechanical Engineering, 1979.
+           Stanford : Department of Mechanical Engineering, 1979.
 
      5.   Lindeburg, Michael F.  Mechanical Engineering Reference Manual
            10th ed.  Belmont : Professional Publications, Inc., 1998.
