@@ -10,6 +10,15 @@
 //
 // Brian Howard
 //////////////////////////////////////////////////////////////////////
+//
+// Revision, 13 Oct 2023
+//
+// Updated to include heat of vaporization functions.
+//
+// B. Howard
+//
+/////////////////////////////////////////////////////////////////////
+
 #include "string.h"
 #include "math.h"
 #include "FluidProp.h"
@@ -170,6 +179,11 @@ public:
 	double			GetHIdeal_USCS( double T );
 	double			GetHIdeal_SI( double T );
 
+	// Revision, 13 Oct 2023, enthalpy of vaporization
+	double GetHvap_SI(int iFluidindex, double T);
+	double GetHvap_USCS(int iFluidindex, double T);
+
+	// The EOS must provide the departure functions
 	virtual double  GetHDepart_TP_USCS( double T, double P ) = 0;
 	virtual double  GetHDepart_TP_SI( double T, double P ) = 0;
 	virtual double  GetHDepart_MT_USCS( double M, double T ) = 0;

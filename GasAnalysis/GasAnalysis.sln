@@ -4,6 +4,8 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GasAnalysis", "GasAnalysis.vcxproj", "{2D869D02-BFB0-4901-94D3-4A8039BBE893}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CEOSModelHarness", "CEOSModelHarness\CEOSModelHarness.vcxproj", "{44217B3B-8DBF-4A0C-A127-EEADFAA75576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -20,6 +22,14 @@ Global
 		{2D869D02-BFB0-4901-94D3-4A8039BBE893}.Release|Win32.Build.0 = Release|Win32
 		{2D869D02-BFB0-4901-94D3-4A8039BBE893}.Release|x64.ActiveCfg = Release|x64
 		{2D869D02-BFB0-4901-94D3-4A8039BBE893}.Release|x64.Build.0 = Release|x64
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Debug|Win32.ActiveCfg = Debug|Win32
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Debug|Win32.Build.0 = Debug|Win32
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Debug|x64.ActiveCfg = Debug|x64
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Debug|x64.Build.0 = Debug|x64
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Release|Win32.ActiveCfg = Release|Win32
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Release|Win32.Build.0 = Release|Win32
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Release|x64.ActiveCfg = Release|x64
+		{44217B3B-8DBF-4A0C-A127-EEADFAA75576}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,6 +39,14 @@
 // B. Howard
 //
 /////////////////////////////////////////////////////////////////////
+//
+// Revision, 13 Oct 2023
+//
+// Updated to include heat of vaporization functions.
+//
+// B. Howard
+//
+/////////////////////////////////////////////////////////////////////
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
@@ -1074,7 +1082,30 @@ void main ()
      fprintf( stream, "Mixture,,%f\n", eos->GetPercentMW( 17 ) );
 
      fprintf( stream, "%f\n", eos->GetViscosityGas_TP_SI( 1, 520 ) );
-     
+
+	 /////////////////////////////////////////////////////////////////////
+	 // Revision, 13 Oct 2023
+	 // Added enthalpy of vaporization tests
+	 /////////////////////////////////////////////////////////////////////
+	 //
+	 // All test values have been calculated in the 
+	 // "EnthalpyOfVaporization_TestHarness.xlsx" test harness spreadsheet
+	 /////////////////////////////////////////////////////////////////////
+	 // Begin with Methane.
+	 dTemp2 = 100;
+	 dTemp = eos->GetHvap_SI(1, dTemp2);
+	 fprintf(stream, "Beginning enthalpy of vaporization testing for methane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 //Load the data into the eos object
+	 if (abs(dTemp - 8466.86512871929) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_SI failed to calculate methane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
     /////////////////////////////////////////////////////////////////////
 	// End-of-program housekeeping functions
     /////////////////////////////////////////////////////////////////////

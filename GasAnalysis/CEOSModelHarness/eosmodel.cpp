@@ -3,6 +3,14 @@
 // EOSMODEL.cpp: implementation of the CEOSMODEL class.
 //
 //////////////////////////////////////////////////////////////////////
+//
+// Revision, 13 Oct 2023
+//
+// Updated to include heat of vaporization functions.
+//
+// B. Howard
+//
+/////////////////////////////////////////////////////////////////////
 
 #include "EOSMODEL.h"
 
@@ -37,6 +45,7 @@ CEOSMODEL::CEOSMODEL()
      B0...F              Ideal Entropy Fit Params           3
      A[0]...B[11]        Corrosponding States, Lee-Kesler   3
      hfo,sfo             Enthalpy/entropy of formation      6,7
+     hvap                Enthalpy of evaporation            7
      LHV                 Lower heating values               6
      A..E                Correlation for ideal gas Cp       6,7
 
@@ -87,6 +96,7 @@ CEOSMODEL::CEOSMODEL()
      Enthalpy                      BTU/lb                   kJ/kg
      Entropy of formation          BTU/(lbmol-R)            J/(gmol-K)
      Enthalpy of formation         BTU/lbmol                J/gmol
+     Enthalpy of vaporization      BTU/lbmol                J/gmol
      Dipole Moment                 -                        Debye, 3.162 * 10^-25 (J-m3)^(1/2)
      Viscosity (absolute)          lb/ft-sec                kg/m-sec
      Fugacity 				       PSIA                     bar(a)
@@ -601,6 +611,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 45.99;
      FluidList[arrayindex].hfo_SI            = -7.45200 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +1.86270 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A            = 10.312;
+     FluidList[arrayindex].hvap_n            = 0.265;
+     FluidList[arrayindex].hvap_Tmin_SI      = 90.67;
+     FluidList[arrayindex].hvap_Tmax_SI      = 190.58;
      FluidList[arrayindex].LHV_SI            = -802618;
      FluidList[arrayindex].HHV_SI            = -891308;
      ToUSCS( ( arrayindex + 1 ) );
@@ -4849,7 +4864,7 @@ double CEOSMODEL::GetHIdeal_USCS( double T )
    Term5      = 0;
    Term6      = 0;
    
-    //This function calculates the ideal enthalpy(h) for a fluid
+    // This function calculates the ideal enthalpy(h) for a fluid
     Term1      = ( Mixture.A_mx );
     Term2      = ( Mixture.B_mx * T );
     Term3      = ( Mixture.C_mx * T * T );
@@ -4861,6 +4876,51 @@ double CEOSMODEL::GetHIdeal_USCS( double T )
   return ( Term1 + Term2 + Term3 + Term4 + Term5 + Term6 );
     
 }
+
+///////////////////////////////////////////////////////
+// Method Definition: 
+//   Using the modified Watson equation from Yaw's book
+//   calculate and return the enthalpy of vaporiztion
+//   in SI units (J/gmol) for a fluid. Add 13 Oct 2023
+///////////////////////////////////////////////////////
+double CEOSMODEL::GetHvap_SI(int iFluidindex, double dT)
+{
+
+    // Check for valid index 
+    if (!ValidityCheckFluid(iFluidindex))
+    {
+        AddMessage(messagelist, 50,
+            "GetHvap_SI failed validity check",
+            "");
+        return 0;
+    }
+
+    // Alert if the temperature falls below the minimum
+    if (dT < FluidList[(iFluidindex - 1)].hvap_Tmin_SI)
+    {
+        AddMessage(messagelist, 1,
+            "Vaporization termperature is below the minimum GetHvap_SI",
+            "Check the temperature value");
+        return -1;
+    }
+
+    // Alert if the temperature falls above the maximum
+    if (dT > FluidList[(iFluidindex - 1)].hvap_Tmax_SI)
+    {
+        AddMessage(messagelist, 1,
+            "Vaporization termperature is above the maximum GetHvap_SI",
+            "Check the temperature value");
+        return -1;
+    }
+
+    // Return the value using Watson equation on page 109
+    // of Yeas book.
+    return 1000 * (FluidList[(iFluidindex - 1)].hvap_A *
+        ( pow( ( 1.0 - dT / FluidList[(iFluidindex - 1)].Tc_SI),
+            FluidList[(iFluidindex - 1)].hvap_n ) ) );
+
+}
+
 ///////////////////////////////////////////////////////
 // Method Definition: 
 //   Returns the array size for the mixing parameter
@@ -7383,7 +7443,7 @@ bool CEOSMODEL::SetMixtureData( double *MixArray )
           Mixture.R_USCS_mx    = Mixture.R_USCS_mx + FluidList[i].R_USCS_mx;
      }  
      
-     //the ideal gas enthalp of formation (SI Units)
+     //the ideal gas enthalpy of formation (SI Units)
      Mixture.hfo_SI_mx      = 0;
      for(i=0; i<FluidCount; i++)
      {

@@ -5,6 +5,14 @@
 //
 // Brian Howard
 //////////////////////////////////////////////////////////////////////
+//
+// Revision, 13 Oct 2023
+//
+// Updated to include heat of vaporization functions.
+//
+// B. Howard
+//
+/////////////////////////////////////////////////////////////////////
 #ifndef _FluidProp
 #define _FluidProp
 
@@ -143,6 +151,14 @@ struct FluidProp
 	double		HHV_SI_mx;
 	double		HHV_USCS;
 	double		HHV_USCS_mx;
+
+	// Revision, 13 Oct 2023
+	// Added enthalpy of vaporization. Needed for especially for water to
+	// solve combustion problems.
+	double		hvap_A;
+	double		hvap_n;
+	double		hvap_Tmin_SI;
+	double		hvap_Tmax_SI;
 
 };
 
