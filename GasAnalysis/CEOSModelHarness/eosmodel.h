@@ -180,8 +180,8 @@ public:
 	double			GetHIdeal_SI( double T );
 
 	// Revision, 13 Oct 2023, enthalpy of vaporization
-	double GetHvap_SI(int iFluidindex, double T);
-	double GetHvap_USCS(int iFluidindex, double T);
+	double GetHvap_SI(int iFluidindex, double dT);
+	double GetHvap_USCS(int iFluidindex, double dT);
 
 	// The EOS must provide the departure functions
 	virtual double  GetHDepart_TP_USCS( double T, double P ) = 0;

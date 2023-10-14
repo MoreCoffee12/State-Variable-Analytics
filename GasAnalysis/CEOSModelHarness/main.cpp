@@ -1091,7 +1091,7 @@ void main ()
 	 // All test values have been calculated in the 
 	 // "EnthalpyOfVaporization_TestHarness.xlsx" test harness spreadsheet
 	 /////////////////////////////////////////////////////////////////////
-	 // Begin with Methane.
+	 // Begin with Methane, SI units
 	 dTemp2 = 100;
 	 dTemp = eos->GetHvap_SI(1, dTemp2);
 	 fprintf(stream, "Beginning enthalpy of vaporization testing for methane\n");
@@ -1101,6 +1101,21 @@ void main ()
 	 if (abs(dTemp - 8466.86512871929) > 1e-10)
 	 {
 		 strcpy_s(outputline, "GetHvap_SI failed to calculate methane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // Methane, USCS units
+	 dTemp2 = dTemp2 * (9.0 / 5.0);
+	 dTemp = eos->GetHvap_USCS(1, dTemp2);
+	 fprintf(stream, "Beginning enthalpy of vaporization testing for methane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 //Load the data into the eos object
+	 if (abs(dTemp - 3640.09678792747) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_USCS failed to calculate methane's enthalpy of vaporization.\n");
 		 printf(outputline);
 		 fprintf(stream, outputline);
 		 return;

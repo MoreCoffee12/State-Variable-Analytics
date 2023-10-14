@@ -4878,11 +4878,21 @@ double CEOSMODEL::GetHIdeal_USCS( double T )
 }
 
 ///////////////////////////////////////////////////////
-// Method Definition: 
-//   Using the modified Watson equation from Yaw's book
-//   calculate and return the enthalpy of vaporiztion
-//   in SI units (J/gmol) for a fluid. Add 13 Oct 2023
-///////////////////////////////////////////////////////
+/// <summary>
+/// Calculates the enthalpy of vaporization using the modified Watson equation from Yaw's book.
+/// </summary>
+/// <remarks>
+/// This method returns the enthalpy of vaporization in SI units (J/gmol) for a specified fluid 
+/// at a given temperature. The method utilizes the modified Watson equation and references data 
+/// and properties specific to the fluid from an internal fluid list.
+/// </remarks>
+/// <param name="iFluidindex">The index of the fluid in the internal fluid list.</param>
+/// <param name="dT">The temperature at which to calculate the enthalpy of vaporization.</param>
+/// <returns>
+/// Returns the enthalpy of vaporization in J/gmol. Returns 0 if the fluid index is invalid, 
+/// or the temperature dT falls outside the valid range for the specified fluid.
+/// </returns>
+/// <date>13 Oct 2023</date>
 double CEOSMODEL::GetHvap_SI(int iFluidindex, double dT)
 {
 
@@ -4901,7 +4911,7 @@ double CEOSMODEL::GetHvap_SI(int iFluidindex, double dT)
         AddMessage(messagelist, 1,
             "Vaporization termperature is below the minimum GetHvap_SI",
             "Check the temperature value");
-        return -1;
+        return 0;
     }
 
     // Alert if the temperature falls above the maximum
@@ -4919,6 +4929,28 @@ double CEOSMODEL::GetHvap_SI(int iFluidindex, double dT)
         ( pow( ( 1.0 - dT / FluidList[(iFluidindex - 1)].Tc_SI),
             FluidList[(iFluidindex - 1)].hvap_n ) ) );
 
+}
+
+/// <summary>
+/// Calculates the enthalpy of vaporization using the modified Watson equation from Yaw's book.
+/// </summary>
+/// <remarks>
+/// This method returns the enthalpy of vaporization in USCS units (BTU/lbmol) for a specified fluid 
+/// at a given temperature. The method utilizes the modified Watson equation and references data 
+/// and properties specific to the fluid from an internal fluid list.
+/// </remarks>
+/// <param name="iFluidindex">The index of the fluid in the internal fluid list.</param>
+/// <param name="dT">The temperature at which to calculate the enthalpy of vaporization.</param>
+/// <returns>
+/// Returns the enthalpy of vaporization in BTU/lbmol. Returns 0 if the fluid index is invalid, 
+/// or the temperature dT falls outside the valid range for the specified fluid.
+/// </returns>
+/// <date>13 Oct 2023</date>
+double CEOSMODEL::GetHvap_USCS(int iFluidindex, double dT)
+{
+    // The USCS function serves as a wrapper for the SI
+    return CEOSMODEL::GetHvap_SI(iFluidindex, dT * (5.0/9.0)) *
+        (500.0 / 1163.0);
 }
 
 ///////////////////////////////////////////////////////
