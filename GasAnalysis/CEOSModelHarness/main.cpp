@@ -1092,12 +1092,13 @@ void main ()
 	 // "EnthalpyOfVaporization_TestHarness.xlsx" test harness spreadsheet
 	 /////////////////////////////////////////////////////////////////////
 	 // Begin with Methane, SI units
+	 i = 1;
 	 dTemp2 = 100;
-	 dTemp = eos->GetHvap_SI(1, dTemp2);
-	 fprintf(stream, "Beginning enthalpy of vaporization testing for methane\n");
+	 dTemp = eos->GetHvap_SI(i, dTemp2);
+	 fprintf(stream, "Beginning SI enthalpy of vaporization testing for methane\n");
 	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
 
-	 //Load the data into the eos object
+	 // Load the data into the eos object
 	 if (abs(dTemp - 8466.86512871929) > 1e-10)
 	 {
 		 strcpy_s(outputline, "GetHvap_SI failed to calculate methane's enthalpy of vaporization.\n");
@@ -1108,14 +1109,107 @@ void main ()
 
 	 // Methane, USCS units
 	 dTemp2 = dTemp2 * (9.0 / 5.0);
-	 dTemp = eos->GetHvap_USCS(1, dTemp2);
-	 fprintf(stream, "Beginning enthalpy of vaporization testing for methane\n");
+	 dTemp = eos->GetHvap_USCS(i, dTemp2);
+	 fprintf(stream, "Beginning USCS enthalpy of vaporization testing for methane\n");
 	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
 
-	 //Load the data into the eos object
+	 // Load the data into the eos object
 	 if (abs(dTemp - 3640.09678792747) > 1e-10)
 	 {
 		 strcpy_s(outputline, "GetHvap_USCS failed to calculate methane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // Ethane, SI units
+	 i = i + 1;
+	 dTemp2 = 200;
+	 dTemp = eos->GetHvap_SI(i, dTemp2);
+	 fprintf(stream, "Beginning SI enthalpy of vaporization testing for Ethane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 // Load the data into the eos object
+	 if (abs(dTemp - 13897.94603645650) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_SI failed to calculate Ethane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // Ethane, USCS units
+	 dTemp2 = dTemp2 * (9.0 / 5.0);
+	 dTemp = eos->GetHvap_USCS(i, dTemp2);
+	 fprintf(stream, "Beginning USCS enthalpy of vaporization testing for Ethane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 // Load the data into the eos object
+	 if (abs(dTemp - 5975.04128824442) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_USCS failed to calculate Ethane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // Propane, SI units
+	 i = i + 1;
+	 dTemp2 = 190;
+	 dTemp = eos->GetHvap_SI(i, dTemp2);
+	 fprintf(stream, "Beginning SI enthalpy of vaporization testing for Propane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 // Load the data into the eos object
+	 if (abs(dTemp - 20667.82162566420 ) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_SI failed to calculate Propane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // Propane, USCS units
+	 dTemp2 = dTemp2 * (9.0 / 5.0);
+	 dTemp = eos->GetHvap_USCS(i, dTemp2);
+	 fprintf(stream, "Beginning USCS enthalpy of vaporization testing for Propane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 // Load the data into the eos object
+	 if (abs(dTemp - 8885.56389753406 ) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_USCS failed to calculate Propane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // I_Butane, SI units
+	 i = i + 1;
+	 dTemp2 = 220;
+	 dTemp = eos->GetHvap_SI(i, dTemp2);
+	 fprintf(stream, "Beginning SI enthalpy of vaporization testing for I_Butane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 // Load the data into the eos object
+	 if (abs(dTemp - 23579.95859137100 ) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_SI failed to calculate I_Butane's enthalpy of vaporization.\n");
+		 printf(outputline);
+		 fprintf(stream, outputline);
+		 return;
+	 }
+
+	 // I_Butane, USCS units
+	 dTemp2 = dTemp2 * (9.0 / 5.0);
+	 dTemp = eos->GetHvap_USCS(i, dTemp2);
+	 fprintf(stream, "Beginning USCS enthalpy of vaporization testing for I_Butane\n");
+	 fprintf(stream, "T test,K, %f -> Hvap %f kJ/kmol \n", dTemp2, dTemp);
+
+	 // Load the data into the eos object
+	 if (abs(dTemp - 10137.55743395140 ) > 1e-10)
+	 {
+		 strcpy_s(outputline, "GetHvap_USCS failed to calculate I_Butane's enthalpy of vaporization.\n");
 		 printf(outputline);
 		 fprintf(stream, outputline);
 		 return;
