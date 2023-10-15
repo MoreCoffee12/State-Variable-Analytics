@@ -886,6 +886,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 37.96;
      FluidList[arrayindex].hfo_SI            = -1.25790 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +3.09910 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 33.020;
+     FluidList[arrayindex].hvap_n = 0.377;
+     FluidList[arrayindex].hvap_Tmin_SI = 134.86;
+     FluidList[arrayindex].hvap_Tmax_SI = 425.18;
      FluidList[arrayindex].LHV_SI            = -2657300;
      FluidList[arrayindex].HHV_SI            = -2878360;
      ToUSCS( ( arrayindex + 1 ) );
@@ -950,6 +955,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 33.81;
      FluidList[arrayindex].hfo_SI            = -1.53700 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +3.43740 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 37.692;
+     FluidList[arrayindex].hvap_n = 0.395;
+     FluidList[arrayindex].hvap_Tmin_SI = 113.25;
+     FluidList[arrayindex].hvap_Tmax_SI = 460.43;
      FluidList[arrayindex].LHV_SI            = -3239500;
      FluidList[arrayindex].HHV_SI            = -3529982;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1014,6 +1024,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 33.70;
      FluidList[arrayindex].hfo_SI            = -1.46760 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +3.49450 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 39.854;
+     FluidList[arrayindex].hvap_n = 0.398;
+     FluidList[arrayindex].hvap_Tmin_SI = 143.42;
+     FluidList[arrayindex].hvap_Tmax_SI = 469.65;
      FluidList[arrayindex].LHV_SI            = -3244900;
      FluidList[arrayindex].HHV_SI            = -3536922;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1078,6 +1093,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 30.25;
      FluidList[arrayindex].hfo_SI            = -1.66940 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +3.88740 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 45.610;
+     FluidList[arrayindex].hvap_n = 0.401;
+     FluidList[arrayindex].hvap_Tmin_SI = 177.84;
+     FluidList[arrayindex].hvap_Tmax_SI = 507.43;
      FluidList[arrayindex].LHV_SI            = -3855100;
      FluidList[arrayindex].HHV_SI            = -4196274;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1142,6 +1162,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 27.40;
      FluidList[arrayindex].hfo_SI            = -1.87650 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +4.27980 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 49.730;
+     FluidList[arrayindex].hvap_n = 0.386;
+     FluidList[arrayindex].hvap_Tmin_SI = 182.56;
+     FluidList[arrayindex].hvap_Tmax_SI = 540.26;
      FluidList[arrayindex].LHV_SI            = -4464700;
      FluidList[arrayindex].HHV_SI            = -4855096;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1206,6 +1231,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 24.90;
      FluidList[arrayindex].hfo_SI            = -2.08750 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +4.67230 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 59.077;
+     FluidList[arrayindex].hvap_n = 0.439;
+     FluidList[arrayindex].hvap_Tmin_SI = 216.38;
+     FluidList[arrayindex].hvap_Tmax_SI = 566.83;
      FluidList[arrayindex].LHV_SI            = -5074200;
      FluidList[arrayindex].HHV_SI            = -5513528;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1270,6 +1300,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 50.41;
      FluidList[arrayindex].hfo_SI            = +5.25100 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +2.19200 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 19.986;
+     FluidList[arrayindex].hvap_n = 0.431;
+     FluidList[arrayindex].hvap_Tmin_SI = 103.97;
+     FluidList[arrayindex].hvap_Tmax_SI = 282.36;
      FluidList[arrayindex].LHV_SI            = -1323000;
      FluidList[arrayindex].HHV_SI            = -1411574;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1334,6 +1369,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 46.00;
      FluidList[arrayindex].hfo_SI            = +1.97100 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +2.66600 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 26.098;
+     FluidList[arrayindex].hvap_n = 0.358;
+     FluidList[arrayindex].hvap_Tmin_SI = 87.90;
+     FluidList[arrayindex].hvap_Tmax_SI = 364.76;
      FluidList[arrayindex].LHV_SI            = -1925700;
      FluidList[arrayindex].HHV_SI            = -2058306;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1398,6 +1438,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 73.74;
      FluidList[arrayindex].hfo_SI            = -3.93510 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +2.13680 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 18.260;
+     FluidList[arrayindex].hvap_n = 0.240;
+     FluidList[arrayindex].hvap_Tmin_SI = 216.58;
+     FluidList[arrayindex].hvap_Tmax_SI = 304.19;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1462,6 +1507,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 89.63;
      FluidList[arrayindex].hfo_SI            = -2.06300 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +2.05600 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 21.230;
+     FluidList[arrayindex].hvap_n = 0.219;
+     FluidList[arrayindex].hvap_Tmin_SI = 187.68;
+     FluidList[arrayindex].hvap_Tmax_SI = 373.53;
      FluidList[arrayindex].LHV_SI            = -518000;
      FluidList[arrayindex].HHV_SI            = -562232;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1526,6 +1576,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 33.98;
      FluidList[arrayindex].hfo_SI            = -0.00000 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +1.91500 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 9.430;
+     FluidList[arrayindex].hvap_n = 0.533;
+     FluidList[arrayindex].hvap_Tmin_SI = 63.15;
+     FluidList[arrayindex].hvap_Tmax_SI = 126.10;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1590,6 +1645,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 12.97;
      FluidList[arrayindex].hfo_SI            = -0.00000 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +1.30570 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 0.659;
+     FluidList[arrayindex].hvap_n = 0.380;
+     FluidList[arrayindex].hvap_Tmin_SI = 13.95;
+     FluidList[arrayindex].hvap_Tmax_SI = 33.18;
      FluidList[arrayindex].LHV_SI            = -241800;
      FluidList[arrayindex].HHV_SI            = -286022;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1667,6 +1727,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 113.53;
      FluidList[arrayindex].hfo_SI            = -4.58980 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +1.92660 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 31.523;
+     FluidList[arrayindex].hvap_n = 0.364;
+     FluidList[arrayindex].hvap_Tmin_SI = 195.41;
+     FluidList[arrayindex].hvap_Tmax_SI = 405.65;
      FluidList[arrayindex].LHV_SI            = -316800;
      FluidList[arrayindex].HHV_SI            = -383135;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1731,6 +1796,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 220.64;
      FluidList[arrayindex].hfo_SI            = -2.41814 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +1.88720 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 52.053;
+     FluidList[arrayindex].hvap_n = 0.321;
+     FluidList[arrayindex].hvap_Tmin_SI = 273.16;
+     FluidList[arrayindex].hvap_Tmax_SI = 647.13;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1796,6 +1866,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 37.585;
      FluidList[arrayindex].hfo_SI            = -0.00000 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +1.99000 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization...not defined for air
+     FluidList[arrayindex].hvap_A = 0;
+     FluidList[arrayindex].hvap_n = 0;
+     FluidList[arrayindex].hvap_Tmin_SI = 0;
+     FluidList[arrayindex].hvap_Tmax_SI = 0;
      FluidList[arrayindex].LHV_SI            = +0.00000 * pow( 10.0, +05.0 );
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1860,6 +1935,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 34.94;
      FluidList[arrayindex].hfo_SI            = -1.10530 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +1.97560 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 8.003;
+     FluidList[arrayindex].hvap_n = 0.318;
+     FluidList[arrayindex].hvap_Tmin_SI = 68.15;
+     FluidList[arrayindex].hvap_Tmax_SI = 132.92;
      FluidList[arrayindex].LHV_SI            = -283000;
      FluidList[arrayindex].HHV_SI            = -283000;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1924,6 +2004,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 48.98;
      FluidList[arrayindex].hfo_SI            = -0.00000 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +1.54740 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 8.729;
+     FluidList[arrayindex].hvap_n = 0.352;
+     FluidList[arrayindex].hvap_Tmin_SI = 83.78;
+     FluidList[arrayindex].hvap_Tmax_SI = 150.86;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -1988,6 +2073,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 50.43;
      FluidList[arrayindex].hfo_SI            = -0.00000 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +2.05040 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 8.040;
+     FluidList[arrayindex].hvap_n = 0.201;
+     FluidList[arrayindex].hvap_Tmin_SI = 54.35;
+     FluidList[arrayindex].hvap_Tmax_SI = 154.58;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -2052,6 +2142,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 78.84;
      FluidList[arrayindex].hfo_SI            = -2.96840 * pow( 10.0, +05.0 );
      FluidList[arrayindex].sfo_SI            = +2.48100 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 46.900;
+     FluidList[arrayindex].hvap_n = 0.636;
+     FluidList[arrayindex].hvap_Tmin_SI = 197.67;
+     FluidList[arrayindex].hvap_Tmax_SI = 430.75;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -2116,6 +2211,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 40.59;
      FluidList[arrayindex].hfo_SI            = +0.00000 * pow( 10.0, +04.0 );
      FluidList[arrayindex].sfo_SI            = +0.00000 * pow( 10.0, +02.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 30.842;
+     FluidList[arrayindex].hvap_n = 0.367;
+     FluidList[arrayindex].hvap_Tmin_SI = 172.15;
+     FluidList[arrayindex].hvap_Tmax_SI = 380.00;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
@@ -2180,6 +2280,11 @@ CEOSMODEL::CEOSMODEL()
      FluidList[arrayindex].Pc_SI             = 48.43;
      FluidList[arrayindex].hfo_SI            = +3.430000 * pow( 10.0, +01.0 );
      FluidList[arrayindex].sfo_SI            = -7.580000 * pow( 10.0, +01.0 );
+     // Revision, 13 Oct 2023, added enthalpy of vaporization
+     FluidList[arrayindex].hvap_A = 16.660;
+     FluidList[arrayindex].hvap_n = 0.320;
+     FluidList[arrayindex].hvap_Tmin_SI = 88.48;
+     FluidList[arrayindex].hvap_Tmax_SI = 269.70;
      FluidList[arrayindex].LHV_SI            = 0.0;
      FluidList[arrayindex].HHV_SI            = 0.0;
      ToUSCS( ( arrayindex + 1 ) );
