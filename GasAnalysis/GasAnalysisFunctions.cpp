@@ -1516,6 +1516,103 @@ int ShowHfo_mx_USCS(int* eosset,
 	return errs;
 }
 
+/// <summary>
+/// Retrieves the ethalpy of vaporization in SI units, kJ/kmol, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="dT">Pointer to a double with fluid temperature in SI units, kelvin.</param>
+/// <param name="dh">Pointer to a double to hold the fluid enthalpy of formation in SI units, kJ/kmol.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
+int ShowHvap_SI(int* fluidindex, double* dT, double* dh,
+	double* priority01,
+	char* mainerrline01)
+{
+	// Local variables
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
+	char* pmerrline;
+
+	// Initialize local variables
+	errs = 0;
+	*dh = bwrs->GetHvap_SI(*fluidindex, *dT);
+	i = 0;
+	pmerrline = NULL;
+
+	//Check to see if the action generated any errors
+	errs = bwrs->GetMessageCount();
+	if (errs > 0)
+	{
+		pmerrline = bwrs->GetMessageMain(1);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
+		*priority01 = bwrs->GetMessagePriority(1);
+	}
+
+	return errs;
+}
+
+/// <summary>
+/// Retrieves the ethalpy of vaporization in USCS units, BTU/lbmol, and error information for a given fluid index using the CBWRS class.
+/// </summary>
+/// <param name="fluidindex">Pointer to an integer representing the fluid index.</param>
+/// <param name="dT">Pointer to a double with fluid temperature in USCS units, Rankine.</param>
+/// <param name="dh">Pointer to a double to hold the fluid enthalpy of formation in USCS units, BTU/lbmol.</param>
+/// <param name="priority01">Pointer to a double representing the error priority.</param>
+/// <param name="mainerrline01">Pointer to a char array to hold the main error line.</param>
+/// <returns>An integer representing the number of errors (0 for no errors).</returns>
+/// <remarks>
+/// This function uses std::unique_ptr for better memory management and to avoid stack overflow issues.
+/// </remarks>
+/// <warning>
+/// Make sure that the char arrays (mainerrline01) are allocated with sufficient space before calling this function.
+/// </warning>
+/// <todo>
+/// Next-time-open items:
+/// 1. Handle nullptr values.
+/// 2. Add validation and test harness.
+/// </todo>
+int ShowHvap_USCS(int* fluidindex, double* dT, double* dh,
+	double* priority01,
+	char* mainerrline01)
+{
+	// Local variables
+	std::unique_ptr<CBWRS> bwrs = std::make_unique<CBWRS>();
+	int errs;
+	int i;
+	char* pmerrline;
+
+	// Initialize local variables
+	errs = 0;
+	*dh = bwrs->GetHvap_USCS(*fluidindex, *dT);
+	i = 0;
+	pmerrline = NULL;
+
+	//Check to see if the action generated any errors
+	errs = bwrs->GetMessageCount();
+	if (errs > 0)
+	{
+		pmerrline = bwrs->GetMessageMain(1);
+		strcpy_s(mainerrline01, strlen(mainerrline01), pmerrline);
+		*priority01 = bwrs->GetMessagePriority(1);
+	}
+
+	return errs;
+}
+
+
  /// <summary>
  /// Retrieves the entropy of formation in SI units, BTU/(lbmol-R), and error information for a given fluid index using the CBWRS class.
  /// </summary>

@@ -588,6 +588,19 @@ Declare PtrSafe Function ShowMolWeight_mx _
                             ByVal textline01 As String, _
                             ByRef MixtureArray As Double) As Long
                             
+Declare PtrSafe Function ShowHvap_SI _
+    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+                            ByRef dT As Double, _
+                            ByRef dh As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Long
+                            
+Declare PtrSafe Function ShowHvap_USCS _
+    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+                            ByRef dT As Double, _
+                            ByRef dh As Double, _
+                            ByRef priority01 As Double, _
+                            ByVal textline01 As String) As Long
                             
 Declare PtrSafe Function ShowLHV_mx_SI _
     Lib "GasAnalysis.dll" (ByRef eosset As Long, _
@@ -7121,6 +7134,163 @@ End Function
 '
 '
 '
+
+
+' =============================================================================
+' Function Name:  VBShowHvap_SI
+' Purpose:        This function interacts with a C++ DLL to retrieve the ethalpy
+'                 of vaporization in SI units, kJ/kmol, and error information for
+'                 a given fluid index using the eosmodel class.
+'                 It serves as a wrapper for the ShowHvap_SI DLL function.
+'
+' Parameters:
+'   - fluidindex: The index representing the type of fluid.
+'   - dT: Fluid temperature in SI, kelvin.
+'   - ErrTolerance: The error tolerance level.
+'
+' Returns:
+'   - A string value containing either the enthalpy value or a text line
+'     based on priority and error tolerance.
+'
+' Usage:
+'   To find the enthaply of vaporization for methane at 171 kelvin:
+'   result = VBShowHvap_SI(1, 171, 50)
+'
+' Error Handling:
+'   - Implements custom error handling through ErrorVBShowHvap_SI label.
+'   - If an error occurs, it returns a string with the error number and description.
+'
+' Author:         Brian Howard
+' Date Created:   15 Oct 2023
+' Last Updated:   -
+' =============================================================================
+Function VBShowHvap_SI(fluidindex As Long, dT As Double, _
+    ErrTolerance As Integer)
+
+    'Local variables
+    Dim dh As Double
+    Dim priority01 As Double
+    Dim eline01 As String
+    Dim i As Long
+    
+    ' Initalize the enthalpy value
+    dh = 0
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowHvap_SI
+
+    'Establish max string length
+    priority01 = 0
+    eline01 = String(256, "a")
+
+    'Check that the Error Tolerance is above minimum
+    'Threshold
+    If (ErrTolerance < 10) Then
+        ErrTolerance = 10
+    End If
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowHvap_SI(fluidindex, _
+                    dT, _
+                    dh, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowHvap_SI = eline01
+    Else
+        VBShowHvap_SI = dh
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowHvap_SI:
+   'Twiddle the Flag and display the message
+    VBShowHvap_SI = (Str(Err.Number) & ":" & Err.Description)
+'    Exit Function
+
+End Function
+
+' =============================================================================
+' Function Name:  VBShowHvap_USCS
+' Purpose:        This function interacts with a C++ DLL to retrieve the ethalpy
+'                 of vaporization in USCS units, BTU/lbmol, and error information for
+'                 a given fluid index using the eosmodel class.
+'                 It serves as a wrapper for the ShowHvap_USCS DLL function.
+'
+' Parameters:
+'   - fluidindex: The index representing the type of fluid.
+'   - dT: Fluid temperature in USCS, Rankine.
+'   - ErrTolerance: The error tolerance level.
+'
+' Returns:
+'   - A string value containing either the enthalpy value or a text line
+'     based on priority and error tolerance.
+'
+' Usage:
+'   To find the enthaply of vaporization for methane at 350 deg. R:
+'   result = VBShowHvap_USCS(1, 350, 50)
+'
+' Error Handling:
+'   - Implements custom error handling through ErrorVBShowHvap_USCS label.
+'   - If an error occurs, it returns a string with the error number and description.
+'
+' Author:         Brian Howard
+' Date Created:   15 Oct 2023
+' Last Updated:   -
+' =============================================================================
+Function VBShowHvap_USCS(fluidindex As Long, dT As Double, _
+    ErrTolerance As Integer)
+
+    'Local variables
+    Dim dh As Double
+    Dim priority01 As Double
+    Dim eline01 As String
+    Dim i As Long
+    
+    ' Initalize the enthalpy value
+    dh = 0
+
+    'Establish error trapping
+    On Error GoTo ErrorVBShowHvap_USCS
+
+    'Establish max string length
+    priority01 = 0
+    eline01 = String(256, "a")
+
+    'Check that the Error Tolerance is above minimum
+    'Threshold
+    If (ErrTolerance < 10) Then
+        ErrTolerance = 10
+    End If
+
+    'If we need to we can check the return value
+    'to see if there was an error
+    i = ShowHvap_USCS(fluidindex, _
+                    dT, _
+                    dh, _
+                    priority01, _
+                    eline01)
+
+    'return the value
+    If ((priority01 > 0) And (priority01 <= ErrTolerance)) Then
+        VBShowHvap_USCS = eline01
+    Else
+        VBShowHvap_USCS = dh
+    End If
+
+    'Avoid the error handler
+    Exit Function
+
+ErrorVBShowHvap_USCS:
+   'Twiddle the Flag and display the message
+    VBShowHvap_USCS = (Str(Err.Number) & ":" & Err.Description)
+'    Exit Function
+
+End Function
 
 ' =============================================================================
 ' Function Name:  VBShowLHV_mx_SI

@@ -207,8 +207,6 @@ Function VBShowFluidCount()
  
 End Function
 
-
-
 ' =============================================================================
 ' Function Name:  VBShowName
 ' Purpose:        This function interacts with a C++ DLL to retrieve the fluid

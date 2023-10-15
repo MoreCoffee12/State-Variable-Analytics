@@ -100,4 +100,6 @@ EXPORTS
 	ShowSatVapS_P_SI
 	ShowSatLiqS_P_USCS
 	ShowSatLiqS_P_SI
+	ShowHvap_SI
+	ShowHvap_USCS
 
