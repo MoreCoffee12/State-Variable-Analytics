@@ -520,10 +520,14 @@ Function BalanceCombustion(dTemp_K As Double, dPres_bar As Double, strFuel As Va
     dTempConv = 1#
     dIterNum = 0#
 
-'    ' Begin the loop
+    ' Begin the loop
     Dim dEnthProd_kg As Double, dQ As Double
     dEnthProd_kg = 0#
     dQ = 0#
+    Dim dQ_prime As Double
+    Dim dTempSmallChange As Double
+    Dim dEnthProd_prime_kg As Double
+    dEnthProd_prime_kg = 0#
     While dDeltaT_K > dTempConv And dIterNum < dMaxIter
 
         ' Calculate enthalpy for the current temperature
@@ -554,29 +558,36 @@ Function BalanceCombustion(dTemp_K As Double, dPres_bar As Double, strFuel As Va
 
         ' Calculate the heat input, Q using absolute enthalpies
         ' From the 'TestHarness_AdiabaticFlame' values should be:
-        '   dQ = 94510.4
-        dQ = (dEnthProd_abs_mol + dHfoProd_mol)
+        '   dQ = 170809.2
+        dQ = (dEnthProd_abs_mol - dHfoLHS_mol)
+        
+        ' Calculate derivative of f with respect to temperature (f'(x))
+        ' This can be approximated numerically if an analytical form isn't available.
+        ' Here's a simple forward difference approximation:
+        dTempSmallChange = 5
+        i = ShowH_TP_SI(eosset, _
+                        dFlameTemp_K + dTempSmallChange, _
+                        dPres_bar, _
+                        fractProd(0), _
+                        dPrecision, _
+                        dMaxIter, _
+                        dEnthProd_prime_kg, _
+                        priority01, _
+                        eline01)
+        Dim dEnthProd_prime_abs_mol As Double
+        dEnthProd_prime_abs_mol = ((dEnthProd_prime_kg * dMWProd) - dEnthProd_298_mol) + dHfoProd_mol
+        dQ_prime = (dEnthProd_prime_abs_mol - dHfoLHS_mol) - dQ
+    
+        ' Newton-Raphson update
+        dDeltaT_K = dQ * (dTempSmallChange / dQ_prime)
+        dFlameTemp_K = dFlameTemp_K - dDeltaT_K
         
         Debug.Print "dFlameTemp_K: " + Format$(dFlameTemp_K, "###0.00") + _
+            " | dDeltaT_K: " + Format$(dDeltaT_K, "#.00") + _
             " | dQ: " + Format$(dQ, "#.00") + _
+            " | dQ_prime: " + Format$(dQ_prime, "#.00") + _
             " | dEnthProd_abs_mol: " + Format$(dEnthProd_abs_mol, "#.00")
-
-        ' Calculate the next temperature
-        If dQ > 0 Then
-
-            ' The product stream had too much energy, reduce temperature
-            dFlameTemp_K = dFlameTemp_K - dDeltaT_K
-
-        Else
-
-            ' The product stream had too little energy, increase temperature
-            dFlameTemp_K = dFlameTemp_K + dDeltaT_K
-
-        End If
-        
-
-        ' Reduce step size
-        dDeltaT_K = (dDeltaT_K / 1.25)
+            
 
         ' Increment the number of iterations
         dIterNum = dIterNum + 1#
