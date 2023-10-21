@@ -478,8 +478,6 @@ Function BalanceCombustion(dTemp_K As Double, dPres_bar As Double, strFuel As Va
          Err.Raise 1, "ShowHfo_mx_SI for the combustion products", _
             "The product hfo enthalpy calculation at STP conditions failed to converge"
     End If
-    
-                            
 
     ' Estimate the product enthalpies at inlet conditions. Check the return value
     ' to see if there was an error. From the 'TestHarness_AdiabaticFlame'
