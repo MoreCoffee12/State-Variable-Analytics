@@ -2,7 +2,7 @@ Attribute VB_Name = "BratyonCycleCalcs"
 Option Explicit
 
 ' =============================================================================
-' Function Name:  BalanceCombustion
+' Function Name:  BalanceCombustion_SI
 ' Purpose: Given the fuel, air, and diluent molecular formulas and mol weights,
 '   this function attempts to balance the equation. This uses a brute force method
 '   based on components present. It needs refinment to handle general cases.
@@ -56,7 +56,7 @@ Option Explicit
 ' Author: Brian Howard
 ' Date: 6 Oct 2023
 ' =============================================================================
-Function BalanceCombustion(dTemp_K As Double, dPres_bar As Double, strFuel As Variant, strAir As Variant, _
+Function BalanceCombustion_SI(dTemp_K As Double, dPres_bar As Double, strFuel As Variant, strAir As Variant, _
     strDiluent As Variant, bStoichometric As Boolean) As Variant
 
     ' We want to work with molar quantities
@@ -100,7 +100,7 @@ Function BalanceCombustion(dTemp_K As Double, dPres_bar As Double, strFuel As Va
     outputString = ""
     
     ' Establish error trapping
-    On Error GoTo ErrorBalanceCombustion
+    On Error GoTo ErrorBalanceCombustion_SI
     
     ' Validate inputs
     If Len(strFuel) < 2 Then
@@ -605,14 +605,14 @@ Function BalanceCombustion(dTemp_K As Double, dPres_bar As Double, strFuel As Va
     For idx = 0 To (iEOSCount - 1)
         arrOutput(2 + idx) = fractProd(idx)
     Next idx
-    BalanceCombustion = arrOutput
+    BalanceCombustion_SI = arrOutput
     
     'Avoid the error handler
     Exit Function
 
-ErrorBalanceCombustion:
+ErrorBalanceCombustion_SI:
 
-    BalanceCombustion = (Str(Err.Number) & ":" & Err.Description)
+    BalanceCombustion_SI = (Str(Err.Number) & ":" & Err.Description)
     Exit Function
 
 End Function
