@@ -15,17 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FFTW2dll.dll">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="SignalProcessing.def">
       <Filter>Source Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="FFTW2dll.lib">
-      <Filter>Source Files</Filter>
-    </Library>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NumRecFFT.c">
@@ -37,10 +29,10 @@
     <ClCompile Include="FilterHarness\FilterHarness\Filter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Toolbox\FilterCDF\filtercdf.cpp">
+    <ClCompile Include="..\FilterCDF\filtercdf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Toolbox\FilterCDF\jsctime.cpp">
+    <ClCompile Include="..\FilterCDF\jsctime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,13 +46,13 @@
     <ClInclude Include="NumRecFFT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Toolbox\FilterCDF\filtercdf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Toolbox\FilterCDF\jsctime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FilterHarness\FilterHarness\Filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FilterCDF\filtercdf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FilterCDF\jsctime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

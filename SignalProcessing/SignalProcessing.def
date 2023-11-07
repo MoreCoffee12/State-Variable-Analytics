@@ -12,11 +12,6 @@ EXPORTS
     SignalProcessingShowVersion
     SignalProcessingShowBuild
     
-    ;FFT interface below this marker
-    GetFFTMaxArraySize
-    CalcFFT
-    bCalcFFTReal
-
 	;Waveform filtering/smoothing below this marker
     FilterWaveform
     bXSmoothWaveform
