@@ -1,0 +1,50 @@
+
+
+;This DEF file exports the mechanical functions from the Signal Processing dll
+
+;Give the library a name
+LIBRARY    SignalProcessing
+
+;Export the function
+EXPORTS
+    
+    ;basic interface and housekeeping below this marker
+    SignalProcessingShowVersion
+    SignalProcessingShowBuild
+    
+    ;FFT interface below this marker
+    GetFFTMaxArraySize
+    CalcFFT
+    bCalcFFTReal
+
+	;Waveform filtering/smoothing below this marker
+    FilterWaveform
+    bXSmoothWaveform
+    bXSmoothWaveformAperiodic
+    bXSmoothWaveformMultiplePass
+
+    ;Waveform characterization interface below this marker
+    CalcWaveformRMS
+    bGetBandPkPk
+    bGetBandRMS
+	bXGetBandAverage
+	bGetBandPeakIndex
+	bGetBandValleyIndex
+	bXGetWaveformAverage
+	bXGetWaveformAsACCoupled
+    
+    ;Waveform manipulation interface below this marker
+    bXWaveformResample
+    bXGetColAsDoubleArray
+    bXGetRowAsDoubleArray
+    bXGetRecordAsString
+    bXGetStringFromArrayAndTime
+    bXGetStringFromArrays02
+    bXGetStringFromArrays03
+    bXGetStringFromArrays04
+    bXGetStringFromArrays05
+    bXGetStringFromArrays06
+	bXGetStringFromArrayToRow
+    
+    ;Statistical tools interface below this marker
+    bGetSlopeIntercept

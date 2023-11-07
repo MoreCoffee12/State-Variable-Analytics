@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SignalProcessing", "SignalProcessing.vcxproj", "{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		64Bit|Win32 = 64Bit|Win32
+		64Bit|x64 = 64Bit|x64
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Template|Win32 = Template|Win32
+		Template|x64 = Template|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.64Bit|Win32.ActiveCfg = 64Bit|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.64Bit|Win32.Build.0 = 64Bit|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.64Bit|x64.ActiveCfg = Debug|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.64Bit|x64.Build.0 = Debug|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Debug|Win32.Build.0 = Debug|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Debug|x64.ActiveCfg = Debug|x64
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Debug|x64.Build.0 = Debug|x64
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Release|Win32.ActiveCfg = Release|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Release|Win32.Build.0 = Release|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Release|x64.ActiveCfg = Release|x64
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Release|x64.Build.0 = Release|x64
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Template|Win32.ActiveCfg = Release|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Template|Win32.Build.0 = Release|Win32
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Template|x64.ActiveCfg = 64Bit|x64
+		{43954CE2-AC56-4EBC-B082-0F9D9261FAD0}.Template|x64.Build.0 = 64Bit|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
