@@ -36,7 +36,7 @@ Figure 2 – Outline of industrial frame gas turbine with operating pressure and
 
 ## Brayton Cycle – Open
 
-The [OneDrive folder](https://1drv.ms/f/s!AsL0xhQs8znHmc5oV3nhe9GpZ4TSPQ?e=ryRQkD) with example calculations includes an open cycle [Brayton cycle analysis](https://1drv.ms/x/s!AsL0xhQs8znHmdRd6LrHnKdKYU182w?e=C8DHn5) (“BraytonCycle_Open_SI.xlsm”). The worksheet uses an adiabatic flame assumption to calculate combustion products. The code does not account for disassociation, so the results will not be accurate compared to commercial code; however, the model accurately describes the changes in efficiency and power as inputs such as stoichiometric ratio, compression ratio, and efficiencies change.
+The install package (available from my website [Software Tools](https://robotsquirrelproductions.com/software-tools/#st_performancetools) page) with example calculations includes an open cycle [Brayton cycle analysis](https://1drv.ms/x/s!AsL0xhQs8znHmdRd6LrHnKdKYU182w?e=C8DHn5) (“BraytonCycle_Open_SI.xlsm”). The worksheet uses an adiabatic flame assumption to calculate combustion products. The code does not account for disassociation, so the results will not be accurate compared to commercial code; however, the model accurately describes the changes in efficiency and power as inputs such as stoichiometric ratio, compression ratio, and efficiencies change.
 
 ![A diagram of a diagram Description automatically generated](media/396a8055d1a860a1eeb59bec2c5d96b0.png)
 
