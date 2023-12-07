@@ -1,14 +1,14 @@
 # State-Variable Analytics
 
-This repository stores source code for state variable analytics through C++ dynamic link libraries (DLLs) and Visual Basic for Applications (VBA), in Microsoft® Excel® for Microsoft 64-bit spreadsheets. The state variable properties can be used in thermodynamic calculations and analytics. The engine state variables include pressure, temperature, entropy, and enthalpy.
+This GitHub repository stores the source code for state variable analytics. C++ dynamic link libraries (DLLs) implement the analytics. In addition, the repository includes a Visual Basic for Applications (VBA) interface in Microsoft® Excel® for Microsoft 64-bit spreadsheets. The state variable analytics provide thermodynamic data for performance and chemical process calculations. The engine state variables include pressure, temperature, entropy, and enthalpy.
 
 The code provides the state variable properties and analytics via an equation of state based on the Benedict–Webb–Rubin-Starling (BWRS) model.
 
-In addition, the repository provides a library for calculation reciprocating machinery kinematics. Combining the state-variable analytics with the machine properties enables full simulation of reciprocating compressors across various hydrocarbon gas mixtures in Excel. The combination also enables diagnostics by allowing measured pressures and temperatures to be plotted against those predicted by the state-variable analytics.
+In addition, the repository provides a library for calculating reciprocating machinery kinematics. Combining the state-variable analytics with the machine kinematic properties enables full simulation of reciprocating compressors. The combination also allows diagnostics by plotting measured pressures and temperatures against those predicted by the state-variable analytics.
 
-Excel example files can be downloaded from this [OneDrive folder.](https://1drv.ms/f/s!AsL0xhQs8znHmc5oV3nhe9GpZ4TSPQ?e=ryRQkD) The files are being upgraded from 32-bit to 64-bit libraries, so they should not be viewed as tested or completed implementations; however, they show how these libraries can be used in Excel.
+The companion website (<https://robotsquirrelproductions.com/software-tools/>) hosts Excel example files for download. The files are being upgraded from 32-bit to 64-bit libraries, so testing and implementation have not been completed; however, they show how these libraries can be used in Excel.
 
-The sections below provide descriptions of the libraries and provides examples of how the libraries can be used.
+The sections below provide descriptions of the libraries and provide examples of how the libraries can be used.
 
 # GasAnalysis
 
@@ -36,7 +36,7 @@ Figure 2 – Outline of industrial frame gas turbine with operating pressure and
 
 ## Brayton Cycle – Open
 
-The install package (available from my website [Software Tools](https://robotsquirrelproductions.com/software-tools/#st_performancetools) page) with example calculations includes an open cycle [Brayton cycle analysis](https://1drv.ms/x/s!AsL0xhQs8znHmdRd6LrHnKdKYU182w?e=C8DHn5) (“BraytonCycle_Open_SI.xlsm”). The worksheet uses an adiabatic flame assumption to calculate combustion products. The code does not account for disassociation, so the results will not be accurate compared to commercial code; however, the model accurately describes the changes in efficiency and power as inputs such as stoichiometric ratio, compression ratio, and efficiencies change.
+The install package (available from the companion website [Software Tools](https://robotsquirrelproductions.com/software-tools/#st_performancetools) page) with example calculations includes an open cycle [Brayton cycle analysis](https://1drv.ms/x/s!AsL0xhQs8znHmdRd6LrHnKdKYU182w?e=C8DHn5) (“BraytonCycle_Open_SI.xlsm”). The worksheet uses an adiabatic flame assumption to calculate combustion products. The code does not account for disassociation, so the results will not be absolutely accurate, compared to commercial code; however, the model accurately describes the changes in efficiency and power as inputs such as stoichiometric ratio, compression ratio, and efficiencies change.
 
 ![A diagram of a diagram Description automatically generated](media/396a8055d1a860a1eeb59bec2c5d96b0.png)
 
