@@ -7,7 +7,7 @@ Public RecursiveFlag As Boolean
 
 'These are interface function for the EOS engine
 Declare PtrSafe Function ShowVapPres_T_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -17,7 +17,7 @@ Declare PtrSafe Function ShowVapPres_T_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowVapPres_T_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -27,7 +27,7 @@ Declare PtrSafe Function ShowVapPres_T_SI _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapV_T_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -37,7 +37,7 @@ Declare PtrSafe Function ShowVapPres_T_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapV_T_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -47,7 +47,7 @@ Declare PtrSafe Function ShowVapPres_T_SI _
 '                            ByVal textline01 As String) As Long
 '
 Declare PtrSafe Function ShowSatLiqV_T_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -57,7 +57,7 @@ Declare PtrSafe Function ShowSatLiqV_T_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatLiqV_T_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -67,7 +67,7 @@ Declare PtrSafe Function ShowSatLiqV_T_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatVapH_T_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -77,7 +77,7 @@ Declare PtrSafe Function ShowSatVapH_T_USCS _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapH_T_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -87,7 +87,7 @@ Declare PtrSafe Function ShowSatVapH_T_USCS _
 '                            ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatLiqH_T_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -97,7 +97,7 @@ Declare PtrSafe Function ShowSatLiqH_T_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatLiqH_T_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -107,7 +107,7 @@ Declare PtrSafe Function ShowSatLiqH_T_SI _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapS_T_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -117,7 +117,7 @@ Declare PtrSafe Function ShowSatLiqH_T_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatLiqS_T_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -127,7 +127,7 @@ Declare PtrSafe Function ShowSatLiqH_T_SI _
 '                            ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowVapTemp_P_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -137,7 +137,7 @@ Declare PtrSafe Function ShowVapTemp_P_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowVapTemp_P_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -147,7 +147,7 @@ Declare PtrSafe Function ShowVapTemp_P_SI _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapV_P_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -157,7 +157,7 @@ Declare PtrSafe Function ShowVapTemp_P_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatVapV_P_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -167,7 +167,7 @@ Declare PtrSafe Function ShowVapTemp_P_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatLiqV_P_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -177,7 +177,7 @@ Declare PtrSafe Function ShowVapTemp_P_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatLiqV_P_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -187,7 +187,7 @@ Declare PtrSafe Function ShowVapTemp_P_SI _
 '                            ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatVapH_P_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -197,7 +197,7 @@ Declare PtrSafe Function ShowSatVapH_P_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatVapH_P_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -207,7 +207,7 @@ Declare PtrSafe Function ShowSatVapH_P_SI _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatLiqH_P_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -217,7 +217,7 @@ Declare PtrSafe Function ShowSatVapH_P_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSatLiqH_P_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -227,7 +227,7 @@ Declare PtrSafe Function ShowSatVapH_P_SI _
 '                            ByVal textline01 As String) As Long
 '
 Declare PtrSafe Function ShowSatVapS_P_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -237,7 +237,7 @@ Declare PtrSafe Function ShowSatVapS_P_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatVapS_P_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -247,7 +247,7 @@ Declare PtrSafe Function ShowSatVapS_P_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatLiqS_P_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal pres As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -257,7 +257,7 @@ Declare PtrSafe Function ShowSatLiqS_P_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowSatLiqS_P_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal pres As Double, _
                             MixtureArray As Double, _
                             ByVal Precision As Double, _
@@ -267,7 +267,7 @@ Declare PtrSafe Function ShowSatLiqS_P_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowP_VT_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal md As Double, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
@@ -278,7 +278,7 @@ Declare PtrSafe Function ShowP_VT_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowP_VT_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal md As Double, _
                             ByVal temp As Double, _
                             MixtureArray As Double, _
@@ -289,7 +289,7 @@ Declare PtrSafe Function ShowP_VT_SI _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowP_VS_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal v As Double, _
 '                            ByVal s As Double, _
 '                            MixtureArray As Double, _
@@ -300,7 +300,7 @@ Declare PtrSafe Function ShowP_VT_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowP_VS_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal v As Double, _
 '                            ByVal s As Double, _
 '                            MixtureArray As Double, _
@@ -311,7 +311,7 @@ Declare PtrSafe Function ShowP_VT_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowP_MT_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal md As Double, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
@@ -322,7 +322,7 @@ Declare PtrSafe Function ShowP_VT_SI _
 '                            ByVal textline01 As String) As Long
 '
 Declare PtrSafe Function ShowT_HP_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef h As Double, _
                             ByRef p As Double, _
                             ByRef MixtureArray As Double, _
@@ -333,7 +333,7 @@ Declare PtrSafe Function ShowT_HP_SI _
                             ByVal textline01 As String) As Long
 
 'Declare PtrSafe Function ShowT_HP_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByRef h As Double, _
 '                            ByRef p As Double, _
 '                            MixtureArray As Double, _
@@ -344,7 +344,7 @@ Declare PtrSafe Function ShowT_HP_SI _
 '                            ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowT_SP_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef s As Double, _
                             ByRef p As Double, _
                             ByRef MixtureArray As Double, _
@@ -355,7 +355,7 @@ Declare PtrSafe Function ShowT_SP_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowT_SP_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef s As Double, _
                             ByRef p As Double, _
                             MixtureArray As Double, _
@@ -366,7 +366,7 @@ Declare PtrSafe Function ShowT_SP_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowV_TP_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
@@ -377,7 +377,7 @@ Declare PtrSafe Function ShowV_TP_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowV_TP_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
@@ -388,7 +388,7 @@ Declare PtrSafe Function ShowV_TP_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowS_TP_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
@@ -399,7 +399,7 @@ Declare PtrSafe Function ShowS_TP_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowS_TP_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             ByRef pres As Double, _
                             ByRef MixtureArray As Double, _
@@ -410,7 +410,7 @@ Declare PtrSafe Function ShowS_TP_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowH_TP_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             ByRef pres As Double, _
                             MixtureArray As Double, _
@@ -421,7 +421,7 @@ Declare PtrSafe Function ShowH_TP_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowH_TP_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             ByRef pres As Double, _
                             MixtureArray As Double, _
@@ -432,7 +432,7 @@ Declare PtrSafe Function ShowH_TP_USCS _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowH_TS_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByVal temp As Double, _
                             ByVal entr As Double, _
                             MixtureArray As Double, _
@@ -443,7 +443,7 @@ Declare PtrSafe Function ShowH_TS_SI _
                             ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowH_TS_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            ByVal entr As Double, _
 '                            MixtureArray As Double, _
@@ -454,7 +454,7 @@ Declare PtrSafe Function ShowH_TS_SI _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowF_TP_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
@@ -465,7 +465,7 @@ Declare PtrSafe Function ShowH_TS_SI _
 '                            ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowHfo_mx_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             MixtureArray As Double, _
                             ByRef Precision As Double, _
                             ByRef MaxIterations As Double, _
@@ -474,7 +474,7 @@ Declare PtrSafe Function ShowHfo_mx_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowHfo_mx_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             MixtureArray As Double, _
                             ByRef Precision As Double, _
                             ByRef MaxIterations As Double, _
@@ -483,7 +483,7 @@ Declare PtrSafe Function ShowHfo_mx_USCS _
                             ByVal textline01 As String) As Long
 
 'Declare PtrSafe Function ShowSfo_mx_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
 '                            ByVal MaxIterations As Double, _
@@ -492,7 +492,7 @@ Declare PtrSafe Function ShowHfo_mx_USCS _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSfo_mx_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
 '                            ByVal MaxIterations As Double, _
@@ -501,7 +501,7 @@ Declare PtrSafe Function ShowHfo_mx_USCS _
 '                            ByVal textline01 As String) As Long
 '
 Declare PtrSafe Function ShowH_H298_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -511,7 +511,7 @@ Declare PtrSafe Function ShowH_H298_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowH_H298_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -521,7 +521,7 @@ Declare PtrSafe Function ShowH_H298_USCS _
                             ByVal textline01 As String) As Long
 
 'Declare PtrSafe Function ShowSo_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -531,7 +531,7 @@ Declare PtrSafe Function ShowH_H298_USCS _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowSo_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            MixtureArray As Double, _
 '                            ByVal Precision As Double, _
@@ -541,7 +541,7 @@ Declare PtrSafe Function ShowH_H298_USCS _
 '                            ByVal textline01 As String) As Long
 '
 Declare PtrSafe Function ShowHIdeal_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -551,7 +551,7 @@ Declare PtrSafe Function ShowHIdeal_SI _
                             ByVal textline01 As String) As Long
 
 Declare PtrSafe Function ShowHIdeal_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef temp As Double, _
                             MixtureArray As Double, _
                             ByRef Precision As Double, _
@@ -561,7 +561,7 @@ Declare PtrSafe Function ShowHIdeal_USCS _
                             ByVal textline01 As String) As Long
 
 'Declare PtrSafe Function ShowViscosityGas_TP_SI _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
@@ -572,7 +572,7 @@ Declare PtrSafe Function ShowHIdeal_USCS _
 '                            ByVal textline01 As String) As Long
 '
 'Declare PtrSafe Function ShowViscosityGas_TP_USCS _
-'    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+'    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
 '                            ByVal temp As Double, _
 '                            ByVal pres As Double, _
 '                            MixtureArray As Double, _
@@ -583,27 +583,27 @@ Declare PtrSafe Function ShowHIdeal_USCS _
 '                            ByVal textline01 As String) As Long
 '
 Declare PtrSafe Function ShowMolWeight_mx _
-    Lib "GasAnalysis.dll" (ByRef molweight As Double, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef molweight As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String, _
                             ByRef MixtureArray As Double) As Long
                             
 Declare PtrSafe Function ShowHvap_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef dT As Double, _
                             ByRef dh As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
                             
 Declare PtrSafe Function ShowHvap_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef dT As Double, _
                             ByRef dh As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
                             
 Declare PtrSafe Function ShowLHV_mx_SI _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
                             ByRef MaxIterations As Double, _
@@ -612,7 +612,7 @@ Declare PtrSafe Function ShowLHV_mx_SI _
                             ByVal textline01 As String) As Integer
 
 Declare PtrSafe Function ShowLHV_mx_USCS _
-    Lib "GasAnalysis.dll" (ByRef eosset As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef eosset As Long, _
                             ByRef MixtureArray As Double, _
                             ByRef Precision As Double, _
                             ByRef MaxIterations As Double, _

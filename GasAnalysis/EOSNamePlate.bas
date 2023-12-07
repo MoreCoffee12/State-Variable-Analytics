@@ -4,11 +4,11 @@ Option Explicit
 'This function returns the number of fluids in
 'the EOS engine
 Declare PtrSafe Function ShowFluidCount _
-    Lib "GasAnalysis.dll" () As Integer
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" () As Integer
 
 'This function returns the primary name of a fluid
 Declare PtrSafe Function ShowName _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
     ByVal textline As String, _
     ByRef priority01 As Double, _
     ByVal textline01 As String) As Long
@@ -16,14 +16,14 @@ Declare PtrSafe Function ShowName _
 'This function returns the auxillary or secondary
 'name of a fluid
 Declare PtrSafe Function ShowName_Alt01 _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByVal textline As String, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
                             
 'This function returns fluid chemical formula
 Declare PtrSafe Function ShowFormula _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByVal textline As String, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -31,7 +31,7 @@ Declare PtrSafe Function ShowFormula _
                             
 'This function returns the fluid molecular weight
 Declare PtrSafe Function ShowMolWeight _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef molweight As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -39,14 +39,14 @@ Declare PtrSafe Function ShowMolWeight _
                             
 'This function returns the fluid critcal temperature (USCS)
 Declare PtrSafe Function ShowCritTemp_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef crittemp As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
                             
 'This function returns the fluid critcal temperature (SI)
 Declare PtrSafe Function ShowCritTemp_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef crittemp As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -54,7 +54,7 @@ Declare PtrSafe Function ShowCritTemp_SI _
 'This function returns critcal pressure (USCS)
 'for a fluid
 Declare PtrSafe Function ShowCritPres_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef critpres As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -62,7 +62,7 @@ Declare PtrSafe Function ShowCritPres_USCS _
 'This function returns critcal pressure (SI)
 'for a fluid
 Declare PtrSafe Function ShowCritPres_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef critpres As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -70,7 +70,7 @@ Declare PtrSafe Function ShowCritPres_SI _
 'This function returns critcal volume (USCS)
 'for a fluid
 Declare PtrSafe Function ShowCritVol_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef critvol As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -78,7 +78,7 @@ Declare PtrSafe Function ShowCritVol_USCS _
 'This function returns critcal volume (SI)
 'for a fluid
 Declare PtrSafe Function ShowCritVol_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef critvol As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -86,7 +86,7 @@ Declare PtrSafe Function ShowCritVol_SI _
 'This function returns the eccentricity factor
 'for a fluid
 Declare PtrSafe Function ShowEcc _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef ecc As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -94,7 +94,7 @@ Declare PtrSafe Function ShowEcc _
 'This function returns the gas constant
 'for a fluid
 Declare PtrSafe Function ShowR_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef r As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -102,7 +102,7 @@ Declare PtrSafe Function ShowR_USCS _
 'This function returns the enthalpy of formation in USCS
 'for a fluid
 Declare PtrSafe Function ShowHfo_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef h As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -110,7 +110,7 @@ Declare PtrSafe Function ShowHfo_USCS _
 'This function returns the enthalpy of formation in SI
 'for a fluid
 Declare PtrSafe Function ShowHfo_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef h As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -118,7 +118,7 @@ Declare PtrSafe Function ShowHfo_SI _
 'This function returns the entropy of formation in USCS
 'for a fluid
 Declare PtrSafe Function ShowSfo_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef h As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -126,7 +126,7 @@ Declare PtrSafe Function ShowSfo_USCS _
 'This function returns the entropy of formation in SI
 'for a fluid
 Declare PtrSafe Function ShowSfo_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef h As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -134,7 +134,7 @@ Declare PtrSafe Function ShowSfo_SI _
 'This function returns the lower heating value in USCS
 'for a fluid
 Declare PtrSafe Function ShowLHV_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef lhv As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -142,7 +142,7 @@ Declare PtrSafe Function ShowLHV_USCS _
 'This function returns the lower heating value in SI
 'for a fluid
 Declare PtrSafe Function ShowLHV_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef lhv As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -150,7 +150,7 @@ Declare PtrSafe Function ShowLHV_SI _
 'This function returns the higher heating value in USCS
 'for a fluid
 Declare PtrSafe Function ShowHHV_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef hhv As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -158,7 +158,7 @@ Declare PtrSafe Function ShowHHV_USCS _
 'This function returns the higher heating value in SI
 'for a fluid
 Declare PtrSafe Function ShowHHV_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef hhv As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -166,7 +166,7 @@ Declare PtrSafe Function ShowHHV_SI _
 'This function returns the dipole moment in USCS
 'for a fluid
 Declare PtrSafe Function ShowDipole_USCS _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef dipole As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
@@ -174,7 +174,7 @@ Declare PtrSafe Function ShowDipole_USCS _
 'This function returns the dipole moment in USCS
 'for a fluid
 Declare PtrSafe Function ShowDipole_SI _
-    Lib "GasAnalysis.dll" (ByRef fluidindex As Long, _
+    Lib "C:\State Variable Analytics\GasAnalysis.dll" (ByRef fluidindex As Long, _
                             ByRef dipole As Double, _
                             ByRef priority01 As Double, _
                             ByVal textline01 As String) As Long
