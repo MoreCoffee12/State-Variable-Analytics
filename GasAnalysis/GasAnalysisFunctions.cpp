@@ -6773,11 +6773,11 @@ int ShowSatVapS_P_SI(int* eosset,
 /// Returns the gas absolute viscosity at in USCS units, lb/ft-sec, given the mixture temperture and pressure
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="temp">Double representing the temperature of the fluid in USCS, Rankine.</param>
-/// <param name="pres">Double representing the pressure of the fluid in USCS, PSIA.</param>
+/// <param name="temp">Pointer to a double representing the temperature of the fluid in USCS, Rankine.</param>
+/// <param name="pres">Pointer to a double representing the pressure of the fluid in USCS, PSIA.</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
 /// <param name="v">Pointer to a double where the calculated viscosity will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
@@ -6795,11 +6795,11 @@ int ShowSatVapS_P_SI(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowViscosityGas_TP_USCS(int* eosset,
-	double temp,
-	double pres,
+	double* temp,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* v,
 	double* priority01,
 	char* mainerrline01)
@@ -6818,6 +6818,60 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (temp == nullptr)
+	{
+		char* errptr = "temp is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (v == nullptr)
+	{
+		char* errptr = "v is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -6834,11 +6888,11 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the entropy
-	*v = bwrs->GetViscosityGas_TP_USCS(temp, pres);
+	*v = bwrs->GetViscosityGas_TP_USCS(*temp, *pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
@@ -6856,12 +6910,12 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 /// Returns the gas absolute viscosity at in SI units, kg/m-sec, given the mixture temperture and pressure
 /// </summary>
 /// <param name="eosset">Pointer to an integer representing the Equation of State set.</param>
-/// <param name="temp">Double representing the temperature of the fluid in SI, kelvin.</param>
-/// <param name="pres">Double representing the pressure of the fluid in SI, bar(a).</param>
+/// <param name="temp">Pointer to a double representing the temperature of the fluid in SI, kelvin.</param>
+/// <param name="pres">Pointer to a double representing the pressure of the fluid in SI, bar(a).</param>
 /// <param name="MixtureArray">Pointer to a double array representing the fluid mixture.</param>
-/// <param name="Precision">Double representing the solver precision.</param>
-/// <param name="MaxIterations">Double representing the maximum number of solver iterations.</param>
-/// <param name="v">Pointer to a double where the calculated viscosity will be stored.</param>
+/// <param name="Precision">Pointer to a double representing the solver precision.</param>
+/// <param name="MaxIterations">Pointer to a double representing the maximum number of solver iterations.</param>
+/// <param name="v">Pointer to a double where the calculated viscosity, in units of uPoise, will be stored.</param>
 /// <param name="priority01">Pointer to a double representing the error priority.</param>
 /// <param name="mainerrline01">Pointer to a char array to store the main error line.</param>
 /// <returns>Integer representing the number of errors (0 for no errors).</returns>
@@ -6878,11 +6932,11 @@ int ShowViscosityGas_TP_USCS(int* eosset,
 /// 2. Add validation and test harness.
 /// </todo>
 int ShowViscosityGas_TP_SI(int* eosset,
-	double temp,
-	double pres,
+	double* temp,
+	double* pres,
 	double* MixtureArray,
-	double Precision,
-	double MaxIterations,
+	double* Precision,
+	double* MaxIterations,
 	double* v,
 	double* priority01,
 	char* mainerrline01)
@@ -6901,6 +6955,60 @@ int ShowViscosityGas_TP_SI(int* eosset,
 	i = 0;
 	pmerrline = NULL;
 
+	// Check for null pointers
+	if (eosset == nullptr)
+	{
+		char* errptr = "eosset is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (pres == nullptr)
+	{
+		char* errptr = "pres is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (temp == nullptr)
+	{
+		char* errptr = "temp is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MixtureArray == nullptr)
+	{
+		char* errptr = "MixtureArray is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (Precision == nullptr)
+	{
+		char* errptr = "Precision is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (MaxIterations == nullptr)
+	{
+		char* errptr = "MaxIterations is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (v == nullptr)
+	{
+		char* errptr = "v is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (priority01 == nullptr)
+	{
+		char* errptr = "priority01 is null";
+		strcpy_s(mainerrline01, strlen(mainerrline01), errptr);
+		return 1;
+	}
+	if (mainerrline01 == nullptr)
+	{
+		return 1;
+	}
+
 	//...And load the mixture data into the BWRS object
 	if (!bwrs->SetMixtureData(MixtureArray))
 	{
@@ -6917,11 +7025,11 @@ int ShowViscosityGas_TP_SI(int* eosset,
 	}
 
 	//Now load the solver configuration
-	bwrs->SetPrecision(Precision);
-	bwrs->SetMaxIterations((int)MaxIterations);
+	bwrs->SetPrecision(*Precision);
+	bwrs->SetMaxIterations((int)(*MaxIterations));
 
 	//and get the entropy
-	*v = bwrs->GetViscosityGas_TP_SI(temp, pres);
+	*v = bwrs->GetViscosityGas_TP_SI(*temp, *pres);
 
 	//Check to see if the action generated any errors
 	errs = bwrs->GetMessageCount();
