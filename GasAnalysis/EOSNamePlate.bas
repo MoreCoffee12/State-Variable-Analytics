@@ -7,13 +7,9 @@ Attribute VB_Name = "EOSNamePlate"
 '          (  ^_^  )
 '             \_/_
 '
-' Confidential and proprietary computer code and data.
-'
-' All rights reserved.
-'
-' This computer code is proprietary to Robot Squirrel Productions and/or its
-' affiliate(s) and may be covered by patents. It may not be used, disclosed,
-' modified, transferred, or reproduced without prior written consent.
+' MIT License. See link below for more details:
+' https://github.com/MoreCoffee12/State-Variable-Analytics/blob/main/LICENSE
+'-----------------------------------------------------------------------------
 
 Option Explicit
 

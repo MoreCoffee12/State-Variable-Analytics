@@ -7,65 +7,8 @@ Attribute VB_Name = "ModuleSignalProcessing"
 '          (  ^_^  )
 '             \_/_
 '
-' Confidential and proprietary computer code and data.
-'
-' Copyright 2024 Robot Squirrel Productions.  All rights reserved. This
-' computer code is proprietary to Robot Squirrel Productions and/or its
-' affiliate(s) and may be covered by patents. It may not be used,
-' disclosed, modified, transferred, or reproduced without prior written
-' consent.
-'-----------------------------------------------------------------------------
-'
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to provided a waveform filtered to the corners contained within
-' the record.
-'
-' Brian Howard
-' 7 August 2012
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to provided AC-Coupled waveform conditioning
-'
-' Brian Howard
-' 25 September 2012
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to add the function to caclulate waveform end matching statistics
-'
-' Brian Howard
-' 9 October 2012
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to add waveform variance
-'
-' Brian Howard
-' 17 October 2012
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to add ability to find the index of a peak value within a band
-'
-' Brian Howard
-' 29 April 2013
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to support 64-bit VBA
-'
-' Brian Howard
-' 4 April 2014
-'-----------------------------------------------------------------------------
-' Revision
-'
-' Modified to include new function:  bXGetStringFromArrayToRow
-'
-' Brian Howard
-' 4 April 2014
+' MIT License. See link below for more details:
+' https://github.com/MoreCoffee12/State-Variable-Analytics/blob/main/LICENSE
 '-----------------------------------------------------------------------------
 
 '-----------------------------------------------------------------------------
