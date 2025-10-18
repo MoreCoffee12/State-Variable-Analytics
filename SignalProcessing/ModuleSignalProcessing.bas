@@ -1,6 +1,6 @@
 Attribute VB_Name = "ModuleSignalProcessing"
 '-----------------------------------------------------------------------------
-' Copyright 2024 Robot Squirrel Productions.
+' Copyright 2025 Robot Squirrel Productions.
 '
 '          (\_   _/)
 '          ( o   o )

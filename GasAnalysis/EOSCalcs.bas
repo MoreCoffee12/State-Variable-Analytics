@@ -1,4 +1,20 @@
 Attribute VB_Name = "EOSCalcs"
+'---------------------------------------------------------------------------------
+' Copyright 2025 Robot Squirrel Productions.
+'
+'          (\_   _/)
+'          ( o   o )
+'          (  ^_^  )
+'             \_/_
+'
+' Confidential and proprietary computer code and data.
+'
+' All rights reserved.
+'
+' This computer code is proprietary to Robot Squirrel Productions and/or its
+' affiliate(s) and may be covered by patents. It may not be used, disclosed,
+' modified, transferred, or reproduced without prior written consent.
+
 Option Explicit
 Option Base 0
 
