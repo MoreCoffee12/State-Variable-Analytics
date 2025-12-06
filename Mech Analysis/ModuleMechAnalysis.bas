@@ -5,109 +5,109 @@ Dim MsgString As String
 
 'Links to solid mechanics calls within MechAnalysis DLL
 Private Declare PtrSafe Function CGetNormalStrain_xxFromStressTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstress_xx As Double, ByVal normalstress_yy As Double, ByVal normalstress_zz As Double, _
     ByVal shearstress_xy As Double, ByVal shearstress_xz As Double, ByVal shearstress_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef normalstrain_xx As Double) As Boolean
 
 Private Declare PtrSafe Function CGetNormalStrain_yyFromStressTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstress_xx As Double, ByVal normalstress_yy As Double, ByVal normalstress_zz As Double, _
     ByVal shearstress_xy As Double, ByVal shearstress_xz As Double, ByVal shearstress_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef normalstrain_yy As Double) As Boolean
 
 Private Declare PtrSafe Function CGetNormalStrain_zzFromStressTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstress_xx As Double, ByVal normalstress_yy As Double, ByVal normalstress_zz As Double, _
     ByVal shearstress_xy As Double, ByVal shearstress_xz As Double, ByVal shearstress_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef normalstrain_zz As Double) As Boolean
 
 Private Declare PtrSafe Function CGetShearStrain_xyFromStressTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstress_xx As Double, ByVal normalstress_yy As Double, ByVal normalstress_zz As Double, _
     ByVal shearstress_xy As Double, ByVal shearstress_xz As Double, ByVal shearstress_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef shearstrain_xy As Double) As Boolean
 
 Private Declare PtrSafe Function CGetShearStrain_xzFromStressTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstress_xx As Double, ByVal normalstress_yy As Double, ByVal normalstress_zz As Double, _
     ByVal shearstress_xy As Double, ByVal shearstress_xz As Double, ByVal shearstress_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef shearstrain_xz As Double) As Boolean
 
 Private Declare PtrSafe Function CGetShearStrain_yzFromStressTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstress_xx As Double, ByVal normalstress_yy As Double, ByVal normalstress_zz As Double, _
     ByVal shearstress_xy As Double, ByVal shearstress_xz As Double, ByVal shearstress_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef shearstrain_yz As Double) As Boolean
 
 Private Declare PtrSafe Function CGetStrainPrincipal_1 _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByRef principal_1 As Double) As Boolean
 
 Private Declare PtrSafe Function CGetStrainPrincipal_2 _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByRef principal_2 As Double) As Boolean
 
 Private Declare PtrSafe Function CGetStrainPrincipal_3 _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByRef principal_3 As Double) As Boolean
 
 Private Declare PtrSafe Function CGetNormalStress_xxFromStrainTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef normalstress_xx As Double) As Boolean
 
 Private Declare PtrSafe Function CGetNormalStress_yyFromStrainTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef normalstress_yy As Double) As Boolean
 
 Private Declare PtrSafe Function CGetNormalStress_zzFromStrainTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef normalstress_zz As Double) As Boolean
 
 Private Declare PtrSafe Function CGetShearStress_xyFromStrainTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef shearstress_xy As Double) As Boolean
 
 Private Declare PtrSafe Function CGetShearStress_xzFromStrainTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef shearstress_xz As Double) As Boolean
 
 Private Declare PtrSafe Function CGetShearStress_yzFromStrainTensor _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByVal modulus As Double, ByVal poissons As Double, ByRef shearstress_yz As Double) As Boolean
 
 Private Declare PtrSafe Function CGetStressPrincipal_1 _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByRef principal_1 As Double) As Boolean
 
 Private Declare PtrSafe Function CGetStressPrincipal_2 _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByRef principal_2 As Double) As Boolean
 
 Private Declare PtrSafe Function CGetStressPrincipal_3 _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal normalstrain_xx As Double, ByVal normalstrain_yy As Double, ByVal normalstrain_zz As Double, _
     ByVal shearstrain_xy As Double, ByVal shearstrain_xz As Double, ByVal shearstrain_yz As Double, _
     ByRef principal_3 As Double) As Boolean
@@ -115,29 +115,29 @@ Private Declare PtrSafe Function CGetStressPrincipal_3 _
 
 'Links to applied dynamics calls within MechAnalysis DLL
 Private Declare PtrSafe Function CDisplacement_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, ByVal l As Double, ByVal CrankAngleDegrees As Double) As Double
 
 Private Declare PtrSafe Function CConnRodAngle_Degrees _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, ByVal l As Double, ByVal CrankAngleDegrees As Double) As Double
     
 Private Declare PtrSafe Function CVelocity_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
      ByVal RPM As Double) As Double
      
 Private Declare PtrSafe Function CAcceleration_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
      ByVal RPM As Double) As Double
      
 Private Declare PtrSafe Function CGasLoad_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
@@ -159,7 +159,7 @@ Private Declare PtrSafe Function CGasLoad_USCS _
      ByVal Right As Boolean) As Double
 
 Private Declare PtrSafe Function CInertiaLoad_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
@@ -168,7 +168,7 @@ Private Declare PtrSafe Function CInertiaLoad_USCS _
      ByVal CrossheadMass As Double) As Double
 
 Private Declare PtrSafe Function CCombinedLoad_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
@@ -190,7 +190,7 @@ Private Declare PtrSafe Function CCombinedLoad_USCS _
      ByVal Right As Boolean) As Double
 
 Private Declare PtrSafe Function CVerticalForce_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
@@ -212,7 +212,7 @@ Private Declare PtrSafe Function CVerticalForce_USCS _
      ByVal Right As Boolean) As Double
           
 Private Declare PtrSafe Function CMainBearingRadialForce_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
@@ -234,7 +234,7 @@ Private Declare PtrSafe Function CMainBearingRadialForce_USCS _
      ByVal Right As Boolean) As Double
 
 Private Declare PtrSafe Function CMainBearingTangentialForce_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
@@ -256,7 +256,7 @@ Private Declare PtrSafe Function CMainBearingTangentialForce_USCS _
      ByVal Right As Boolean) As Double
 
 Private Declare PtrSafe Function CMainBearingTorque_USCS _
-    Lib "MechAnalysis.dll" _
+    Lib "C:\State Variable Analytics\MechAnalysis.dll" _
     (ByVal stroke As Double, _
      ByVal l As Double, _
      ByVal CrankAngleDegrees As Double, _
