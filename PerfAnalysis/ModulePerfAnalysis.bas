@@ -3,7 +3,7 @@ Attribute VB_Name = "ModulePerfAnalysis"
 Option Explicit
 
 Declare PtrSafe Function CCOMPEXP _
-    Lib "PerfAnalysis.dll" _
+    Lib "C:\State Variable Analytics\PerfAnalysis.dll" _
         (ByRef connrodlength As Double, _
          ByRef stroke As Double, _
          ByRef bore As Double, _
@@ -17,13 +17,13 @@ Declare PtrSafe Function CCOMPEXP _
          ByRef headend As Boolean) As Double
          
 Declare PtrSafe Function SweptVolume_SI _
-    Lib "PerfAnalysis.dll" _
+    Lib "C:\State Variable Analytics\PerfAnalysis.dll" _
     (ByVal stroke As Double, _
         ByVal bore As Double, _
         ByVal rod As Double) As Double
 
 Declare PtrSafe Function SweptVolume_USCS _
-    Lib "PerfAnalysis.dll" _
+    Lib "C:\State Variable Analytics\PerfAnalysis.dll" _
     (ByVal stroke As Double, _
         ByVal bore As Double, _
         ByVal rod As Double) As Double
