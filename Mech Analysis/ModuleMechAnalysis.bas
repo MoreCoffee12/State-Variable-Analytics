@@ -1,4 +1,16 @@
 Attribute VB_Name = "ModuleMechAnalysis"
+'---------------------------------------------------------------------------------
+' Copyright 2025 Robot Squirrel Productions.
+'
+'          (\_   _/)
+'          ( o   o )
+'          (  ^_^  )
+'             \_/_
+'
+' MIT License. See link below for more details:
+' https://github.com/MoreCoffee12/State-Variable-Analytics/blob/main/LICENSE
+'-----------------------------------------------------------------------------
+
 Option Explicit
 Dim ErrorLocation As String
 Dim MsgString As String

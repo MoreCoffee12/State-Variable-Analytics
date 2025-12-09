@@ -1,4 +1,16 @@
 Attribute VB_Name = "ModulePerfAnalysis"
+'---------------------------------------------------------------------------------
+' Copyright 2025 Robot Squirrel Productions.
+'
+'          (\_   _/)
+'          ( o   o )
+'          (  ^_^  )
+'             \_/_
+'
+' MIT License. See link below for more details:
+' https://github.com/MoreCoffee12/State-Variable-Analytics/blob/main/LICENSE
+'-----------------------------------------------------------------------------
+
 'We want to force declarations of variables to be sure we have stack alignment across the VBA and C++ code.
 Option Explicit
 
